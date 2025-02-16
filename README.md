@@ -2,7 +2,7 @@
 
 ## Project Description
 
-Hey there! Welcome to the "Redemption Through Reflection" movie site. This project is all about capturing a modern cinema vibe, using sharp contrasts between black and white to symbolize the battle between good and evil. The abrupt color changes are designed to mirror Mustafa's dramatic personal transformation in the film.
+Welcome to the "Redemption Through Reflection" movie site. This project is all about capturing a modern cinema vibe, using sharp contrasts between black and white to symbolize the battle between good and evil. The abrupt color changes are designed to mirror Mustafa's dramatic personal transformation in the film.
 
 ## Process
 
