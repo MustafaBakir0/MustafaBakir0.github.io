@@ -2,16 +2,12 @@
 
 ## Project Description
 
-"Redemption Through Reflection" is a modern cinema-themed website designed to showcase a transformative narrative. The site employs a sharp monotone color scheme, utilizing white and black to symbolize good and bad, respectively. This deliberate choice aims to visually represent the protagonist Mustafa's profound shift in personality, with abrupt color transitions mirroring his journey.
+Hey there! Welcome to the "Redemption Through Reflection" movie site. This project is all about capturing a modern cinema vibe, using sharp contrasts between black and white to symbolize the battle between good and evil. The abrupt color changes are designed to mirror Mustafa's dramatic personal transformation in the film.
 
 ## Process
 
-The development of this website involved several key steps:
-
-1. **Learning and Research:** Engaged with multiple tutorials to understand modern web design principles.
-2. **Applying JavaScript Knowledge:** Leveraged skills acquired from the "Introduction to Interactive Media" course, particularly in JavaScript, to enhance interactivity.
-3. **AI Assistance:** Utilized AI tools to structure the website effectively and to familiarize with unfamiliar tags, including the concept of hero content.
+Creating this site was quite the journey! I dove into numerous tutorials to get a grip on contemporary web design. My background in JavaScript, thanks to my "Introduction to Interactive Media" course, came in handy for adding interactive features. Plus, I leaned on AI tools to help structure the site and introduce me to new concepts like hero content.
 
 ## Reflection and Evaluation
 
-Initially, expectations were modest, as evidenced by the preliminary wireframe designs. However, the final outcome surpassed these anticipations, resulting in a website that effectively conveys the intended narrative. Future enhancements could include additional pages, more interactive elements, and designing a "theater" ambiance around the video to minimize the impact of the white background on viewers.
+Honestly, at the start, I didn't set my expectations too high. My initial wireframes were pretty basic, and I wasn't sure how far I'd get. But looking at the final product now, I'm pleasantly surprised with how it turned out. Of course, there's always room for improvement. Adding more pages, incorporating interactive elements, or even designing a "theater" style frame around the video to make viewing more immersive are on my list for future enhancements.
