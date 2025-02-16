@@ -4,7 +4,7 @@
 
 "Redemption Through Reflection" is a film website designed to enhance the storytelling experience through a modern cinema aesthetic. The project’s core visual theme revolves around sharp contrasts between black and white—white representing good, and black symbolizing bad. This distinct color scheme is intentionally abrupt, avoiding gradients to emphasize the sudden and transformative nature of Mustafa's character development. The goal was to create a space that visually reflects the film’s themes, reinforcing the emotional weight of the story through design.
 
-Beyond the aesthetic, the website is meant to provide an immersive experience for viewers. The stark color shifts are not just stylistic choices but narrative devices, helping to convey the moral and psychological shifts taking place within the film. By aligning the visual design with the movie’s themes, the site becomes an extension of the film itself rather than just a hosting platform.
+Beyond the aesthetic, the website is meant to provide an immersive experience for viewers. The color shifts are not just stylistic choices but narrative devices, helping to convey the moral and psychological shifts taking place within the film. By aligning the visual design with the movie’s themes, the site becomes an extension of the film itself rather than just a hosting platform.
 
 ## Process
 
