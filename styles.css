@@ -10,14 +10,18 @@ body {
     line-height: 1.6;
     background-color: #0a0a0a;
     color: #fff;
+    /* Remove padding-top to prevent extra scroll */
+    overflow-x: hidden;
 }
 
 header {
     position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 0.5rem 1rem;
+    padding: 1rem;
     z-index: 1000;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7); /* Make slightly darker for better visibility */
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -31,11 +35,12 @@ nav ul {
 }
 
 nav a {
-    color: #E0E3E3;
+    color: #FFFFFF; /* Brighter white for better visibility */
     text-decoration: none;
     padding: 0.5rem 1rem;
     transition: all 0.3s ease;
-    font-weight: 500;
+    font-weight: 600; /* Slightly bolder */
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Add shadow for better readability */
 }
 
 nav a:hover {
@@ -43,14 +48,48 @@ nav a:hover {
     text-shadow: 0 0 8px rgba(0, 255, 136, 0.3);
 }
 
+.section {
+    position: relative;
+    z-index: 1;
+    background-color: #0a0a0a;
+    padding: 5rem 2rem;
+}
+
+/* Set position for each section to ensure proper order */
+#work {
+    /* Remove margin-top to prevent extra scroll */
+    padding-top: 5rem;
+}
+
+.calendly-link {
+    background-color: #00ff88;
+    color: #000 !important;
+    border-radius: 4px;
+    padding: 0.5rem 1rem !important;
+    margin-left: 1rem;
+    transition: all 0.3s ease;
+}
+
+.calendly-link:hover {
+    background-color: #00cc6a;
+    color: #000 !important;
+    text-shadow: none !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 255, 136, 0.3);
+}
+
 .hero {
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     background: url('assets/hero.png') center/cover no-repeat;
     overflow: hidden;
+    z-index: 0; /* Ensure hero is below content */
 }
 
 .hero::after {
@@ -62,12 +101,12 @@ nav a:hover {
     bottom: 0;
     background: rgba(0, 0, 0, 0.5);
     pointer-events: none;
-    z-index: 1;
+    z-index: 0; 
 }
 
 .hero .content {
     position: relative;
-    z-index: 2;
+    z-index: 2; 
     color: white;
     text-align: center;
     top: 50px;
@@ -81,6 +120,10 @@ nav a:hover {
     font-size: 1.5rem;
     margin-top: 1rem;
     color: #00ff88;
+    min-height: 2em;
+    position: relative;
+    z-index: 1;
+    margin-top: 0;
 }
 
 .main-title {
@@ -94,17 +137,12 @@ nav a:hover {
     transform: translateY(-30px);
 }
 
-.typewriter {
-    margin-top: 0;
+/* Container to push content after hero */
+.content-container {
     position: relative;
-    z-index: 1;
-    min-height: 2em;
+    z-index: 2;
+    margin-top: 100vh; /* Push content after hero */
 }
-
-.section {
-    padding: 5rem 2rem;
-}
-/* Add these new styles to your styles.css file */
 
 /* Project styling */
 .projects-grid {
@@ -231,14 +269,6 @@ nav a:hover {
     font-size: 1.5rem;
 }
 
-/* Remove the old styles that are no longer needed */
-.project-header,
-.toggle-icon,
-.project-body,
-.project-body.active,
-.project-header.active .toggle-icon {
-    /* These should be deleted or commented out */
-}
 .about-content {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -294,10 +324,70 @@ button {
     margin: 0 auto;
 }
 
-/* Add some responsive styles for smaller screens */
-@media (max-width: 680px) {
-    #webster-sketch-container {
-        height: 360px;
+.algorithm-section {
+    background-color: #242424;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+}
+
+.algorithm-description {
+    margin-bottom: 1rem;
+}
+
+.algorithm-io {
+    margin-bottom: 1rem;
+}
+
+.algorithm-code {
+    font-family: 'Courier New', monospace;
+    line-height: 1.5;
+    white-space: pre;
+    counter-reset: line;
+}
+
+.algorithm-code-line {
+    position: relative;
+    padding-left: 1.5rem;
+    display: block;
+}
+
+.algorithm-code-line:before {
+    counter-increment: line;
+    content: counter(line);
+    position: absolute;
+    left: 0;
+    color: #888;
+}
+
+.algorithm-comment {
+    color: #88cc88;
+}
+
+.math-container {
+    margin: 1rem 0;
+}
+
+h3 {
+    margin-top: 2rem;
+    color: #00ff88;
+}
+
+h4 {
+    margin-top: 1rem;
+    color: #cccccc;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .calendly-link {
+        margin-top: 0.5rem;
+        margin-left: 0;
     }
     
     #webster-sketch-container canvas {
@@ -305,58 +395,3 @@ button {
         height: auto !important;
     }
 }
-
-    .algorithm-section {
-      background-color: #242424;
-      border-radius: 8px;
-      padding: 1.5rem;
-      margin: 1.5rem 0;
-      overflow-x: auto;
-    }
-    
-    .algorithm-description {
-      margin-bottom: 1rem;
-    }
-    
-    .algorithm-io {
-      margin-bottom: 1rem;
-    }
-    
-    .algorithm-code {
-      font-family: 'Courier New', monospace;
-      line-height: 1.5;
-      white-space: pre;
-      counter-reset: line;
-    }
-    
-    .algorithm-code-line {
-      position: relative;
-      padding-left: 1.5rem;
-      display: block;
-    }
-    
-    .algorithm-code-line:before {
-      counter-increment: line;
-      content: counter(line);
-      position: absolute;
-      left: 0;
-      color: #888;
-    }
-    
-    .algorithm-comment {
-      color: #88cc88;
-    }
-    
-    .math-container {
-      margin: 1rem 0;
-    }
-    
-    h3 {
-      margin-top: 2rem;
-      color: #00ff88;
-    }
-    
-    h4 {
-      margin-top: 1rem;
-      color: #cccccc;
-    }
