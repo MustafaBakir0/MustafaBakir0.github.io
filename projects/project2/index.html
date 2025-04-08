@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 2 | Mustafa Bakir</title>
+    <meta name="description" content="Detailed showcase of Project 2 by Mustafa Bakir, featuring interactive elements and creative design solutions.">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/project.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+
+<div id="background-animation"></div>
+<div id="content-overlay"></div>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../../index.html#about">About</a></li>
+                <li><a href="../../index.html#work">Work</a></li>
+                <li><a href="../../index.html#skills">Skills</a></li>
+                <li><a href="../../studies/index.html">Studies</a></li>
+                <li><a href="../../index.html#contact">Contact</a></li>
+                <li><a href="#" class="calendly-link">Schedule a Call</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="project-hero">
+        <div class="project-hero-content">
+            <h1>Drawing with Fourier Transform</h1>
+            <p class="project-category">Data Visualization</p>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <section class="project-section">
+            <div class="project-overview">
+                <div class="project-details">
+                    <div class="detail">
+                        <h3>Type</h3>
+                        <p>University Coursework</p>
+                    </div>
+                    <div class="detail">
+                        <h3>Year</h3>
+                        <p>2025</p>
+                    </div>
+                    <div class="detail">
+                        <h3>Role</h3>
+                        <p>Data Visualization</p>
+                    </div>
+                    <div class="detail">
+                        <h3>Technologies</h3>
+                        <p>p5.js</p>
+                    </div>
+                </div>
+                
+                <div class="project-description">
+                    <p>Drawing with Fourier Transform, Polygon Guesser is an interactive visualization that explores the intersection of art, mathematics, and creative coding. The project allows users to freely draw any shape on a digital canvas, which is then analyzed using the Discrete Fourier Transform (DFT). The resulting transformation decomposes the drawing into a series of rotating circles, known as epicycles, each with a specific frequency, amplitude, and phase. These epicycles work together in real time to reconstruct the original drawing, creating a mesmerizing animation that visually explains the mathematical principles behind Fourier analysis.</p>
+                    <p>Behind the scenes, the process begins by resampling the user’s drawing into evenly spaced points, ensuring a consistent input for the DFT. The Fourier coefficients are then computed to extract the essential components of the drawing, which are used to animate the epicycles. The more epicycles used, the more accurate and detailed the reconstruction becomes. This project not only demonstrates the elegance of Fourier mathematics but also reveals how seemingly complex shapes can be built from the simple motion of rotating circles — a poetic reminder of the unity between simplicity and complexity in nature and design.</p>
+                    <a href="https://github.com/MustafaBakir0/Drawing-with-Fourier-Transform-Polygon-Guesser" class="github-link" target="_blank">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </div>
+            </div>
+            
+            <div class="project-content">
+                <h3 class="modal-title">Drawing with Fourier Transform, Polygon Guesser</h3>
+
+                <div id="project2-sketch-container">
+                </div>
+          
+                <p>This project explores the fascinating intersection of mathematics and art through Fourier transformations. The implementation allows users to draw shapes that are then reconstructed using a series of rotating circles (epicycles) derived from Fourier analysis.</p>
+              
+                <div id="project2-sketch-container">
+                    <iframe src="https://editor.p5js.org/mb9457/sketches/4DY5y8UJI" width="600" height="640" frameborder="0"></iframe>
+                </div>
+              
+                <h3>Fourier Epicycle Reconstruction: The Math Behind the Animation</h3>
+              
+                <p>The animation above demonstrates how any drawing can be approximated by a sum of rotating circles. This is achieved through four key algorithms:</p>
+              
+                <div class="algorithm-section">
+                    <h4>1. Resample Function</h4>
+                    <div class="algorithm-description">
+                        <p>This function resamples an array of points to have \( n \) evenly spaced points along the path, ensuring uniform sampling for the Fourier transform.</p>
+                    </div>
+                    
+                    <div class="algorithm-io">
+                        <p><strong>Input:</strong></p>
+                        <ul>
+                            <li>\(\texttt{points[]}\): Array of points (e.g. p5.js vectors)</li>
+                            <li>\( n \): Number of points to resample to</li>
+                        </ul>
+                        
+                        <p><strong>Output:</strong></p>
+                        <ul>
+                            <li>\(\texttt{newPoints[]}\): Resampled array of \( n \) evenly spaced points</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="algorithm-code">
+                        Function Resample(points[], n):</span>
+                            If length(points) < 2 then</span>
+                                Return points     <span class="algorithm-comment">// Fewer than 2 points, return original array</span></span>
+                            totalLength ← 0</span>
+                            For i ← 1 to length(points) - 1 do</span>
+                                totalLength ← totalLength + Distance(points[i-1], points[i])</span>
+                            interval ← totalLength/(n-1)</span>
+                            newPoints ← [points[0]]</span>
+                            d ← 0</span>
+                            For i ← 1 to length(points) - 1 do</span>
+                                prev ← points[i-1]</span>
+                                curr ← points[i]</span>
+                                segmentDist ← Distance(prev, curr)</span>
+                                While d + segmentDist ≥ interval do</span>
+                                    t ← (interval - d)/segmentDist</span>
+                                    nx ← Lerp(prev.x, curr.x, t)</span>
+                                    ny ← Lerp(prev.y, curr.y, t)</span>
+                                    newPoint ← CreateVector(nx, ny)</span>
+                                    Append newPoint to newPoints</span>
+                                    prev ← newPoint</span>
+                                    segmentDist ← Distance(prev, curr)</span>
+                                    d ← 0</span>
+                                d ← d + segmentDist</span>
+                            Return newPoints</span>
+                    </div>
+                </div>
+              
+                <div class="algorithm-section">
+                    <h4>2. Discrete Fourier Transform (DFT) Function</h4>
+                    <div class="algorithm-description">
+                        <p>Computes the Discrete Fourier Transform (DFT) of an array of complex numbers, adjusting the frequency for indices greater than \(N/2\).</p>
+                    </div>
+                    
+                    <div class="algorithm-io">
+                        <p><strong>Input:</strong></p>
+                        <ul>
+                            <li>\(\texttt{x[]}\): Array of complex numbers represented by objects \(\{ \text{re}, \text{im} \}\) (real and imaginary parts)</li>
+                        </ul>
+                        
+                        <p><strong>Output:</strong></p>
+                        <ul>
+                            <li>\(\texttt{X[]}\): Array of DFT coefficients with frequency, amplitude, and phase information</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="math-container">
+                        <p>Recall that the Fourier coefficient for index \( k \) is given by:</p>
+                        <p>\[
+                        X[k] = \frac{1}{N} \sum_{n=0}^{N-1} x[n]\, e^{-i\, \frac{2\pi k n}{N}},
+                        \]</p>
+                        
+                        <p>which in real/imaginary parts becomes:</p>
+                        <p>\[
+                        \begin{aligned}
+                        \text{re} &= \frac{1}{N} \sum_{n=0}^{N-1} \Bigl( x[n].\text{re} \cdot \cos\left(\frac{2\pi k n}{N}\right) + x[n].\text{im} \cdot \sin\left(\frac{2\pi k n}{N}\right) \Bigr), \\
+                        \text{im} &= \frac{1}{N} \sum_{n=0}^{N-1} \Bigl( -x[n].\text{re} \cdot \sin\left(\frac{2\pi k n}{N}\right) + x[n].\text{im} \cdot \cos\left(\frac{2\pi k n}{N}\right) \Bigr).
+                        \end{aligned}
+                        \]</p>
+                    </div>
+                    
+                    <div class="algorithm-code">
+                        Function DFT(x[]):</span>
+                            N ← length(x)</span>
+                            Initialize X[] ← {}</span>
+                            For k ← 0 to N-1 do</span>
+                                re ← 0</span>
+                                im ← 0</span>
+                                For n ← 0 to N-1 do</span>
+                                    φ ← (2π × k × n)/N</span>
+                                    re ← re + x[n].re×cos(φ) + x[n].im×sin(φ)</span>
+                                    im ← im - x[n].re×sin(φ) + x[n].im×cos(φ)</span>
+                                re ← re/N</span>
+                                im ← im/N</span>
+                                amp ← √(re² + im²)</span>
+                                phase ← atan2(im, re)</span>
+                                freq ← k</span>
+                                If k > N/2 then</span>
+                                    freq ← k - N</span>
+                                Append { re, im, freq, amp, phase } to X[]</span>
+                            Return X[]</span>
+                    </div>
+                </div>
+              
+                <div class="algorithm-section">
+                    <h4>3. Epicycle Class</h4>
+                    <div class="algorithm-description">
+                        <p>Represents one epicycle for Fourier reconstruction, calculates its position at a given time, and displays the corresponding circle.</p>
+                    </div>
+                    
+                    <div class="algorithm-io">
+                        <p><strong>Input:</strong></p>
+                        <ul>
+                            <li>\(\texttt{time}\): Current time</li>
+                            <li>\(\texttt{coeff}\): Fourier coefficient containing \(\text{freq}\), \(\text{amp}\), and \(\text{phase}\)</li>
+                        </ul>
+                        
+                        <p><strong>Output:</strong></p>
+                        <ul>
+                            <li>\(\texttt{nextPosition}\): New position of the epicycle based on the time</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="algorithm-code">
+                        Class Epicycle:</span>
+                            Constructor(x, y, coeff):</span>
+                                this.x ← x      <span class="algorithm-comment">// Center x-coordinate</span></span>
+                                this.y ← y      <span class="algorithm-comment">// Center y-coordinate</span></span>
+                                this.freq ← coeff.freq    <span class="algorithm-comment">// Frequency from coefficient</span></span>
+                                this.amp ← coeff.amp × scaleFactor    <span class="algorithm-comment">// Amplitude with scaling</span></span>
+                                this.phase ← coeff.phase  <span class="algorithm-comment">// Phase from coefficient</span></span>
+                            </span>
+                            Update(time):</span>
+                                angle ← this.phase + 2π × this.freq × time</span>
+                                dx ← this.amp × cos(angle)</span>
+                                dy ← this.amp × sin(angle)</span>
+                                nextPosition ← CreateVector(this.x + dx, this.y + dy)</span>
+                                Return nextPosition</span>
+                            </span>
+                            Display():</span>
+                                SetStroke(255, 100)    <span class="algorithm-comment">// Set stroke color with transparency</span></span>
+                                NoFill()</span>
+                                DrawCircle(this.x, this.y, 2 × this.amp)    <span class="algorithm-comment">// Draw epicycle circle</span></span>
+                    </div>
+                </div>
+              
+                <div class="algorithm-section">
+                    <h4>4. Main Loop for Drawing Fourier Reconstruction</h4>
+                    <div class="algorithm-description">
+                        <p>Iterates through the Fourier coefficients, draws the epicycles, and reconstructs the shape over time. Updates the drawing path and the time variable.</p>
+                    </div>
+                    
+                    <div class="algorithm-io">
+                        <p><strong>Input:</strong></p>
+                        <ul>
+                            <li>\(\texttt{time}\): Time variable incremented each frame</li>
+                            <li>\(\texttt{numEpicycles}\): Number of epicycles to use for reconstruction</li>
+                        </ul>
+                        
+                        <p><strong>Output:</strong></p>
+                        <ul>
+                            <li>Draws the Fourier reconstruction path on the canvas</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="algorithm-code">
+                        Function Draw():</span>
+                            ClearCanvas(0)    <span class="algorithm-comment">// Clear the canvas with black</span></span>
+                            If drawingDone then</span>
+                                prev ← CreateVector(width/2, height/2)    <span class="algorithm-comment">// Start at canvas center</span></span>
+                                For i ← 0 to numEpicycles - 1 do</span>
+                                    epi ← CreateEpicycle(prev.x, prev.y, fourier[i])</span>
+                                    epi.Display()</span>
+                                    next ← epi.Update(time)</span>
+                                    SetStroke(255)    <span class="algorithm-comment">// White stroke</span></span>
+                                    DrawLine(prev.x, prev.y, next.x, next.y)</span>
+                                    prev ← next</span>
+                                Append prev to path[]</span>
+                                If length(path) > 1000 then</span>
+                                    RemoveLast(path)    <span class="algorithm-comment">// Remove the oldest point in the path</span></span>
+                                SetStroke(255, 0, 255)    <span class="algorithm-comment">// Magenta for reconstruction path</span></span>
+                                NoFill()</span>
+                                BeginShape()</span>
+                                For each point in path do</span>
+                                    AddVertex(point.x, point.y)</span>
+                                EndShape()</span>
+                                </span>
+                                time ← time + dt</span>
+                                If time > 2π then</span>
+                                    time ← 0</span>
+                                    path ← []    <span class="algorithm-comment">// Clear the reconstruction path</span></span>
+                    </div>
+                </div>
+              
+                <p>The Fourier transform decomposes a drawing into a series of rotating circles (epicycles) of different frequencies, amplitudes, and phases. When these circles are combined, they reconstruct the original drawing. The more epicycles used, the more accurate the reconstruction.</p>
+              
+                <p>This mathematical approach allows for fascinating animations where complex shapes emerge from simple circular motions - a beautiful demonstration of how mathematics can describe artistic forms.</p>
+              
+                <a href="https://github.com/MustafaBakir0/Drawing-with-Fourier-Transform-Polygon-Guesser" class="github-link" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
+            </div>
+        </section>
+        
+        <section class="project-navigation">
+            <a href="../project1/index.html" class="back-to-projects">
+                <span class="arrow">←</span> Previous Project
+            </a>
+            <a href="../../index.html#work" class="all-projects">
+                All Projects
+            </a>
+            <a href="../project3/index.html" class="next-project">
+                Next Project <span class="arrow">→</span>
+            </a>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Mustafa Bakir. All rights reserved.</p>
+    </footer>
+
+
+    <script src="../../js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+<script src="../../js/background-effect.js"></script>
+
+</body>
+</html>

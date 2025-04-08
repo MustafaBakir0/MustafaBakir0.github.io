@@ -1,0 +1,270 @@
+/* project.css */
+
+.project-hero {
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../../assets/projects/project1-hero.jpg') center/cover no-repeat;
+    position: relative;
+}
+
+.project-hero-content {
+    text-align: center;
+    color: white;
+    padding: 0 2rem;
+    max-width: 800px;
+    z-index: 100;
+}
+
+.project-hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.project-category {
+    color: #00ff88;
+    font-size: 1.2rem;
+}
+
+.project-section {
+    padding: 5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: transparent;
+}
+
+
+.project-overview {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
+}
+
+.project-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.detail h3 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: #aaa;
+    margin-bottom: 0.5rem;
+}
+
+.detail p {
+    font-size: 1.1rem;
+}
+
+.project-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.project-description p {
+    margin-bottom: 1.5rem;
+}
+
+.github-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.7rem 1.2rem;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+}
+
+.github-link i {
+    margin-right: 0.8rem;
+}
+
+.github-link:hover {
+    background-color: #444;
+}
+
+.project-content {
+    margin-bottom: 3rem;
+}
+
+.project-image-full {
+    width: 100%;
+    margin: 2rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.project-image-full img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.feature-list {
+    margin: 1.5rem 0;
+    padding-left: 1.5rem;
+}
+
+.feature-list li {
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
+}
+
+.project-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.gallery-item {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.03);
+}
+
+.project-navigation {
+    display: flex;
+    justify-content: space-between;
+    padding: 3rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.back-to-projects, .next-project {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.back-to-projects:hover, .next-project:hover {
+    color: #00ff88;
+}
+
+.arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.back-to-projects:hover .arrow {
+    transform: translateX(-5px);
+}
+
+.next-project:hover .arrow {
+    transform: translateX(5px);
+}
+
+.back-to-projects .arrow {
+    margin-right: 0.5rem;
+}
+
+.next-project .arrow {
+    margin-left: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .project-overview {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .project-details {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .project-hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .project-details {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .project-gallery {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-hero {
+        height: 40vh;
+    }
+    
+    .project-hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .project-section {
+        padding: 3rem 1.5rem;
+    }
+    
+    .project-navigation {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center;
+    }
+}
+
+#content-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    opacity: 1; /* Always visible */
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    opacity: 1; /* Always visible */
+}
+
+
+#background-animation {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: -1 !important;
+    pointer-events: none !important;
+    display: block !important;
+    opacity: 1 !important;
+}
