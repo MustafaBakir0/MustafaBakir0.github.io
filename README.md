@@ -1,3 +1,4 @@
+```plaintext
 portfolio/
 ├── index.html              # Main homepage
 ├── css/
@@ -24,5 +25,4 @@ portfolio/
 │   ├── fonts/
 │   └── videos/
 └── README.md               # Documentation
-
-
+```
