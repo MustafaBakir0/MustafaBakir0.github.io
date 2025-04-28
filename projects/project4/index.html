@@ -1,98 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resonance | A Short Film</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.3/cdn.min.js" defer></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <!-- preload fonts for better performance -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&family=Quicksand:wght@300;400;500&display=swap" as="style">
-        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&family=Quicksand:wght@300;400;500&display=swap" as="style">
-+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-</head>
-<body x-data="resonanceApp()" x-init="init">
-    <!-- background image with correct extension and direct img tag -->
-    <img src="rave.jpeg" alt="Rave Background" class="bg-image">
-
-    <!-- visual effects -->
-    <div class="particles-container" x-ref="particlesContainer"></div>
-    <div class="color-flash" x-ref="colorFlash"></div>
-    <div class="audio-wave" x-ref="audioWave"></div>
-    
-    <!-- custom cursor (desktop only) -->
-    <div class="cursor" x-ref="cursor"></div>
-    <div class="cursor-glow" x-ref="cursorGlow"></div>
-    
-    <div class="content">
-        <!-- introduction text -->
-        <div class="intro-text" x-ref="introText">
-            Before you read, watch. Feel. Let the colors buzz. Then share what echoed within you.
-        </div>
-        
-        <!-- video embed -->
-        <div class="video-container" x-ref="videoContainer">
-            <!-- local video file -->
-            <video class="video-embed" controls poster="rave.jpeg">
-                <source src="video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-        
-        <!-- film description - above comments -->
-        <div class="description" x-ref="description">
-            <!-- words will be added here dynamically by JavaScript -->
-        </div>
-        
-        <!-- comment section -->
-        <div class="comment-section" x-ref="commentSection">
-            <h2 class="text-2xl mb-6 opacity-90 font-light">Share Your Resonance</h2>
-            
-            <form class="comment-form" @submit.prevent="submitComment()">
-                <input 
-                    type="text" 
-                    x-model="newComment.name" 
-                    placeholder="Your name (or remain anonymous)"
-                    class="mb-4">
-                
-                <textarea 
-                    x-model="newComment.text" 
-                    placeholder="How did the film make you feel?"
-                    class="h-32 mb-4"></textarea>
-                
-                <button type="submit" class="submit-btn">
-                    Send Ripples
-                </button>
-            </form>
-            
-            <div class="comment-list">
-                <template x-for="comment in comments" :key="comment.id">
-                    <div class="comment" 
-                         x-transition:enter="transition ease-out duration-500"
-                         x-transition:enter-start="opacity-0 transform translate-y-4"
-                         x-transition:enter-end="opacity-100 transform translate-y-0">
-                        <div class="comment-name" x-text="comment.name || 'Anonymous'"></div>
-                        <div class="comment-text" x-text="comment.text"></div>
-                    </div>
-                </template>
-            </div>
-        </div>
-    </div>
-    
-    <!-- add event listener to init the app when DOM is loaded -->
-    <script>
-        // add a small check to ensure Alpine.js and our app are initialized properly
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM loaded, making sure app initializes');
-            // if somehow Alpine.js didn't initialize our app, do it manually
-            setTimeout(function() {
-                if (typeof window.resonanceApp === 'function') {
-                    console.log('resonanceApp function is available');
-                }
-            }, 500);
-        });
-    </script>
-    <script src="script.js"></script>
-</body>
-</html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Resonance | A Short Film</title>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.3/cdn.min.js" defer></script>
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+     <link rel="stylesheet" href="styles.css">
+     <!-- preload fonts for better performance -->
+     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&family=Quicksand:wght@300;400;500&display=swap" as="style">
+         <link rel="preload" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&family=Quicksand:wght@300;400;500&display=swap" as="style">
+ +    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+ </head>
+ <body x-data="resonanceApp()" x-init="init">
+     <!-- background image with correct extension and direct img tag -->
+     <img src="rave.jpeg" alt="Rave Background" class="bg-image">
+ 
+     <!-- visual effects -->
+     <div class="particles-container" x-ref="particlesContainer"></div>
+     <div class="color-flash" x-ref="colorFlash"></div>
+     <div class="audio-wave" x-ref="audioWave"></div>
+     
+     <!-- custom cursor (desktop only) -->
+     <div class="cursor" x-ref="cursor"></div>
+     <div class="cursor-glow" x-ref="cursorGlow"></div>
+     
+     <div class="content">
+         <!-- introduction text -->
+         <div class="intro-text" x-ref="introText">
+             Before you read, watch. Feel. Let the colors buzz. Then share what echoed within you.
+         </div>
+         
+         <!-- video embed -->
+         <div class="video-container" x-ref="videoContainer">
+             <!-- local video file -->
+             <video class="video-embed" controls poster="rave.jpeg">
+                 <source src="video.mp4" type="video/mp4">
+                 Your browser does not support the video tag.
+             </video>
+         </div>
+         
+         <!-- film description - above comments -->
+         <div class="description" x-ref="description">
+             <!-- words will be added here dynamically by JavaScript -->
+         </div>
+         
+         <!-- comment section -->
+         <div class="comment-section" x-ref="commentSection">
+             <h2 class="text-2xl mb-6 opacity-90 font-light">Share Your Resonance</h2>
+             
+             <form class="comment-form" @submit.prevent="submitComment()">
+                 <input 
+                     type="text" 
+                     x-model="newComment.name" 
+                     placeholder="Your name (or remain anonymous)"
+                     class="mb-4">
+                 
+                 <textarea 
+                     x-model="newComment.text" 
+                     placeholder="How did the film make you feel?"
+                     class="h-32 mb-4"></textarea>
+                 
+                 <button type="submit" class="submit-btn">
+                     Send Ripples
+                 </button>
+             </form>
+             
+             <div class="comment-list">
+                 <template x-for="comment in comments" :key="comment.id">
+                     <div class="comment" 
+                          x-transition:enter="transition ease-out duration-500"
+                          x-transition:enter-start="opacity-0 transform translate-y-4"
+                          x-transition:enter-end="opacity-100 transform translate-y-0">
+                         <div class="comment-name" x-text="comment.name || 'Anonymous'"></div>
+                         <div class="comment-text" x-text="comment.text"></div>
+                     </div>
+                 </template>
+             </div>
+         </div>
+     </div>
+     
+     <!-- add event listener to init the app when DOM is loaded -->
+     <script>
+         // add a small check to ensure Alpine.js and our app are initialized properly
+         document.addEventListener('DOMContentLoaded', function() {
+             console.log('DOM loaded, making sure app initializes');
+             // if somehow Alpine.js didn't initialize our app, do it manually
+             setTimeout(function() {
+                 if (typeof window.resonanceApp === 'function') {
+                     console.log('resonanceApp function is available');
+                 }
+             }, 500);
+         });
+     </script>
+     <script src="script.js"></script>
+ </body>
+ </html>
