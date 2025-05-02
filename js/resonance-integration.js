@@ -694,29 +694,55 @@ function initLiquidHoverEffects() {
   document.body.appendChild(svg);
 }
 
-// 9. moon phases footer
+// 9. moon phases footer with enhanced visibility
 function initMoonPhasesFooter() {
-  // add css for moon phases
+  // add css for moon phases - with enhanced visibility
   const moonStyle = document.createElement('style');
   moonStyle.textContent = `
     .moon-phases {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 8px;
-      margin-top: 15px;
+      gap: 12px;
+      margin-top: 20px;
+      padding: 15px 0;
+      background: rgba(10, 10, 18, 0.4);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      width: 100%;
+    }
+    
+    .moon-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 5px;
+      border-radius: 8px;
+      transition: all 0.5s ease;
+    }
+    
+    .moon-container.active {
+      background: rgba(190, 147, 255, 0.1);
+      box-shadow: 0 0 15px rgba(190, 147, 255, 0.2);
+    }
+    
+    .moon-container.active .moon-label {
+      opacity: 1;
     }
     
     .moon {
       position: relative;
-      width: 12px;
-      height: 12px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.6);
       overflow: hidden;
-      box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
-      opacity: 0.2;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      opacity: 0.4;
       transition: all 0.5s ease;
+      margin-bottom: 5px;
     }
     
     .moon::after {
@@ -730,13 +756,80 @@ function initMoonPhasesFooter() {
       background-color: rgba(10, 10, 18, 0.9);
     }
     
-    .moon.active {
-      opacity: 0.9;
+    .moon-container.active .moon {
+      opacity: 1;
       transform: scale(1.2);
-      box-shadow: 0 0 10px rgba(190, 147, 255, 0.5);
+      box-shadow: 0 0 15px rgba(190, 147, 255, 0.6);
+      animation: moonGlow 3s ease-in-out infinite;
+    }
+    
+    .moon-label {
+      font-size: 9px;
+      color: rgba(190, 147, 255, 0.8);
+      opacity: 0.4;
+      transition: opacity 0.5s ease;
+      text-align: center;
+    }
+    
+    .moon-message {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 12px;
+      margin-top: 15px;
+      font-style: italic;
+      letter-spacing: 0.05em;
+      padding: 0 20px;
+      transition: all 0.8s ease;
+    }
+    
+    /* Add pulsing glow animation to active moon */
+    @keyframes moonGlow {
+      0%, 100% { box-shadow: 0 0 15px rgba(190, 147, 255, 0.6); }
+      50% { box-shadow: 0 0 25px rgba(190, 147, 255, 0.8); }
+    }
+    
+    /* Make moon phases more visible on small screens */
+    @media (max-width: 768px) {
+      .moon-phases {
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 15px 10px;
+      }
+      
+      .moon {
+        width: 20px;
+        height: 20px;
+      }
+      
+      .moon-label {
+        font-size: 8px;
+      }
+      
+      /* Keep moon phases visible on mobile */
+      .moon-phases,
+      .moon-container,
+      .moon,
+      .moon-label,
+      .moon-message {
+        display: flex;
+        opacity: 1;
+      }
     }
   `;
   document.head.appendChild(moonStyle);
+  
+  // moon phase names
+  const phaseNames = [
+    "New Moon",
+    "Waxing Crescent",
+    "First Quarter",
+    "Waxing Gibbous",
+    "Full Moon",
+    "Waning Gibbous",
+    "Last Quarter",
+    "Waning Crescent"
+  ];
   
   // create moon phases container
   const footer = document.querySelector('footer');
@@ -746,22 +839,43 @@ function initMoonPhasesFooter() {
     
     // create 8 moon phases
     for (let i = 0; i < 8; i++) {
+      const moonContainer = document.createElement('div');
+      moonContainer.className = 'moon-container';
+      
       const moon = document.createElement('div');
       moon.className = 'moon';
       
       // different phase based on index
-      const shift = i < 4 ? -i * 3 : (i - 8) * 3;
+      let shift;
+      if (i === 0) { // new moon
+        shift = 0;
+      } else if (i === 4) { // full moon
+        shift = -24; // completely move the dark part away
+      } else if (i < 4) { // waxing phases
+        shift = -6 * i;
+      } else { // waning phases
+        shift = -6 * (8 - i);
+      }
+      
       moon.style.setProperty('--shift', `${shift}px`);
       
-      moonPhasesContainer.appendChild(moon);
+      // add label
+      const label = document.createElement('div');
+      label.className = 'moon-label';
+      label.textContent = phaseNames[i];
+      
+      moonContainer.appendChild(moon);
+      moonContainer.appendChild(label);
+      moonPhasesContainer.appendChild(moonContainer);
     }
     
-    footer.appendChild(moonPhasesContainer);
+    // insert before the copyright text
+    footer.insertBefore(moonPhasesContainer, footer.firstChild);
     
     // activate random moon phase on load
     const randomIndex = Math.floor(Math.random() * 8);
-    const moons = moonPhasesContainer.querySelectorAll('.moon');
-    moons[randomIndex].classList.add('active');
+    const moonContainers = moonPhasesContainer.querySelectorAll('.moon-container');
+    moonContainers[randomIndex].classList.add('active');
     
     // change active moon on scroll
     window.addEventListener('scroll', () => {
@@ -773,13 +887,52 @@ function initMoonPhasesFooter() {
       const activeMoonIndex = Math.floor(scrollPercentage * 8);
       
       // update active class
-      moons.forEach((moon, i) => {
+      moonContainers.forEach((moonContainer, i) => {
         if (i === activeMoonIndex) {
-          moon.classList.add('active');
+          moonContainer.classList.add('active');
         } else {
-          moon.classList.remove('active');
+          moonContainer.classList.remove('active');
         }
       });
+      
+      // update message
+      updateMessage();
     });
+    
+    // add emotional message based on active moon
+    const emotionalMessages = [
+      "Beginning in darkness, a whisper of potential",
+      "First light emerges, hesitant and vulnerable",
+      "Balance between worlds, decision point",
+      "Growing strength, approaching revelation",
+      "Fullness revealed, complete and overwhelming",
+      "Gentle decline, acceptance of change",
+      "Half-light returning, perspective shift",
+      "Fading away, embracing the coming void"
+    ];
+    
+    // create message container
+    const messageContainer = document.createElement('div');
+    messageContainer.className = 'moon-message';
+    
+    footer.appendChild(messageContainer);
+    
+    // update message based on active moon
+    function updateMessage() {
+      const activeMoonIndex = Array.from(moonContainers).findIndex(
+        moon => moon.classList.contains('active')
+      );
+      
+      if (activeMoonIndex !== -1) {
+        messageContainer.textContent = emotionalMessages[activeMoonIndex];
+        messageContainer.style.opacity = 0;
+        setTimeout(() => {
+          messageContainer.style.opacity = 1;
+        }, 100);
+      }
+    }
+    
+    // initial message
+    updateMessage();
   }
 }

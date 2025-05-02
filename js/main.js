@@ -405,3 +405,86 @@ document.addEventListener('DOMContentLoaded', function() {
     // Force a scroll event to check initial visibility
     window.dispatchEvent(new Event('scroll'));
 });
+
+// Function to ensure project images are centered
+function centerProjectImages() {
+  // add css to style tag
+  const styleEl = document.createElement('style');
+  styleEl.textContent = `
+    .project-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .project-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    
+    /* Ensure images maintain proper aspect ratio */
+    .project-item::before {
+      content: '';
+      display: block;
+      padding-top: 75%; /* 4:3 aspect ratio - adjust if needed */
+    }
+    
+    .project-item img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  `;
+  document.head.appendChild(styleEl);
+  
+  // ensure all project images are centered
+  document.querySelectorAll('.project-item img').forEach(img => {
+    // ensure image has loaded
+    if (img.complete) {
+      setImgCentering(img);
+    } else {
+      img.onload = () => setImgCentering(img);
+    }
+  });
+}
+
+// Helper function to set proper centering
+function setImgCentering(img) {
+  // ensure parent has position relative
+  const container = img.closest('.project-item');
+  if (container) {
+    container.style.position = 'relative';
+    
+    // check image dimensions to determine optimal centering
+    const imgRatio = img.naturalWidth / img.naturalHeight;
+    const containerRatio = container.offsetWidth / container.offsetHeight;
+    
+    // adjust object-fit and position based on ratio comparison
+    if (imgRatio > containerRatio) {
+      // image is wider than container (proportionally)
+      img.style.objectFit = 'cover';
+      img.style.objectPosition = 'center';
+    } else {
+      // image is taller than container (proportionally)
+      img.style.objectFit = 'cover';
+      img.style.objectPosition = 'center';
+    }
+  }
+}
+
+// Call this function after DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+  centerProjectImages();
+  
+  // recenter on window resize
+  window.addEventListener('resize', function() {
+    centerProjectImages();
+  });
+});
