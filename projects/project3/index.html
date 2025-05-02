@@ -5,13 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webster Project | Mustafa Bakir</title>
     <meta name="description" content="Detailed showcase of the Webster Project by Mustafa Bakir, featuring interactive algorithms and creative coding.">
+    <!-- Keep your original CSS references - you'll override their content -->
     <link rel="stylesheet" href="../../css/styles.css">
     <link rel="stylesheet" href="../../css/project.css">
     <link rel="stylesheet" href="../../css/responsive.css">
+    <!-- Add Quicksand font -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-        <div id="background-animation"></div>
-<div id="content-overlay"></div>
+    <div id="background-animation"></div>
+    <div id="content-overlay"></div>
+    
     <header>
         <nav>
             <ul>
@@ -79,7 +83,7 @@
                     
                     <h4>Core Physics Code</h4>
                     <div class="algorithm-code">
-                        <span class="algorithm-code-line"><span class="algorithm-comment">// Physics-related vars & functions</span></span>
+                        <span class="algorithm-code-line"><span class="algorithm-comment">// physics-related vars & functions</span></span>
                         <span class="algorithm-code-line">let gravity, ropeK = 0.5, ropeRestLength, ropeAnchor, damping = 1;</span>
                         <span class="algorithm-code-line">function setup() {</span>
                         <span class="algorithm-code-line">  createCanvas(640, 480);</span>
@@ -124,7 +128,7 @@
                 <div class="algorithm-section">
                     <h4>Dynamic Element Spawning</h4>
                     <div class="algorithm-code">
-                        <span class="algorithm-code-line"><span class="algorithm-comment">// Spawning Elements Functions</span></span>
+                        <span class="algorithm-code-line"><span class="algorithm-comment">// spawning elements functions</span></span>
                         <span class="algorithm-code-line">function spawnObstacles() {</span>
                         <span class="algorithm-code-line">  if (spider.pos.x + width - 50 > lastObstacleX) {</span>
                         <span class="algorithm-code-line">    let spacing = random(200, 500);</span>
@@ -189,15 +193,16 @@
         <p>&copy; 2025 Mustafa Bakir. All rights reserved.</p>
     </footer>
 
-    <!-- p5.js library -->
+    <!-- Required libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
-    <!-- Main JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <!-- Main JavaScript files - will be overridden with new content -->
+    <script src="../../js/background-effect.js"></script>
     <script src="../../js/main.js"></script>
-      <script src="../../js/project.js"></script>
-
+    <script src="../../js/project.js"></script>
+    
     <!-- Project-specific JavaScript -->
     <script src="project3.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
-<script src="../js/background-effect.js"></script>
 </body>
 </html>

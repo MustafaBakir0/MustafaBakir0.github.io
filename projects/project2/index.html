@@ -3,16 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 2 | Mustafa Bakir</title>
-    <meta name="description" content="Detailed showcase of Project 2 by Mustafa Bakir, featuring interactive elements and creative design solutions.">
+    <title>Drawing with Fourier Transform | Mustafa Bakir</title>
+    <meta name="description" content="Detailed showcase of the Fourier Transform project by Mustafa Bakir, featuring interactive visualization and mathematical principles.">
+    <!-- Keep your original CSS references - you'll override their content -->
     <link rel="stylesheet" href="../../css/styles.css">
     <link rel="stylesheet" href="../../css/project.css">
     <link rel="stylesheet" href="../../css/responsive.css">
+    <!-- Add Quicksand font -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-
-<div id="background-animation"></div>
-<div id="content-overlay"></div>
+    <div id="background-animation"></div>
+    <div id="content-overlay"></div>
+    
     <header>
         <nav>
             <ul>
@@ -57,7 +60,7 @@
                 
                 <div class="project-description">
                     <p>Drawing with Fourier Transform, Polygon Guesser is an interactive visualization that explores the intersection of art, mathematics, and creative coding. The project allows users to freely draw any shape on a digital canvas, which is then analyzed using the Discrete Fourier Transform (DFT). The resulting transformation decomposes the drawing into a series of rotating circles, known as epicycles, each with a specific frequency, amplitude, and phase. These epicycles work together in real time to reconstruct the original drawing, creating a mesmerizing animation that visually explains the mathematical principles behind Fourier analysis.</p>
-                    <p>Behind the scenes, the process begins by resampling the user’s drawing into evenly spaced points, ensuring a consistent input for the DFT. The Fourier coefficients are then computed to extract the essential components of the drawing, which are used to animate the epicycles. The more epicycles used, the more accurate and detailed the reconstruction becomes. This project not only demonstrates the elegance of Fourier mathematics but also reveals how seemingly complex shapes can be built from the simple motion of rotating circles — a poetic reminder of the unity between simplicity and complexity in nature and design.</p>
+                    <p>Behind the scenes, the process begins by resampling the user's drawing into evenly spaced points, ensuring a consistent input for the DFT. The Fourier coefficients are then computed to extract the essential components of the drawing, which are used to animate the epicycles. The more epicycles used, the more accurate and detailed the reconstruction becomes. This project not only demonstrates the elegance of Fourier mathematics but also reveals how seemingly complex shapes can be built from the simple motion of rotating circles — a poetic reminder of the unity between simplicity and complexity in nature and design.</p>
                     <a href="https://github.com/MustafaBakir0/Drawing-with-Fourier-Transform-Polygon-Guesser" class="github-link" target="_blank">
                         <i class="fab fa-github"></i> View on GitHub
                     </a>
@@ -67,14 +70,11 @@
             <div class="project-content">
                 <h3 class="modal-title">Drawing with Fourier Transform, Polygon Guesser</h3>
 
-                <div id="project2-sketch-container">
+                <div id="project2-sketch-container" class="project-image-full">
+                    <iframe src="https://editor.p5js.org/mb9457/sketches/4DY5y8UJI" width="100%" height="640" frameborder="0"></iframe>
                 </div>
-          
-                <p>This project explores the fascinating intersection of mathematics and art through Fourier transformations. The implementation allows users to draw shapes that are then reconstructed using a series of rotating circles (epicycles) derived from Fourier analysis.</p>
               
-                <div id="project2-sketch-container">
-                    <iframe src="https://editor.p5js.org/mb9457/sketches/4DY5y8UJI" width="600" height="640" frameborder="0"></iframe>
-                </div>
+                <p>This project explores the fascinating intersection of mathematics and art through Fourier transformations. The implementation allows users to draw shapes that are then reconstructed using a series of rotating circles (epicycles) derived from Fourier analysis.</p>
               
                 <h3>Fourier Epicycle Reconstruction: The Math Behind the Animation</h3>
               
@@ -100,30 +100,30 @@
                     </div>
                     
                     <div class="algorithm-code">
-                        Function Resample(points[], n):</span>
-                            If length(points) < 2 then</span>
-                                Return points     <span class="algorithm-comment">// Fewer than 2 points, return original array</span></span>
-                            totalLength ← 0</span>
-                            For i ← 1 to length(points) - 1 do</span>
-                                totalLength ← totalLength + Distance(points[i-1], points[i])</span>
-                            interval ← totalLength/(n-1)</span>
-                            newPoints ← [points[0]]</span>
-                            d ← 0</span>
-                            For i ← 1 to length(points) - 1 do</span>
-                                prev ← points[i-1]</span>
-                                curr ← points[i]</span>
-                                segmentDist ← Distance(prev, curr)</span>
-                                While d + segmentDist ≥ interval do</span>
-                                    t ← (interval - d)/segmentDist</span>
-                                    nx ← Lerp(prev.x, curr.x, t)</span>
-                                    ny ← Lerp(prev.y, curr.y, t)</span>
-                                    newPoint ← CreateVector(nx, ny)</span>
-                                    Append newPoint to newPoints</span>
-                                    prev ← newPoint</span>
-                                    segmentDist ← Distance(prev, curr)</span>
-                                    d ← 0</span>
-                                d ← d + segmentDist</span>
-                            Return newPoints</span>
+                        <span class="algorithm-code-line">Function Resample(points[], n):</span>
+                        <span class="algorithm-code-line">    If length(points) < 2 then</span>
+                        <span class="algorithm-code-line">        Return points     <span class="algorithm-comment">// fewer than 2 points, return original array</span></span>
+                        <span class="algorithm-code-line">    totalLength ← 0</span>
+                        <span class="algorithm-code-line">    For i ← 1 to length(points) - 1 do</span>
+                        <span class="algorithm-code-line">        totalLength ← totalLength + Distance(points[i-1], points[i])</span>
+                        <span class="algorithm-code-line">    interval ← totalLength/(n-1)</span>
+                        <span class="algorithm-code-line">    newPoints ← [points[0]]</span>
+                        <span class="algorithm-code-line">    d ← 0</span>
+                        <span class="algorithm-code-line">    For i ← 1 to length(points) - 1 do</span>
+                        <span class="algorithm-code-line">        prev ← points[i-1]</span>
+                        <span class="algorithm-code-line">        curr ← points[i]</span>
+                        <span class="algorithm-code-line">        segmentDist ← Distance(prev, curr)</span>
+                        <span class="algorithm-code-line">        While d + segmentDist ≥ interval do</span>
+                        <span class="algorithm-code-line">            t ← (interval - d)/segmentDist</span>
+                        <span class="algorithm-code-line">            nx ← Lerp(prev.x, curr.x, t)</span>
+                        <span class="algorithm-code-line">            ny ← Lerp(prev.y, curr.y, t)</span>
+                        <span class="algorithm-code-line">            newPoint ← CreateVector(nx, ny)</span>
+                        <span class="algorithm-code-line">            Append newPoint to newPoints</span>
+                        <span class="algorithm-code-line">            prev ← newPoint</span>
+                        <span class="algorithm-code-line">            segmentDist ← Distance(prev, curr)</span>
+                        <span class="algorithm-code-line">            d ← 0</span>
+                        <span class="algorithm-code-line">        d ← d + segmentDist</span>
+                        <span class="algorithm-code-line">    Return newPoints</span>
                     </div>
                 </div>
               
@@ -161,25 +161,25 @@
                     </div>
                     
                     <div class="algorithm-code">
-                        Function DFT(x[]):</span>
-                            N ← length(x)</span>
-                            Initialize X[] ← {}</span>
-                            For k ← 0 to N-1 do</span>
-                                re ← 0</span>
-                                im ← 0</span>
-                                For n ← 0 to N-1 do</span>
-                                    φ ← (2π × k × n)/N</span>
-                                    re ← re + x[n].re×cos(φ) + x[n].im×sin(φ)</span>
-                                    im ← im - x[n].re×sin(φ) + x[n].im×cos(φ)</span>
-                                re ← re/N</span>
-                                im ← im/N</span>
-                                amp ← √(re² + im²)</span>
-                                phase ← atan2(im, re)</span>
-                                freq ← k</span>
-                                If k > N/2 then</span>
-                                    freq ← k - N</span>
-                                Append { re, im, freq, amp, phase } to X[]</span>
-                            Return X[]</span>
+                        <span class="algorithm-code-line">Function DFT(x[]):</span>
+                        <span class="algorithm-code-line">    N ← length(x)</span>
+                        <span class="algorithm-code-line">    Initialize X[] ← {}</span>
+                        <span class="algorithm-code-line">    For k ← 0 to N-1 do</span>
+                        <span class="algorithm-code-line">        re ← 0</span>
+                        <span class="algorithm-code-line">        im ← 0</span>
+                        <span class="algorithm-code-line">        For n ← 0 to N-1 do</span>
+                        <span class="algorithm-code-line">            φ ← (2π × k × n)/N</span>
+                        <span class="algorithm-code-line">            re ← re + x[n].re×cos(φ) + x[n].im×sin(φ)</span>
+                        <span class="algorithm-code-line">            im ← im - x[n].re×sin(φ) + x[n].im×cos(φ)</span>
+                        <span class="algorithm-code-line">        re ← re/N</span>
+                        <span class="algorithm-code-line">        im ← im/N</span>
+                        <span class="algorithm-code-line">        amp ← √(re² + im²)</span>
+                        <span class="algorithm-code-line">        phase ← atan2(im, re)</span>
+                        <span class="algorithm-code-line">        freq ← k</span>
+                        <span class="algorithm-code-line">        If k > N/2 then</span>
+                        <span class="algorithm-code-line">            freq ← k - N</span>
+                        <span class="algorithm-code-line">        Append { re, im, freq, amp, phase } to X[]</span>
+                        <span class="algorithm-code-line">    Return X[]</span>
                     </div>
                 </div>
               
@@ -203,25 +203,25 @@
                     </div>
                     
                     <div class="algorithm-code">
-                        Class Epicycle:</span>
-                            Constructor(x, y, coeff):</span>
-                                this.x ← x      <span class="algorithm-comment">// Center x-coordinate</span></span>
-                                this.y ← y      <span class="algorithm-comment">// Center y-coordinate</span></span>
-                                this.freq ← coeff.freq    <span class="algorithm-comment">// Frequency from coefficient</span></span>
-                                this.amp ← coeff.amp × scaleFactor    <span class="algorithm-comment">// Amplitude with scaling</span></span>
-                                this.phase ← coeff.phase  <span class="algorithm-comment">// Phase from coefficient</span></span>
-                            </span>
-                            Update(time):</span>
-                                angle ← this.phase + 2π × this.freq × time</span>
-                                dx ← this.amp × cos(angle)</span>
-                                dy ← this.amp × sin(angle)</span>
-                                nextPosition ← CreateVector(this.x + dx, this.y + dy)</span>
-                                Return nextPosition</span>
-                            </span>
-                            Display():</span>
-                                SetStroke(255, 100)    <span class="algorithm-comment">// Set stroke color with transparency</span></span>
-                                NoFill()</span>
-                                DrawCircle(this.x, this.y, 2 × this.amp)    <span class="algorithm-comment">// Draw epicycle circle</span></span>
+                        <span class="algorithm-code-line">Class Epicycle:</span>
+                        <span class="algorithm-code-line">    Constructor(x, y, coeff):</span>
+                        <span class="algorithm-code-line">        this.x ← x      <span class="algorithm-comment">// center x-coordinate</span></span>
+                        <span class="algorithm-code-line">        this.y ← y      <span class="algorithm-comment">// center y-coordinate</span></span>
+                        <span class="algorithm-code-line">        this.freq ← coeff.freq    <span class="algorithm-comment">// frequency from coefficient</span></span>
+                        <span class="algorithm-code-line">        this.amp ← coeff.amp × scaleFactor    <span class="algorithm-comment">// amplitude with scaling</span></span>
+                        <span class="algorithm-code-line">        this.phase ← coeff.phase  <span class="algorithm-comment">// phase from coefficient</span></span>
+                        <span class="algorithm-code-line">    </span>
+                        <span class="algorithm-code-line">    Update(time):</span>
+                        <span class="algorithm-code-line">        angle ← this.phase + 2π × this.freq × time</span>
+                        <span class="algorithm-code-line">        dx ← this.amp × cos(angle)</span>
+                        <span class="algorithm-code-line">        dy ← this.amp × sin(angle)</span>
+                        <span class="algorithm-code-line">        nextPosition ← CreateVector(this.x + dx, this.y + dy)</span>
+                        <span class="algorithm-code-line">        Return nextPosition</span>
+                        <span class="algorithm-code-line">    </span>
+                        <span class="algorithm-code-line">    Display():</span>
+                        <span class="algorithm-code-line">        SetStroke(255, 100)    <span class="algorithm-comment">// set stroke color with transparency</span></span>
+                        <span class="algorithm-code-line">        NoFill()</span>
+                        <span class="algorithm-code-line">        DrawCircle(this.x, this.y, 2 × this.amp)    <span class="algorithm-comment">// draw epicycle circle</span></span>
                     </div>
                 </div>
               
@@ -245,31 +245,31 @@
                     </div>
                     
                     <div class="algorithm-code">
-                        Function Draw():</span>
-                            ClearCanvas(0)    <span class="algorithm-comment">// Clear the canvas with black</span></span>
-                            If drawingDone then</span>
-                                prev ← CreateVector(width/2, height/2)    <span class="algorithm-comment">// Start at canvas center</span></span>
-                                For i ← 0 to numEpicycles - 1 do</span>
-                                    epi ← CreateEpicycle(prev.x, prev.y, fourier[i])</span>
-                                    epi.Display()</span>
-                                    next ← epi.Update(time)</span>
-                                    SetStroke(255)    <span class="algorithm-comment">// White stroke</span></span>
-                                    DrawLine(prev.x, prev.y, next.x, next.y)</span>
-                                    prev ← next</span>
-                                Append prev to path[]</span>
-                                If length(path) > 1000 then</span>
-                                    RemoveLast(path)    <span class="algorithm-comment">// Remove the oldest point in the path</span></span>
-                                SetStroke(255, 0, 255)    <span class="algorithm-comment">// Magenta for reconstruction path</span></span>
-                                NoFill()</span>
-                                BeginShape()</span>
-                                For each point in path do</span>
-                                    AddVertex(point.x, point.y)</span>
-                                EndShape()</span>
-                                </span>
-                                time ← time + dt</span>
-                                If time > 2π then</span>
-                                    time ← 0</span>
-                                    path ← []    <span class="algorithm-comment">// Clear the reconstruction path</span></span>
+                        <span class="algorithm-code-line">Function Draw():</span>
+                        <span class="algorithm-code-line">    ClearCanvas(0)    <span class="algorithm-comment">// clear the canvas with black</span></span>
+                        <span class="algorithm-code-line">    If drawingDone then</span>
+                        <span class="algorithm-code-line">        prev ← CreateVector(width/2, height/2)    <span class="algorithm-comment">// start at canvas center</span></span>
+                        <span class="algorithm-code-line">        For i ← 0 to numEpicycles - 1 do</span>
+                        <span class="algorithm-code-line">            epi ← CreateEpicycle(prev.x, prev.y, fourier[i])</span>
+                        <span class="algorithm-code-line">            epi.Display()</span>
+                        <span class="algorithm-code-line">            next ← epi.Update(time)</span>
+                        <span class="algorithm-code-line">            SetStroke(255)    <span class="algorithm-comment">// white stroke</span></span>
+                        <span class="algorithm-code-line">            DrawLine(prev.x, prev.y, next.x, next.y)</span>
+                        <span class="algorithm-code-line">            prev ← next</span>
+                        <span class="algorithm-code-line">        Append prev to path[]</span>
+                        <span class="algorithm-code-line">        If length(path) > 1000 then</span>
+                        <span class="algorithm-code-line">            RemoveLast(path)    <span class="algorithm-comment">// remove the oldest point in the path</span></span>
+                        <span class="algorithm-code-line">        SetStroke(255, 0, 255)    <span class="algorithm-comment">// magenta for reconstruction path</span></span>
+                        <span class="algorithm-code-line">        NoFill()</span>
+                        <span class="algorithm-code-line">        BeginShape()</span>
+                        <span class="algorithm-code-line">        For each point in path do</span>
+                        <span class="algorithm-code-line">            AddVertex(point.x, point.y)</span>
+                        <span class="algorithm-code-line">        EndShape()</span>
+                        <span class="algorithm-code-line">        </span>
+                        <span class="algorithm-code-line">        time ← time + dt</span>
+                        <span class="algorithm-code-line">        If time > 2π then</span>
+                        <span class="algorithm-code-line">            time ← 0</span>
+                        <span class="algorithm-code-line">            path ← []    <span class="algorithm-comment">// clear the reconstruction path</span></span>
                     </div>
                 </div>
               
@@ -298,10 +298,13 @@
         <p>&copy; 2025 Mustafa Bakir. All rights reserved.</p>
     </footer>
 
-
+    <!-- Required libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <!-- Main JavaScript files - will be overridden with new content -->
+    <script src="../../js/background-effect.js"></script>
     <script src="../../js/main.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
-<script src="../../js/background-effect.js"></script>
-
+    <script src="../../js/project.js"></script>
 </body>
 </html>
