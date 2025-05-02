@@ -1,0 +1,374 @@
+/* 
+ * Resonance Theme - Enhanced Visual Styles 
+ * Creates a dreamy, atmospheric experience
+ */
+
+/* Base modifications for dreamy feel */
+body {
+  background-color: #0a0a12;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Glassmorphism Cards */
+.about-content,
+.contact-content,
+.skill-item,
+.project-item,
+.hero-content {
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.project-item:hover,
+.skill-item:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  transform: translateY(-5px) scale(1.02) !important;
+}
+
+/* Parallax Floating Layers */
+.parallax-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.parallax-layer {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.08;
+  filter: blur(10px);
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Audio Fog Elements */
+.audio-fog-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.audio-pulse {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(190, 147, 255, 0.05) 0%, rgba(190, 147, 255, 0) 70%);
+  animation: pulseExpand 7s ease-out infinite;
+  opacity: 0;
+}
+
+.audio-line {
+  position: absolute;
+  width: 1px;
+  background: linear-gradient(to bottom, rgba(190, 147, 255, 0) 0%, rgba(190, 147, 255, 0.05) 50%, rgba(190, 147, 255, 0) 100%);
+  animation: lineWiggle 10s ease-in-out infinite;
+  transform-origin: center top;
+}
+
+.audio-fog {
+  position: absolute;
+  background: linear-gradient(to bottom, rgba(190, 147, 255, 0) 0%, rgba(190, 147, 255, 0.02) 50%, rgba(190, 147, 255, 0) 100%);
+  animation: fogDrift 15s ease-in-out infinite;
+}
+
+@keyframes pulseExpand {
+  0% { transform: scale(0); opacity: 0.4; }
+  100% { transform: scale(5); opacity: 0; }
+}
+
+@keyframes lineWiggle {
+  0% { transform: scaleY(0.8) translateX(0); }
+  50% { transform: scaleY(1.2) translateX(5px); }
+  100% { transform: scaleY(0.8) translateX(0); }
+}
+
+@keyframes fogDrift {
+  0% { transform: translateX(-5%) translateY(0); opacity: 0.02; }
+  50% { transform: translateX(5%) translateY(10px); opacity: 0.05; }
+  100% { transform: translateX(-5%) translateY(0); opacity: 0.02; }
+}
+
+/* Halo Cursor */
+body {
+  cursor: none;
+}
+
+#cursor-ring {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(190, 147, 255, 0.3);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.1s ease, background-color 0.3s ease;
+  transform: translate(-50%, -50%);
+}
+
+#cursor-trail {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid rgba(190, 147, 255, 0.15);
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.3s ease;
+  transform: translate(-50%, -50%);
+}
+
+a:hover ~ #cursor-ring,
+button:hover ~ #cursor-ring {
+  background-color: rgba(108, 99, 255, 0.15);
+  width: 50px;
+  height: 50px;
+  border-color: rgba(108, 99, 255, 0.4);
+  box-shadow: 0 0 15px rgba(108, 99, 255, 0.2);
+}
+
+.project-item:hover ~ #cursor-ring {
+  background-color: rgba(190, 147, 255, 0.15);
+  border-color: rgba(190, 147, 255, 0.4);
+  box-shadow: 0 0 15px rgba(190, 147, 255, 0.2);
+}
+
+/* Flashing Word Highlights */
+.flashword {
+  display: inline-block;
+  position: relative;
+}
+
+.flashword::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -5%;
+  width: 110%;
+  height: 100%;
+  background: rgba(190, 147, 255, 0);
+  filter: blur(8px);
+  z-index: -1;
+  opacity: 0;
+}
+
+.flashword.flash::after {
+  animation: wordglow 3s ease-in-out;
+}
+
+@keyframes wordglow {
+  0% { background: rgba(190, 147, 255, 0); opacity: 0; }
+  50% { background: rgba(190, 147, 255, 0.3); opacity: 0.8; }
+  100% { background: rgba(190, 147, 255, 0); opacity: 0; }
+}
+
+/* Grain Overlay */
+#grain {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  opacity: 0.03;
+  z-index: 99;
+}
+
+/* Kinetic Typography */
+.kinetic-text {
+  display: inline-block;
+  position: relative;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: rgba(190, 147, 255, 0.9);
+  text-shadow: 0 0 10px rgba(190, 147, 255, 0.3);
+}
+
+.main-title .kinetic-text {
+  animation: textFloat 4s ease-in-out infinite;
+  animation-delay: calc(var(--kinetic-index) * 0.1s);
+}
+
+@keyframes textFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-5px) rotate(1deg); }
+}
+
+/* Moon Phases Footer */
+.moon-phases {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.moon {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+  opacity: 0.2;
+  transition: all 0.5s ease;
+}
+
+.moon::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: var(--shift);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: rgba(10, 10, 18, 0.9);
+}
+
+.moon.active {
+  opacity: 0.9;
+  transform: scale(1.2);
+  box-shadow: 0 0 10px rgba(190, 147, 255, 0.5);
+}
+
+/* Dreamy Page Load Effect */
+body.page-loading {
+  overflow: hidden;
+}
+
+.page-load-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+  transition: opacity 2.5s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  background: rgba(10, 10, 18, 1);
+}
+
+.blur-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  backdrop-filter: blur(30px) saturate(0.3);
+  -webkit-backdrop-filter: blur(30px) saturate(0.3);
+  transition: all 2.8s cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 1;
+  pointer-events: none;
+}
+
+.page-loaded .page-load-overlay {
+  opacity: 0;
+}
+
+.page-loaded .blur-container {
+  backdrop-filter: blur(0px) saturate(1);
+  -webkit-backdrop-filter: blur(0px) saturate(1);
+  opacity: 0;
+}
+
+/* Dreamy Flash Effect */
+@keyframes dreamyFlash {
+  0% { opacity: 0; }
+  50% { opacity: 0.12; }
+  100% { opacity: 0; }
+}
+
+.dreamy-flash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #ffefff, #aab0ff);
+  pointer-events: none;
+  z-index: 10000;
+  opacity: 0;
+}
+
+.flash-active {
+  animation: dreamyFlash 0.8s ease-in-out forwards;
+}
+
+/* Mobile Responsiveness - Disable Effects */
+@media (max-width: 768px) {
+  /* Reset cursor */
+  body {
+    cursor: auto;
+  }
+  
+  /* Hide cursor elements */
+  #cursor-ring, 
+  #cursor-trail {
+    display: none;
+  }
+  
+  /* Disable parallax effects */
+  .parallax-layer {
+    display: none;
+  }
+  
+  /* Disable audio fog */
+  .audio-fog-container {
+    display: none;
+  }
+  
+  /* Disable grain */
+  #grain {
+    display: none;
+  }
+  
+  /* Disable dreamy flash */
+  .dreamy-flash {
+    display: none;
+  }
+  
+  /* Simplify animations for performance */
+  .kinetic-text {
+    animation: none !important;
+  }
+  
+  /* Keep glassmorphism but reduce blur for performance */
+  .about-content,
+  .contact-content,
+  .skill-item,
+  .project-item,
+  .hero-content {
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+  }
+  
+  /* Disable hover effects */
+  .project-item:hover,
+  .skill-item:hover {
+    transform: none !important;
+  }
+  
+  /* Disable scroll effects */
+  .section {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+  }
+}
