@@ -1,179 +1,8 @@
 // resonance-interactions.js - Enhanced interactions and effects for Resonance theme
 
 document.addEventListener('DOMContentLoaded', function() {
-    // smooth scroll for navigation with dreamy easing
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                // add subtle blur effect during scroll
-                document.body.classList.add('scrolling');
-                
-                // smooth scroll with custom cubic-bezier easing for dreamier motion
-                const scrollOptions = {
-                    behavior: 'smooth',
-                    block: 'start'
-                };
-                
-                targetElement.scrollIntoView(scrollOptions);
-                
-                // remove blur effect after scroll completes
-                setTimeout(() => {
-                    document.body.classList.remove('scrolling');
-                }, 1000);
-            }
-        });
-    });
+    // smooth scroll for navigation now handled by optimized-core.js
 
-    // dynamic typing effect with dreamier timing
-    const dynamicText = document.querySelector('.dynamic-text');
-    if (dynamicText) {
-        const words = ["Multimedia Artist", "Creative Coder", "Digital Storyteller"];
-        let wordIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        let typingDelay = 100;
-        
-        const typeEffect = () => {
-            const currentWord = words[wordIndex];
-            const h1 = document.querySelector('.main-title');
-            
-            if (!isDeleting) {
-                // typing
-                if (charIndex === 0) h1.classList.add('shift-up');
-                dynamicText.textContent = currentWord.substring(0, charIndex + 1);
-                charIndex++;
-                
-                // randomize typing speed slightly for more organic feel
-                typingDelay = Math.random() * 50 + 80;
-                
-                if (charIndex === currentWord.length) {
-                    // pause at the end of typing
-                    isDeleting = true;
-                    typingDelay = 2000; // longer pause before deleting
-                }
-            } else {
-                // deleting
-                dynamicText.textContent = currentWord.substring(0, charIndex - 1);
-                charIndex--;
-                
-                // faster delete speed
-                typingDelay = Math.random() * 20 + 40;
-                
-                if (charIndex === 0) {
-                    h1.classList.remove('shift-up');
-                    isDeleting = false;
-                    wordIndex = (wordIndex + 1) % words.length;
-                    typingDelay = 1200; // pause before typing new word
-                }
-            }
-            
-            setTimeout(typeEffect, typingDelay);
-        };
-        
-        // start the typing effect with initial delay
-        setTimeout(typeEffect, 800);
-    }
-    
-    // enhanced scroll effects
-    window.addEventListener('scroll', function() {
-        const scrollY = window.scrollY;
-        const heroContent = document.querySelector('.hero-content');
-        const contentOverlay = document.getElementById('content-overlay');
-        const viewportHeight = window.innerHeight;
-        
-        // enhanced parallax and fade for hero content
-        if (heroContent && scrollY < viewportHeight) {
-            // apply dreamier fade and movement
-            const opacity = Math.max(1 - (scrollY / (viewportHeight * 0.4)), 0);
-            const translateY = scrollY * 0.4;
-            const scale = 1 - (scrollY / viewportHeight) * 0.1;
-            const blur = Math.min(scrollY / 50, 8);
-            
-            heroContent.style.opacity = opacity;
-            heroContent.style.transform = `translateY(${translateY}px) scale(${scale})`;
-            heroContent.style.filter = `blur(${blur}px)`;
-        }
-        
-        // content overlay with gradual fade in
-        if (contentOverlay) {
-            if (scrollY > viewportHeight * 0.5) {
-                const overlayOpacity = Math.min((scrollY - viewportHeight * 0.5) / (viewportHeight * 0.5), 1);
-                contentOverlay.style.opacity = overlayOpacity;
-            } else {
-                contentOverlay.style.opacity = 0;
-            }
-        }
-        
-        // fade in sections with blur effect - improved for center clarity
-        const sections = document.querySelectorAll('.section');
-        sections.forEach(section => {
-            const rect = section.getBoundingClientRect();
-            const sectionTop = rect.top;
-            const sectionBottom = rect.bottom;
-            const sectionHeight = rect.height;
-            
-            // check if section is visible
-            if (sectionTop < viewportHeight && sectionBottom > 0) {
-                // calculate section position relative to viewport center
-                const sectionCenter = sectionTop + (sectionHeight / 2);
-                const viewportCenter = viewportHeight / 2;
-                
-                // calculate how centered the section is (0 = perfectly centered, 1 = out of view)
-                const distFromCenter = Math.abs(viewportCenter - sectionCenter) / viewportHeight;
-                
-                // create a sweet spot where sections are fully clear
-                const sweetSpotSize = 0.30; // adjust this to control the size of the clear zone
-                
-                // calculate visibility - fully visible when in sweet spot
-                let visibility;
-                
-                if (distFromCenter < sweetSpotSize) {
-                    // fully visible in the sweet spot
-                    visibility = 1;
-                } else {
-                    // gradually fade based on distance from sweet spot
-                    visibility = 1 - Math.min((distFromCenter - sweetSpotSize) / (0.5 - sweetSpotSize), 1);
-                }
-                
-                // apply smooth fade, blur and transform transitions
-                section.style.opacity = Math.max(0.2, visibility);
-                
-                // only apply blur when not in the sweet spot
-                if (distFromCenter < sweetSpotSize) {
-                    section.style.filter = 'blur(0px)';
-                } else {
-                    const blurAmount = Math.max(0, 5 - (visibility * 5));
-                    section.style.filter = `blur(${blurAmount}px)`;
-                }
-                
-                // reduce transform amount when closer to center
-                const transformAmount = Math.max(0, 20 - (visibility * 20));
-                section.style.transform = `translateY(${transformAmount}px)`;
-            }
-        });
-        
-        // parallax effect for background
-        const backgroundAnimation = document.getElementById('background-animation');
-        if (backgroundAnimation) {
-            backgroundAnimation.style.transform = `translateY(${scrollY * 0.2}px)`;
-        }
-        
-        // dreamy header transformation on scroll
-        const header = document.querySelector('header');
-        if (header) {
-            if (scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        }
-    });
-    
     // enhanced project card hover effects
     const projectItems = document.querySelectorAll('.project-item');
     projectItems.forEach(item => {
@@ -337,13 +166,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Initialize sections with gentle blur effect
+    // Initialize sections with full visibility
     const sections = document.querySelectorAll('.section');
     sections.forEach(section => {
         section.style.transition = 'opacity 0.8s ease, filter 0.8s ease, transform 0.8s ease';
-        section.style.opacity = 0;
-        section.style.filter = 'blur(5px)';
-        section.style.transform = 'translateY(20px)';
+        section.style.opacity = 1;
+        section.style.filter = 'none';
+        section.style.transform = 'none';
     });
     
     // Add additional styles for dreamy scrolling effect

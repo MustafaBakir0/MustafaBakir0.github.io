@@ -1,0 +1,136 @@
+/* 
+ * Adaptive Animations CSS
+ * Replaces hard-coded animations with adaptive, viewport-based animations
+ */
+
+/* Base section transition */
+.section {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Always ensure buttons remain visible */
+.always-visible {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Bio content animations */
+.bio-content p {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.bio-content p.animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Skill items animations */
+.skill-item {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.skill-item.animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Project items animations */
+.project-item {
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-item.animated {
+  opacity: 1;
+}
+
+/* Modifications to existing hidden content classes for smoother transitions */
+.hidden-skills {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.8s cubic-bezier(0.22, 1, 0.36, 1), 
+              opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              margin 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  margin-top: 0;
+  will-change: max-height, opacity, margin;
+}
+
+.hidden-skills.visible {
+  max-height: 1000px;
+  opacity: 1;
+  margin-top: 3rem;
+}
+
+/* Hidden projects container */
+.hidden-projects {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.8s cubic-bezier(0.22, 1, 0.36, 1), 
+              opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), 
+              margin 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  margin-top: 0;
+  will-change: max-height, opacity, margin;
+}
+
+.hidden-projects.visible {
+  max-height: 2000px; /* Generous value to ensure content fits */
+  opacity: 1;
+  margin-top: 2rem;
+}
+
+/* Customize the content overlay blur for a more adaptive approach */
+#content-overlay {
+  background-color: rgba(10, 10, 18, 0);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              background-color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Hero section fade effect */
+.hero {
+  transition: filter 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Scroll detection class added to body when scrolled */
+body.is-scrolled .hero {
+  filter: blur(5px);
+}
+
+body.is-scrolled #content-overlay {
+  opacity: 0.8;
+  background-color: rgba(10, 10, 18, 0.8);
+}
+
+/* Add subtle transition when expanding content */
+.view-all-skills, .load-more-btn {
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Adaptive spacing at different viewport sizes */
+@media (min-width: 1600px) {
+  .section {
+    padding: 8rem 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 4rem 1.5rem;
+  }
+  
+  .hidden-skills.visible, .hidden-projects.visible {
+    margin-top: 1.5rem;
+  }
+}

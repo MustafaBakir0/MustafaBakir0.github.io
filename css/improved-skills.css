@@ -1,0 +1,174 @@
+/* Improved Skills Section with Proficiency Labels */
+
+.skills-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  margin-top: 3rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.skills-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+}
+
+/* Ensure consistent spacing for both visible and hidden skills */
+.hidden-skills .skills-row {
+  gap: 2.5rem;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.skill-item {
+  width: 180px;
+  text-align: center;
+  background-color: rgba(20, 20, 35, 0.4);
+  border-radius: 16px;
+  padding: 1.5rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-item:hover {
+  transform: translateY(-5px);
+  background-color: rgba(20, 20, 35, 0.5);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(190, 147, 255, 0.2);
+}
+
+.skill-item img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  margin-bottom: 1.2rem;
+  border-radius: 8px;
+  transition: all 0.5s ease;
+  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.1));
+}
+
+.skill-item:hover img {
+  transform: scale(1.05);
+  filter: drop-shadow(0 5px 15px rgba(190, 147, 255, 0.2));
+}
+
+.skill-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.skill-name {
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.05em;
+}
+
+/* New proficiency label */
+.skill-proficiency {
+  font-size: 0.85rem;
+  font-weight: 300;
+  padding: 0.35rem 0.8rem;
+  border-radius: 12px;
+  display: inline-block;
+  margin: 0.5rem auto 0 auto;
+  background: rgba(190, 147, 255, 0.15);
+  color: rgba(255, 255, 255, 0.95);
+  letter-spacing: 0.05em;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Different colors based on proficiency */
+.skill-proficiency.expert {
+  background: linear-gradient(90deg, rgba(108, 99, 255, 0.3), rgba(190, 147, 255, 0.3));
+}
+
+.skill-proficiency.advanced {
+  background: linear-gradient(90deg, rgba(108, 99, 255, 0.2), rgba(190, 147, 255, 0.2));
+}
+
+.skill-proficiency.intermediate {
+  background: linear-gradient(90deg, rgba(108, 99, 255, 0.15), rgba(190, 147, 255, 0.15));
+}
+
+.skill-proficiency.foundational {
+  background: linear-gradient(90deg, rgba(108, 99, 255, 0.1), rgba(190, 147, 255, 0.1));
+}
+
+/* Skill bars completely removed */
+
+/* Button for "View All Skills" */
+.view-all-skills {
+  display: block;
+  margin: 3rem auto 1rem auto;
+  padding: 0.8rem 1.5rem;
+  background: rgba(30, 30, 45, 0.4);
+  color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  font-family: inherit;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  max-width: 200px;
+  text-align: center;
+}
+
+.view-all-skills:hover {
+  background: rgba(190, 147, 255, 0.2);
+  color: rgba(255, 255, 255, 1);
+  border-color: rgba(190, 147, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Hidden skills that will be shown when button is clicked */
+.hidden-skills {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.8s ease, opacity 0.5s ease;
+  margin-top: 0;
+}
+
+.hidden-skills.visible {
+  max-height: 1000px;
+  opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .skills-row {
+    gap: 1.5rem;
+  }
+  
+  .skill-item {
+    width: 150px;
+    padding: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .skill-item {
+    width: 130px;
+    padding: 1rem;
+  }
+  
+  .skill-proficiency {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+  }
+}

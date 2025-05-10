@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://cloudconvert.com/
+HostUrl=https://eu-central.storage.cloudconvert.com/tasks/c1f21cdd-3387-471a-80c7-011d4049cf89/IMG_0875.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cloudconvert-production%2F20250502%2Ffra%2Fs3%2Faws4_request&X-Amz-Date=20250502T034130Z&X-Amz-Expires=86400&X-Amz-Signature=7807201cc733d403728d1b72b132386e27d4a1a01244d4ed4e802f75ab8737fa&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D%22IMG_0875.png%22&response-content-type=image%2Fpng&x-id=GetObject

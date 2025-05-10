@@ -1,0 +1,370 @@
+/* 
+ * Enhanced Glow Effects
+ * Adds more dreamy and interactive visual elements
+ */
+
+/* Dreamy main title effect with levitation */
+.main-title {
+  position: relative;
+  z-index: 3;
+  animation: 
+    levitate 8s ease-in-out infinite,
+    text-shadow-pulse 5s ease-in-out infinite;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.4),
+    0 0 20px rgba(190, 147, 255, 0.3),
+    0 0 30px rgba(108, 99, 255, 0.2);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* Glowing background effect */
+.main-title::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140%;
+  height: 140%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(190, 147, 255, 0.2) 0%,
+    rgba(108, 99, 255, 0.12) 40%,
+    rgba(190, 147, 255, 0) 80%
+  );
+  z-index: -1;
+  filter: blur(20px);
+  opacity: 0.8;
+  animation: pulse-glow 6s infinite alternate ease-in-out;
+  pointer-events: none;
+}
+
+/* Dreamy text outline effect */
+.main-title::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(190, 147, 255, 0.3);
+  animation: text-float 4s ease-in-out infinite;
+  transform: translateZ(-10px);
+  filter: blur(4px);
+  opacity: 0.7;
+}
+
+/* Levitation animation */
+@keyframes levitate {
+  0%, 100% {
+    transform: translateY(0) rotate3d(1, 1, 0, 0deg);
+  }
+  25% {
+    transform: translateY(-5px) rotate3d(1, 2, 0, 1deg);
+  }
+  50% {
+    transform: translateY(0) rotate3d(1, 1, 0, 0deg);
+  }
+  75% {
+    transform: translateY(5px) rotate3d(2, 1, 0, -1deg);
+  }
+}
+
+/* Text shadow pulsing */
+@keyframes text-shadow-pulse {
+  0%, 100% {
+    text-shadow: 
+      0 0 10px rgba(255, 255, 255, 0.4),
+      0 0 20px rgba(190, 147, 255, 0.3),
+      0 0 30px rgba(108, 99, 255, 0.2);
+  }
+  50% {
+    text-shadow: 
+      0 0 15px rgba(255, 255, 255, 0.5),
+      0 0 25px rgba(190, 147, 255, 0.4),
+      0 0 35px rgba(108, 99, 255, 0.3);
+  }
+}
+
+/* Floating text outline */
+@keyframes text-float {
+  0%, 100% {
+    transform: translateX(0) translateZ(-10px);
+  }
+  50% {
+    transform: translateX(3px) translateZ(-10px);
+  }
+}
+
+/* Enhance typewriter glow */
+.typewriter {
+  position: relative;
+  text-shadow: 0 0 15px rgba(190, 147, 255, 0.5);
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.8rem;
+  font-weight: 300;
+  margin-top: 1.5rem;
+  color: rgba(190, 147, 255, 0.95);
+}
+
+/* Cursor is added via JS for better reliability */
+.typewriter-cursor {
+  display: inline-block;
+}
+
+/* Enhanced hero content with dreamy effects */
+.hero-content {
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    0 0 60px rgba(108, 99, 255, 0.15);
+  animation: float 8s infinite ease-in-out;
+  position: relative;
+  background: rgba(15, 15, 30, 0.2);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+}
+
+/* Add an additional glow layer behind hero content */
+.hero-content::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(108, 99, 255, 0.15) 0%,
+    rgba(190, 147, 255, 0.08) 40%,
+    rgba(108, 99, 255, 0) 80%
+  );
+  border-radius: 25px;
+  z-index: -1;
+  filter: blur(15px);
+  opacity: 0.8;
+  animation: pulse-glow 8s infinite alternate ease-in-out;
+  pointer-events: none;
+}
+
+/* Add subtle animated border glow */
+.hero-content::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 22px;
+  background: linear-gradient(
+    45deg,
+    rgba(108, 99, 255, 0) 0%,
+    rgba(190, 147, 255, 0.3) 25%,
+    rgba(108, 99, 255, 0.3) 50%,
+    rgba(190, 147, 255, 0.3) 75%,
+    rgba(108, 99, 255, 0) 100%
+  );
+  z-index: -1;
+  filter: blur(5px);
+  animation: rotate-gradient 10s linear infinite;
+  opacity: 0.5;
+}
+
+/* Rotating gradient animation */
+@keyframes rotate-gradient {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 300% 0%;
+  }
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Glow pulse animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.7;
+    filter: blur(20px);
+  }
+  50% {
+    opacity: 1;
+    filter: blur(25px);
+  }
+}
+
+/* Cursor blink animation */
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Interactive particle effect */
+.interactive-particles canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Add magical sparkles to skill items */
+.skill-item::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(
+    circle at center,
+    rgba(190, 147, 255, 0.8) 0%,
+    rgba(190, 147, 255, 0) 70%
+  );
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.skill-item:hover::before {
+  opacity: 0.8;
+  transform: scale(1);
+  animation: sparkle-rotate 2s infinite linear;
+}
+
+@keyframes sparkle-rotate {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+  }
+}
+
+/* Dreamy hover effect for projects */
+.project-item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(108, 99, 255, 0) 0%,
+    rgba(190, 147, 255, 0.1) 50%,
+    rgba(108, 99, 255, 0) 100%
+  );
+  opacity: 0;
+  z-index: 2;
+  transition: opacity 0.6s ease, transform 1.2s ease;
+  transform: translateX(-100%);
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.project-item:hover::after {
+  opacity: 1;
+  transform: translateX(100%);
+}
+
+/* Enhanced project reflections */
+.light-reflection {
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0) 100%
+  ) !important;
+}
+
+/* Magic swirl effect on scroll */
+.magic-scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  box-sizing: border-box;
+  z-index: 5;
+}
+
+.magic-scroll-indicator::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: rgba(190, 147, 255, 0.8);
+  animation: scroll-down 2s infinite;
+  box-shadow: 0 0 10px rgba(190, 147, 255, 0.6);
+}
+
+/* Particle spawn hint */
+.hero::after {
+  content: 'Click anywhere to summon particles';
+  position: absolute;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-shadow: 0 0 10px rgba(190, 147, 255, 0.3);
+  opacity: 0;
+  animation: fade-in-out 5s forwards 3s;
+  pointer-events: none;
+}
+
+@keyframes fade-in-out {
+  0% { opacity: 0; }
+  15% { opacity: 0.8; }
+  85% { opacity: 0.8; }
+  100% { opacity: 0; }
+}
+
+@keyframes scroll-down {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+}

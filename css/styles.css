@@ -99,7 +99,7 @@ nav a:hover::after {
 
 /* Dreamy hero section */
 .hero {
-  height: 100vh;
+  height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -168,7 +168,7 @@ nav a:hover::after {
 .content-container {
   position: relative;
   z-index: 333;
-  margin-top: 100vh;
+  margin-top: 90vh;
   background-color: transparent;
 }
 
@@ -177,7 +177,7 @@ nav a:hover::after {
   z-index: 1;
   background-color: transparent;
   padding: 6rem 2rem;
-  transition: opacity 0.8s ease;
+  transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
 }
 
 h2 {
@@ -555,4 +555,5 @@ footer {
   opacity: 0;
   transition: opacity 0.6s ease;
 }
+
 

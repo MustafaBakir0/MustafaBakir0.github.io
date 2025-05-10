@@ -7,8 +7,11 @@
     <meta name="description" content="Portfolio of Mustafa Bakir, a multimedia designer and computer science enthusiast blending technology and creativity.">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/responsive.css">
-    <link rel="stylesheet" href="css/resonance-effects.css">
-    <script src="js/resonance-integration.js"></script>
+    <link rel="stylesheet" href="css/optimized-styles.css">
+    <link rel="stylesheet" href="css/dreamflow-projects-fixed.css">
+    <link rel="stylesheet" href="css/bio-highlight.css">
+    <link rel="stylesheet" href="css/improved-skills.css">
+    <link rel="stylesheet" href="css/load-more.css">
 </head>
 <body>
     <header>
@@ -25,7 +28,7 @@
 
     <section class="hero">
         <div class="hero-content">
-            <h1 class="main-title">Hi, I'm Mustafa Bakir</h1>
+            <h1 class="main-title" data-text="Hi, I'm Mustafa Bakir">Hi, I'm Mustafa Bakir</h1>
             <div class="typewriter">
                 <span class="dynamic-text"></span>
             </div>
@@ -34,104 +37,126 @@
     <div id="content-overlay"></div>
 
     <div class="content-container">
-        <section id="about" class="section">
+        <section id="about" class="section" style="padding-top: 2rem; opacity: 1 !important; filter: none !important; transform: none !important;">
             <h2>About Me</h2>
             <div class="about-content">
                 <img src="assets/IMG_0875.png" alt="Mustafa Bakir">
-                <div>
-<p>I'm a multimedia designer and computer science enthusiast with a deep passion for merging creativity with cutting-edge technology. With a strong foundation in both visual storytelling and computational thinking, I thrive at the crossroads where design meets logic—where aesthetics enhance function, and algorithms empower imagination.</p>
-<p>My experience spans a diverse range of projects, from building efficient and scalable data structures to designing immersive digital experiences that captivate and inform. This unique blend allows me to approach problems with a rare dual perspective: analytical rigor grounded in computer science, and expressive vision driven by design.</p>
-
-<p>In project management, I excel at translating abstract ideas into actionable plans, bringing together interdisciplinary teams to execute with clarity and impact. I'm particularly drawn to the strategic side of design—ensuring every product or experience not only meets usability and visual standards but also contributes meaningfully to business objectives and user needs.</p>
-
-<p>Outside of structured work, I'm constantly exploring the evolving relationship between art and technology. Whether it's experimenting with interactive media, prototyping creative tools, or engaging with the latest developments in AI and software design, I remain committed to lifelong learning and innovation.</p>
-
-<p>If you're interested in crafting work that's thoughtful, impactful, and future-facing—I'd love to connect. Let's build something remarkable together.</p>
+                <div class="bio-content">
+                    <p>I'm a <span class="highlight">multimedia designer</span> and <span class="highlight">computer science enthusiast</span> merging creativity with cutting-edge technology. I thrive at the crossroads where <span class="highlight">design meets logic</span>—where aesthetics enhance function, and algorithms empower imagination.</p>
+                    
+                    <p>My experience spans from <span class="highlight">data structures</span> to <span class="highlight">immersive digital experiences</span>. This unique blend gives me a dual perspective: analytical rigor and expressive design vision.</p>
+                    
+                    <p>In <span class="highlight">project management</span>, I translate abstract ideas into actionable plans with interdisciplinary teams. I focus on strategic design that serves both usability standards and business objectives.</p>
+                    
+                    <p><span class="highlight">Let's build something remarkable together.</span></p>
                 </div>
             </div>
         </section>
 
      <section id="work" class="section">
     <h2>Projects</h2>
-    <div class="projects-grid">
-        <!-- Project 1 -->
-        <a href="projects/project1/index.html" class="project-item">
-            <img src="assets/lcms.png" alt="Project 1">
-            <div class="project-overlay">
-                <h3 class="project-title">Library Catalog Management System (LCMS)</h3>
-            </div>
-        </a>
+    <div class="projects-container">
+        <div class="projects-flow">
+            <!-- Project 1 (Featured) -->
+            <a href="projects/project1/index.html" class="project-item featured">
+                <div class="featured-badge">Featured Project</div>
+                <div class="project-category">Software Development</div>
+                <img src="assets/lcms.png" alt="Library Catalog Management System">
+                <div class="project-overlay">
+                    <h3 class="project-title">Library Catalog Management System (LCMS)</h3>
+                    <div class="project-tagline">Efficient data organization</div>
+                </div>
+                <div class="light-reflection"></div>
+            </a>
+            
+            <!-- Project 2 -->
+            <a href="projects/project2/index.html" class="project-item">
+                <div class="project-category">Computational Visualization</div>
+                <img src="assets/DFT.jpg" alt="Drawing with Fourier Transform">
+                <div class="project-overlay">
+                    <h3 class="project-title">Drawing with Fourier Transform, Polygon Guesser</h3>
+                    <div class="project-tagline">Mathematical beauty visualized</div>
+                </div>
+                <div class="light-reflection"></div>
+            </a>
+            
+            <!-- Project 3 (Webster) -->
+            <a href="projects/project3/index.html" class="project-item">
+                <div class="project-category">Web Project</div>
+                <img src="assets/webster.png" alt="Webster Project">
+                <div class="project-overlay">
+                    <h3 class="project-title">Webster Project</h3>
+                    <div class="project-tagline">Digital craftsmanship</div>
+                </div>
+                <div class="light-reflection"></div>
+            </a>
+        </div>
         
-        <!-- Project 2 -->
-        <a href="projects/project2/index.html" class="project-item">
-            <img src="assets/DFT.jpg" alt="Project 2">
-            <div class="project-overlay">
-                <h3 class="project-title">Drawing with Fourier Transform, Polygon Guesser</h3>
-            </div>
-        </a>
+        <!-- Hidden projects that will be shown with Load More -->
+        <div class="projects-flow hidden-projects">
+            <!-- Project 4 (Resonance, a Film) -->
+            <a href="projects/project4/index.html" class="project-item">
+                <div class="project-category">Multimedia</div>
+                <img src="assets/filmbg.png" alt="Resonance, a Film">
+                <div class="project-overlay">
+                    <h3 class="project-title">Resonance, a Film</h3>
+                    <div class="project-tagline">Visual storytelling</div>
+                </div>
+                <div class="light-reflection"></div>
+            </a>
+            
+            <!-- Project 5 (Audio Visualization) -->
+            <a href="projects/project5/index.html" class="project-item">
+                <div class="project-category">Audio Visualization</div>
+                <img src="assets/p5.png" alt="Audio Visualization System">
+                <div class="project-overlay">
+                    <h3 class="project-title">Real-time Audio Visualization System</h3>
+                    <div class="project-tagline">Sound made visible</div>
+                </div>
+                <div class="light-reflection"></div>
+            </a>
+            
+            <!-- Room for future projects... -->
+        </div>
         
-        <!-- Project 3 (Webster) -->
-        <a href="projects/project3/index.html" class="project-item">
-            <img src="assets/webster.png" alt="Webster Project">
-            <div class="project-overlay">
-                <h3 class="project-title">Webster Project</h3>
-            </div>
-        </a>
-
-        <!-- Project 4 (Resonance, a Film) -->
-        <a href="projects/project4/index.html" class="project-item">
-            <img src="assets/filmbg.png" alt="Resonance, a Film">
-            <div class="project-overlay">
-                <h3 class="project-title">Resonance, a Film</h3>
-            </div>
-        </a>
+        <!-- Load More Button -->
+        <button id="load-more-projects" class="load-more-btn">Load More Projects</button>
     </div>
 </section>
 
       <section id="skills" class="section">
     <h2>Skills</h2>
     <div class="skills-grid">
+        <!-- Main skills (always visible) -->
         <div class="skills-row">
             <div class="skill-item">
                 <img src="assets/c.png" alt="C++">
                 <div class="skill-info">
                     <span class="skill-name">C++</span>
-                    <div class="skill-meter">
-                        <div class="skill-level" style="width: 90%"></div>
-                        <span class="skill-percentage">90%</span>
-                    </div>
+                    <div class="skill-proficiency expert">Expert</div>
                 </div>
             </div>
             <div class="skill-item">
                 <img src="assets/after-effects.png" alt="After Effects">
                 <div class="skill-info">
                     <span class="skill-name">After Effects</span>
-                    <div class="skill-meter">
-                        <div class="skill-level" style="width: 85%"></div>
-                        <span class="skill-percentage">85%</span>
-                    </div>
+                    <div class="skill-proficiency advanced">Advanced</div>
                 </div>
             </div>
             <div class="skill-item">
-                <img src="assets/csharp.png" alt="C#">
+                <img src="assets/python.png" alt="Python">
                 <div class="skill-info">
-                    <span class="skill-name">C#</span>
-                    <div class="skill-meter">
-                        <div class="skill-level" style="width: 80%"></div>
-                        <span class="skill-percentage">80%</span>
-                    </div>
+                    <span class="skill-name">Python</span>
+                    <div class="skill-proficiency advanced">Advanced</div>
                 </div>
             </div>
         </div>
         <div class="skills-row">
             <div class="skill-item">
-                <img src="assets/cinema4d.png" alt="Cinema 4D">
+                <img src="assets/project.png" alt="Project Management">
                 <div class="skill-info">
-                    <span class="skill-name">Cinema 4D</span>
-                    <div class="skill-meter">
-                        <div class="skill-level" style="width: 75%"></div>
-                        <span class="skill-percentage">35%</span>
-                    </div>
+                    <span class="skill-name">Project Management</span>
+                    <div class="skill-proficiency expert">Expert</div>
                 </div>
             </div>
             <div class="skill-item">
@@ -145,48 +170,75 @@
                 </div>
             </div>
             <div class="skill-item">
-                <img src="assets/vegas.png" alt="Vegas Pro">
-                <div class="skill-info">
-                    <span class="skill-name">Vegas Pro</span>
-                    <div class="skill-meter">
-                        <div class="skill-level" style="width: 85%"></div>
-                        <span class="skill-percentage">100%</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="skills-row">
-            <div class="skill-item">
-                <img src="assets/python.png" alt="Python">
-                <div class="skill-info">
-                    <span class="skill-name">Python</span>
-                    <div class="skill-meter">
-                        <div class="skill-level" style="width: 80%"></div>
-                        <span class="skill-percentage">80%</span>
-                    </div>
-                </div>
-            </div>
-            <div class="skill-item">
-                <img src="assets/project.png" alt="Project Management">
-                <div class="skill-info">
-                    <span class="skill-name">Project Management</span>
-                    <div class="skill-meter">
-                        <div class="skill-level" style="width: 100%"></div>
-                        <span class="skill-percentage">100%</span>
-                    </div>
-                </div>
-            </div>
-            <div class="skill-item">
                 <img src="assets/illustrator.png" alt="Illustrator">
                 <div class="skill-info">
                     <span class="skill-name">Illustrator</span>
-                    <div class="skill-meter">
-                        <div class="skill-level" style="width: 90%"></div>
-                        <span class="skill-percentage">90%</span>
-                    </div>
+                    <div class="skill-proficiency expert">Advanced</div>
                 </div>
             </div>
         </div>
+        
+        <!-- Hidden skills (revealed with button) -->
+        <div class="hidden-skills">
+            <div class="skills-row">
+                <div class="skill-item">
+                    <img src="assets/csharp.png" alt="C#">
+                    <div class="skill-info">
+                        <span class="skill-name">C#</span>
+                        <div class="skill-meter">
+                            <div class="skill-level" style="width: 80%"></div>
+                            <span class="skill-percentage">80%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <img src="assets/cinema4d.png" alt="Cinema 4D">
+                    <div class="skill-info">
+                        <span class="skill-name">Cinema 4D</span>
+                        <div class="skill-meter">
+                            <div class="skill-level" style="width: 75%"></div>
+                            <span class="skill-percentage">35%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <img src="assets/vegas.png" alt="Vegas Pro">
+                    <div class="skill-info">
+                        <span class="skill-name">Vegas Pro</span>
+                        <div class="skill-meter">
+                            <div class="skill-level" style="width: 85%"></div>
+                            <span class="skill-percentage">100%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="skills-row">
+                <div class="skill-item">
+                    <img src="assets/photoshop.png" alt="Photoshop">
+                    <div class="skill-info">
+                        <span class="skill-name">Photoshop</span>
+                        <div class="skill-meter">
+                            <div class="skill-level" style="width: 85%"></div>
+                            <span class="skill-percentage">85%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <img src="assets/p5.png" alt="P5.js">
+                    <div class="skill-info">
+                        <span class="skill-name">P5.js</span>
+                        <div class="skill-meter">
+                            <div class="skill-level" style="width: 70%"></div>
+                            <span class="skill-percentage">70%</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Room for more skills -->
+            </div>
+        </div>
+        
+        <!-- View All Skills Button -->
+        <button id="view-all-skills" class="view-all-skills">View All Skills</button>
     </div>
 </section>
 
@@ -208,9 +260,10 @@
         <p>&copy; 2025 Mustafa Bakir. All rights reserved.</p>
     </footer>
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
-    <script src="js/background-effect.js"></script>
+    <script src="js/optimized-background.js"></script>
+    <script src="js/typewriter.js"></script>
+    <script src="js/optimized-core.js"></script>
+    <script src="js/dreamflow-projects-fixed.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/resonance-effects.js"></script>
 </body>
 </html>
