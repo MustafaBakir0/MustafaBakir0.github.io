@@ -57,6 +57,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Initialize expandable content (skills and projects)
   initExpandableContent();
+
+  // Initialize liquid 3D hover effect for projects
+  initLiquid3DEffect();
 });
 
 
@@ -321,12 +324,12 @@ function initExpandableContent() {
 function toggleHiddenContent(containerClass, button, showText, hideText) {
   const container = document.querySelector(`.${containerClass}`);
   if (!container) return;
-  
+
   const isVisible = container.classList.toggle('visible');
-  
+
   // Update button text
   button.textContent = isVisible ? hideText : showText;
-  
+
   // Animate new elements if they're now visible
   if (isVisible) {
     // Slight delay to allow transition to start
@@ -336,21 +339,245 @@ function toggleHiddenContent(containerClass, button, showText, hideText) {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
-            
+
             // Handle skill items
             if (entry.target.classList.contains('skill-item')) {
               animateSkillItem(entry.target);
             }
-            
+
             observer.unobserve(entry.target);
           }
         });
       }, { threshold: 0.1 });
-      
+
       // Observe newly visible elements
       container.querySelectorAll('.skill-item, .project-item').forEach(item => {
         observer.observe(item);
       });
     }, 50);
   }
+}
+
+// Initialize liquid 3D effect for projects
+function initLiquid3DEffect() {
+  // Add CSS with high specificity to ensure it works
+  const style = document.createElement('style');
+  style.textContent = `
+    /* Liquid 3D effect styles */
+    .project-item {
+      --liquid-height: 0%;
+      --x-position: 50%;
+      --y-position: 50%;
+      --rotation-x: 0deg;
+      --rotation-y: 0deg;
+      --scale: 1;
+      --translate-y: 0px;
+      transform-style: preserve-3d !important;
+      perspective: 1000px !important;
+      transform: perspective(1000px) rotateX(var(--rotation-x)) rotateY(var(--rotation-y)) scale3d(var(--scale), var(--scale), var(--scale)) translateY(var(--translate-y)) !important;
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1) !important;
+      will-change: transform, box-shadow, filter !important;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2) !important;
+      overflow: hidden !important;
+      border-radius: 8px !important;
+      background: rgba(20, 20, 35, 0.2) !important;
+    }
+
+    .project-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: var(--liquid-height);
+      background: linear-gradient(to top,
+        rgba(108, 99, 255, 0.5) 0%,
+        rgba(190, 147, 255, 0.3) 50%,
+        rgba(108, 99, 255, 0) 100%) !important;
+      z-index: 1;
+      filter: blur(7px);
+      transition: height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      border-radius: 50% 50% 0 0 / 20px;
+      transform: translateZ(0px);
+    }
+
+    .project-item:hover {
+      --liquid-height: 100%;
+      --translate-y: -15px;
+      --scale: 1.05;
+      filter: brightness(1.1) !important;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3),
+                  0 15px 20px rgba(108, 99, 255, 0.2) !important;
+    }
+
+    .project-item img {
+      transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1) !important;
+      transform-style: preserve-3d !important;
+      transform: translateZ(5px) !important;
+    }
+
+    .project-item:hover img {
+      filter: contrast(1.1) saturate(1.1) brightness(0.8) !important;
+    }
+
+    .project-item .project-overlay {
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease !important;
+      transform: translateZ(20px) !important;
+      z-index: 2 !important;
+      background: linear-gradient(
+        to bottom,
+        rgba(10, 10, 18, 0) 0%,
+        rgba(10, 10, 18, 0.1) 50%,
+        rgba(10, 10, 18, 0.5) 100%
+      ) !important;
+      mix-blend-mode: normal !important;
+    }
+
+    .project-item:hover .project-overlay {
+      opacity: 1 !important;
+    }
+
+    .project-item .project-title {
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease !important;
+      transform: translateZ(25px) !important;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5) !important;
+      z-index: 3 !important;
+    }
+
+    .project-item:hover .project-title {
+      opacity: 1 !important;
+    }
+
+    .project-item .project-tagline {
+      opacity: 0;
+      transform: translateZ(22px) translateY(5px) !important;
+      transition: opacity 0.3s ease, transform 0.3s ease !important;
+      z-index: 3 !important;
+    }
+
+    .project-item:hover .project-tagline {
+      opacity: 0.9 !important;
+      transform: translateZ(22px) translateY(0) !important;
+    }
+
+    .project-item .light-reflection {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      background: radial-gradient(
+        circle at var(--x-position) var(--y-position),
+        rgba(255, 255, 255, 0.7) 0%,
+        rgba(255, 255, 255, 0) 60%
+      ) !important;
+      opacity: 0;
+      transition: opacity 0.4s ease !important;
+      pointer-events: none !important;
+      z-index: 4 !important;
+      mix-blend-mode: overlay !important;
+    }
+
+    .project-item:hover .light-reflection {
+      opacity: 0.6 !important;
+    }
+
+    /* Wave animation for liquid effect */
+    @keyframes wave {
+      0%, 100% {
+        border-radius: 60% 40% 30% 70% / 30% 30% 70% 70%;
+      }
+      50% {
+        border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Get all project items
+  const projectItems = document.querySelectorAll('.project-item');
+
+  // Apply liquid 3D effect to each project
+  projectItems.forEach(item => {
+    // Add wave animation to the liquid effect using a separate element
+    const liquidWave = document.createElement('div');
+    liquidWave.className = 'liquid-wave';
+    liquidWave.style.cssText = `
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 15px;
+      background: rgba(108, 99, 255, 0.3);
+      border-radius: 60% 40% 30% 70% / 30% 30% 70% 70%;
+      filter: blur(5px);
+      animation: wave 8s infinite ease-in-out;
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    `;
+    item.appendChild(liquidWave);
+
+    // Ensure light reflection element exists
+    if (!item.querySelector('.light-reflection')) {
+      const reflection = document.createElement('div');
+      reflection.className = 'light-reflection';
+      item.appendChild(reflection);
+    }
+
+    // Mouse move handler for 3D effect
+    item.addEventListener('mousemove', function(e) {
+      // Get dimensions of the project item
+      const rect = item.getBoundingClientRect();
+
+      // Calculate mouse position relative to the center of the item
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+
+      // Calculate mouse position as percentage for reflection
+      const xPercent = Math.round((mouseX / rect.width) * 100);
+      const yPercent = Math.round((mouseY / rect.height) * 100);
+
+      // Calculate rotation angles (limited to ±12 degrees for more subtle effect)
+      const rotateY = (((mouseX / rect.width) * 24) - 12).toFixed(1);
+      const rotateX = (12 - ((mouseY / rect.height) * 24)).toFixed(1);
+
+      // Apply the 3D transform and light effect using CSS properties
+      item.style.setProperty('--x-position', `${xPercent}%`);
+      item.style.setProperty('--y-position', `${yPercent}%`);
+      item.style.setProperty('--rotation-x', `${rotateX}deg`);
+      item.style.setProperty('--rotation-y', `${rotateY}deg`);
+      item.style.setProperty('--scale', '1.03');
+      item.style.setProperty('--translate-y', '-5px'); // Slight levitation on mouse move
+
+      // Show the liquid wave
+      liquidWave.style.opacity = '1';
+
+      // Calculate shadow direction based on mouse position
+      const shadowX = ((mouseX / rect.width) - 0.5) * 15;
+      const shadowY = ((mouseY / rect.height) - 0.5) * 15;
+
+      // Apply shadow - deeper shadow for more dramatic effect
+      item.style.boxShadow = `${shadowX}px ${shadowY}px 30px rgba(0, 0, 0, 0.3),
+                              0 15px 30px rgba(108, 99, 255, 0.2)`;
+    });
+
+    // Mouse leave handler to reset effects
+    item.addEventListener('mouseleave', function() {
+      // Reset all transforms
+      item.style.setProperty('--rotation-x', '0deg');
+      item.style.setProperty('--rotation-y', '0deg');
+      item.style.setProperty('--scale', '1');
+      item.style.setProperty('--translate-y', '0px');
+
+      // Reset shadow
+      item.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.2)';
+
+      // Hide the liquid wave
+      liquidWave.style.opacity = '0';
+    });
+  });
 }
