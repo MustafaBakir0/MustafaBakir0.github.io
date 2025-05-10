@@ -9,10 +9,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Reset function to ensure clean state for all projects
     function resetAllProjects() {
         projectItems.forEach(card => {
-            card.style.opacity = '';
-            card.style.filter = '';
             card.style.transform = '';
-
+            card.style.boxShadow = '';
+            card.style.border = '';
+            
             const cardImage = card.querySelector('img');
             if (cardImage) {
                 cardImage.style.backgroundImage = '';
@@ -23,26 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Reset all projects initially (in case of any stuck states)
     resetAllProjects();
     projectItems.forEach(item => {
-        // mouse enter effect
-        item.addEventListener('mouseenter', () => {
-            // add subtle glow to other cards
-            projectItems.forEach(other => {
-                if (other !== item) {
-                    other.style.opacity = '0.6';
-                    other.style.filter = 'blur(2px)';
-                }
-            });
-        });
-
-        // mouse leave effect
-        item.addEventListener('mouseleave', () => {
-            // restore all cards
-            projectItems.forEach(card => {
-                card.style.opacity = '';
-                card.style.filter = '';
-            });
-        });
-        
         // mouse move effect - subtle parallax
         item.addEventListener('mousemove', (e) => {
             const rect = item.getBoundingClientRect();
@@ -86,24 +66,11 @@ document.addEventListener('DOMContentLoaded', function() {
         item.addEventListener('mouseleave', () => {
             // Reset this card's effects
             item.style.transform = '';
-
+            
             const image = item.querySelector('img');
             if (image) {
                 image.style.backgroundImage = '';
             }
-
-            // Reset all cards to default state (fixes any stuck states)
-            setTimeout(() => {
-                projectItems.forEach(card => {
-                    card.style.opacity = '';
-                    card.style.filter = '';
-
-                    const cardImage = card.querySelector('img');
-                    if (cardImage) {
-                        cardImage.style.backgroundImage = '';
-                    }
-                });
-            }, 50);
         });
     });
     
@@ -264,14 +231,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Force a scroll event to check initial visibility
     window.dispatchEvent(new Event('scroll'));
-
-    // Add document click handler to reset projects when clicking outside
-    document.addEventListener('click', function(e) {
-        const clickedInsideProject = e.target.closest('.project-item');
-        if (!clickedInsideProject) {
-            resetAllProjects();
-        }
-    });
 });
 
 // Function to ensure project images are centered

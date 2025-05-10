@@ -1,0 +1,84 @@
+/**
+ * Project Fix - Ensures projects are always bright and clear by default
+ * Only dims other projects when one is hovered
+ */
+
+/* Ensure all projects are fully visible by default */
+.project-item {
+  opacity: 1 !important;
+  filter: none !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Ensure all project images are clear and bright */
+.project-item img {
+  opacity: 1 !important;
+  filter: none !important;
+  brightness: 1 !important;
+}
+
+/* Hide overlay by default */
+.project-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 18, 0) 0%,
+    rgba(10, 10, 18, 0) 50%,
+    rgba(10, 10, 18, 0.4) 100%
+  ) !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+}
+
+/* Show overlay and text only on hover */
+.project-item:hover .project-overlay {
+  opacity: 1 !important;
+}
+
+/* Show title only on hover */
+.project-title {
+  transform: translateY(0) !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+}
+
+.project-item:hover .project-title {
+  opacity: 1 !important;
+}
+
+/* Show tagline only on hover */
+.project-tagline {
+  opacity: 0 !important;
+  transform: translateY(0) !important;
+  transition: opacity 0.3s ease !important;
+}
+
+.project-item:hover .project-tagline {
+  opacity: 0.9 !important;
+}
+
+/* Dim class for other projects when one is hovered */
+.project-dimmed {
+  filter: brightness(0.5) blur(2px) !important;
+  transform: scale(0.98) !important;
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+/* Remove hover effects from original styles that might dim this project */
+.project-item:hover img {
+  filter: none !important;
+  opacity: 1 !important;
+  transform: scale(1.05) !important;
+}
+
+/* Ensure hidden projects are also bright when they appear */
+.hidden-projects.visible .project-item {
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+/* Make sure the overlay is properly hidden in all cases */
+#content-overlay {
+  opacity: 0 !important;
+}

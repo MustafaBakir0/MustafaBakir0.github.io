@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Set up lazy loading for project images
   setupLazyLoading();
+  
+  // Add hover effects for project containers
+  setupProjectHoverEffects();
 });
 
 function initProjects() {
@@ -80,10 +83,15 @@ function initProjects() {
     // Ensure project overlay is positioned correctly
     const overlay = item.querySelector('.project-overlay');
     if (overlay) {
-      // Force a layout recalculation
-      setTimeout(() => {
-        overlay.style.opacity = '0.9';
-      }, 10);
+      // Make sure overlay is hidden by default for all projects
+      overlay.style.opacity = '0';
+    }
+
+    // Make sure all project images have no filters by default
+    const img = item.querySelector('img');
+    if (img) {
+      img.style.filter = 'none';
+      img.style.opacity = '1';
     }
   });
 }
@@ -92,14 +100,8 @@ function setupProjectAnimations() {
   const projectItems = document.querySelectorAll('.project-item');
   
   projectItems.forEach(item => {
-    // Set initial opacity for fade-in effect
-    item.style.opacity = '0';
-    
-    // Simple fade-in animation on load
-    setTimeout(() => {
-      item.style.transition = 'opacity 0.8s ease, transform 0.5s ease';
-      item.style.opacity = '1';
-    }, 100);
+    // No special opacity manipulation to avoid conflicts with hover effects
+    item.style.transition = 'opacity 0.8s ease, transform 0.5s ease';
     
     // Add click navigation
     if (item.tagName !== 'A') {
@@ -172,10 +174,11 @@ function applyImagePlaceholder(img) {
   
   // Fade in once loaded
   img.style.transition = 'opacity 0.5s ease';
-  img.style.opacity = '0.3';
-  
+  img.style.opacity = '0.8'; // Start with higher opacity
+
   img.onload = () => {
     img.style.opacity = '1';
+    img.style.filter = 'none'; // Ensure no filters are applied
     img.style.backgroundColor = '';
   };
 }
@@ -229,4 +232,122 @@ function customLazyLoad(img, isHidden) {
       mutationObserver.observe(hiddenContainer, { attributes: true });
     }
   }
+}
+
+// Add hover effects that apply to all projects including dynamically loaded ones
+function setupProjectHoverEffects() {
+  // Clear any existing styles first
+  document.querySelectorAll('.project-item').forEach(item => {
+    // Ensure each project item is bright and visible
+    item.style.opacity = '1';
+    item.style.filter = 'none';
+
+    // Ensure images are bright
+    const img = item.querySelector('img');
+    if (img) {
+      img.style.filter = 'none';
+      img.style.opacity = '1';
+    }
+
+    // Ensure overlay is initially hidden
+    const overlay = item.querySelector('.project-overlay');
+    if (overlay) {
+      overlay.style.opacity = '0';
+    }
+  });
+
+  // Add CSS class for dimmed projects
+  const style = document.createElement('style');
+  style.textContent = `
+    .project-dimmed {
+      filter: brightness(0.5) blur(2px) !important;
+      transform: scale(0.98) !important;
+      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    }
+
+    .project-item:not(.project-dimmed) {
+      opacity: 1 !important;
+      filter: none !important;
+      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    }
+
+    .project-item:not(.project-dimmed) img {
+      opacity: 1 !important;
+      filter: none !important;
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Add event listeners for project containers
+  const projectsFlow = document.querySelectorAll('.projects-flow');
+
+  projectsFlow.forEach(container => {
+    // Add dim effects when hovering over a project
+    container.addEventListener('mouseover', function(e) {
+      // Find the hovered project if any
+      const hoveredProject = e.target.closest('.project-item');
+
+      if (hoveredProject) {
+        // Get all projects in this container
+        const allProjects = this.querySelectorAll('.project-item');
+
+        // Add dim class to all other projects
+        allProjects.forEach(project => {
+          if (project !== hoveredProject) {
+            project.classList.add('project-dimmed');
+          } else {
+            // Make sure hovered project is NOT dimmed
+            project.classList.remove('project-dimmed');
+
+            // Make sure overlay is visible for hovered project
+            const overlay = hoveredProject.querySelector('.project-overlay');
+            if (overlay) {
+              overlay.style.opacity = '1';
+            }
+
+            // Make title visible
+            const title = hoveredProject.querySelector('.project-title');
+            if (title) {
+              title.style.opacity = '1';
+            }
+
+            // Make tagline visible
+            const tagline = hoveredProject.querySelector('.project-tagline');
+            if (tagline) {
+              tagline.style.opacity = '0.9';
+              tagline.style.transform = 'translateY(0)';
+            }
+          }
+        });
+      }
+    });
+
+    // Remove effects when leaving the container
+    container.addEventListener('mouseleave', function() {
+      // Remove dim class from all projects
+      const allProjects = this.querySelectorAll('.project-item');
+      allProjects.forEach(project => {
+        project.classList.remove('project-dimmed');
+
+        // Reset overlay
+        const overlay = project.querySelector('.project-overlay');
+        if (overlay) {
+          overlay.style.opacity = '0';
+        }
+
+        // Reset title
+        const title = project.querySelector('.project-title');
+        if (title) {
+          title.style.opacity = '0';
+        }
+
+        // Reset tagline
+        const tagline = project.querySelector('.project-tagline');
+        if (tagline) {
+          tagline.style.opacity = '0';
+          tagline.style.transform = 'translateY(10px)';
+        }
+      });
+    });
+  });
 }

@@ -24,13 +24,34 @@ function initLoadMore() {
 function toggleProjects() {
   const hiddenProjects = document.querySelector('.hidden-projects');
   const loadMoreBtn = document.getElementById('load-more-projects');
-  
+
   if (hiddenProjects) {
     hiddenProjects.classList.toggle('visible');
-    
+
     if (loadMoreBtn) {
       if (hiddenProjects.classList.contains('visible')) {
         loadMoreBtn.textContent = 'Show Fewer Projects';
+
+        // Ensure newly visible projects are bright and clear
+        const newlyVisibleProjects = hiddenProjects.querySelectorAll('.project-item');
+        newlyVisibleProjects.forEach(project => {
+          // Ensure each project is bright and visible
+          project.style.opacity = '1';
+          project.style.filter = 'none';
+
+          // Ensure images are bright
+          const img = project.querySelector('img');
+          if (img) {
+            img.style.filter = 'none';
+            img.style.opacity = '1';
+          }
+
+          // Ensure overlay is initially hidden
+          const overlay = project.querySelector('.project-overlay');
+          if (overlay) {
+            overlay.style.opacity = '0';
+          }
+        });
       } else {
         loadMoreBtn.textContent = 'Load More Projects';
       }

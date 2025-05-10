@@ -47,12 +47,18 @@
 
 /* Project items animations */
 .project-item {
-  opacity: 0;
+  opacity: 1; /* Always visible by default */
   transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.project-item.animated {
-  opacity: 1;
+/* If we want to dim other projects when hovering one */
+.project-item-container:hover .project-item:not(:hover) {
+  opacity: 0.5;
+  filter: blur(2px);
+}
+
+.project-item:hover {
+  z-index: 10; /* Ensure hovered item appears above others */
 }
 
 /* Modifications to existing hidden content classes for smoother transitions */

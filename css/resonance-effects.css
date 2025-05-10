@@ -14,7 +14,6 @@ body {
 .about-content,
 .contact-content,
 .skill-item,
-.project-item,
 .hero-content {
   background: rgba(255, 255, 255, 0.05) !important;
   backdrop-filter: blur(14px) !important;
@@ -22,6 +21,14 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
   transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+/* Project items with clear background */
+.project-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .project-item:hover,
