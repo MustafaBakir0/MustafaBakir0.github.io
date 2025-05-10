@@ -54,51 +54,88 @@ function createMagicalStars() {
 function addInteractiveGlow() {
   const heroContent = document.querySelector('.hero-content');
   const hero = document.querySelector('.hero');
-  
+
   if (!heroContent || !hero) return;
-  
+
+  // Create a full-screen glow element
+  const fullScreenGlow = document.createElement('div');
+  fullScreenGlow.className = 'full-screen-glow';
+  fullScreenGlow.style.cssText = `
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0;
+    background: radial-gradient(
+      circle at 50% 50%,
+      rgba(108, 99, 255, 0.15) 0%,
+      rgba(190, 147, 255, 0.08) 30%,
+      rgba(108, 99, 255, 0) 70%
+    );
+    filter: blur(30px);
+    transition: opacity 0.3s ease;
+  `;
+
+  // Add to hero
+  hero.appendChild(fullScreenGlow);
+
   hero.addEventListener('mousemove', function(e) {
     // Get mouse position relative to hero section
     const rect = hero.getBoundingClientRect();
     const mouseX = e.clientX - rect.left; // x position within hero
     const mouseY = e.clientY - rect.top;  // y position within hero
-    
+
     // Calculate position as percentages
     const percentX = mouseX / rect.width;
     const percentY = mouseY / rect.height;
-    
+
     // Calculate distance from center (0-1)
     const centerX = 0.5;
     const centerY = 0.5;
     const distanceX = percentX - centerX;
     const distanceY = percentY - centerY;
-    
-    // Apply gentle tilt effect
+
+    // Apply gentle tilt effect to hero content
     const tiltAmount = 2; // degrees
     const tiltX = -distanceY * tiltAmount;
     const tiltY = distanceX * tiltAmount;
-    
-    // Add slight glow where cursor is pointing
+
+    // Add glow where cursor is pointing
     const glowX = percentX * 100;
     const glowY = percentY * 100;
-    
-    // Apply transforms
+
+    // Apply transforms to hero content
     heroContent.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-    
-    // Dynamic subtle radial glow following cursor
+
+    // Dynamic subtle radial glow following cursor for hero content
     heroContent.style.backgroundImage = `
       radial-gradient(
-        circle at ${glowX}% ${glowY}%, 
-        rgba(108, 99, 255, 0.1) 0%, 
+        circle at ${glowX}% ${glowY}%,
+        rgba(108, 99, 255, 0.15) 0%,
         rgba(0, 0, 0, 0) 60%
       )
     `;
+
+    // Update full screen glow
+    fullScreenGlow.style.opacity = '1';
+    fullScreenGlow.style.background = `
+      radial-gradient(
+        circle at ${glowX}% ${glowY}%,
+        rgba(108, 99, 255, 0.12) 0%,
+        rgba(190, 147, 255, 0.08) 30%,
+        rgba(108, 99, 255, 0) 70%
+      )
+    `;
   });
-  
+
   // Reset on mouse leave
   hero.addEventListener('mouseleave', function() {
     heroContent.style.transform = '';
     heroContent.style.backgroundImage = '';
+    fullScreenGlow.style.opacity = '0';
   });
   
   // Create a subtle floating animation for main title

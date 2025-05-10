@@ -1,4 +1,3 @@
-```css
 
 /* Import fonts */
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap');
@@ -99,7 +98,7 @@ nav a:hover::after {
 
 /* Dreamy hero section */
 .hero {
-  height: 90vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -168,7 +167,7 @@ nav a:hover::after {
 .content-container {
   position: relative;
   z-index: 333;
-  margin-top: 90vh;
+  margin-top: 100vh;
   background-color: transparent;
 }
 
@@ -177,7 +176,7 @@ nav a:hover::after {
   z-index: 1;
   background-color: transparent;
   padding: 6rem 2rem;
-  transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+  transition: opacity 0.8s ease;
 }
 
 h2 {
@@ -219,7 +218,7 @@ h2::after {
 }
 
 .about-content img {
-  width: 90%;
+  width: 100%;
   max-width: 400px;
   border-radius: 100px;
   opacity: 0.9;
