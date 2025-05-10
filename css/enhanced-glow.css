@@ -1,7 +1,131 @@
-/* 
+/*
  * Enhanced Glow Effects
  * Adds more dreamy and interactive visual elements
+ * Now with occasional background flashes for a dynamic atmosphere
  */
+
+/* Container for the flash effects */
+.flash-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.6;
+}
+
+/* Base flash element */
+.flash-element {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(190, 163, 255, 0.5) 0%, rgba(108, 99, 255, 0.2) 40%, rgba(30, 20, 80, 0) 70%);
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+  will-change: opacity, transform;
+}
+
+/* Flash element variants */
+.flash-element.small {
+  width: 400px;
+  height: 400px;
+}
+
+.flash-element.medium {
+  width: 800px;
+  height: 800px;
+}
+
+.flash-element.large {
+  width: 1200px;
+  height: 1200px;
+}
+
+/* Flash animation classes - will be added via JS */
+.flash-quick {
+  animation: flashQuick 2s ease-out;
+}
+
+.flash-medium {
+  animation: flashMedium 4s ease-out;
+}
+
+.flash-slow {
+  animation: flashSlow 6s ease-out;
+}
+
+/* Flash animations */
+@keyframes flashQuick {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  20% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+@keyframes flashMedium {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  15% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  30% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.3);
+  }
+}
+
+@keyframes flashSlow {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  10% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  25% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.4);
+  }
+}
+
+/* Color variants */
+.flash-purple {
+  background: radial-gradient(circle, rgba(190, 163, 255, 0.5) 0%, rgba(108, 99, 255, 0.2) 40%, rgba(30, 20, 80, 0) 70%);
+}
+
+.flash-blue {
+  background: radial-gradient(circle, rgba(99, 179, 255, 0.5) 0%, rgba(59, 89, 255, 0.2) 40%, rgba(20, 30, 80, 0) 70%);
+}
+
+.flash-cyan {
+  background: radial-gradient(circle, rgba(99, 255, 203, 0.5) 0%, rgba(59, 210, 255, 0.2) 40%, rgba(20, 60, 80, 0) 70%);
+}
 
 /* Dreamy main title effect with levitation */
 .main-title {

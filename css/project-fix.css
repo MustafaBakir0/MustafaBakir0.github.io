@@ -1,22 +1,33 @@
 /**
- * Project Fix - Ensures projects are always bright and clear by default
- * Only dims other projects when one is hovered
+ * Project Fix - Enhanced 3D effects for project cards
+ * Provides 3D panning effect on hover
  */
 
-/* Ensure all projects are fully visible by default */
+/* Ensure all projects are fully visible by default with 3D properties */
 .project-item {
   opacity: 1 !important;
   filter: none !important;
   background: rgba(255, 255, 255, 0.03) !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
+  transform-style: preserve-3d !important;
+  backface-visibility: hidden !important;
+  perspective: 1000px !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
+  will-change: transform, box-shadow !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
 }
 
-/* Ensure all project images are clear and bright */
+/* Ensure all project images are clear and bright with 3D effect */
 .project-item img {
   opacity: 1 !important;
   filter: none !important;
   brightness: 1 !important;
+  transform: translateZ(10px) !important;
+  transition: all 0.3s ease !important;
+  transform-style: preserve-3d !important;
 }
 
 /* Hide overlay by default */
@@ -25,10 +36,12 @@
     to bottom,
     rgba(10, 10, 18, 0) 0%,
     rgba(10, 10, 18, 0) 50%,
-    rgba(10, 10, 18, 0.4) 100%
+    rgba(10, 10, 18, 0.5) 100%
   ) !important;
   opacity: 0 !important;
-  transition: opacity 0.3s ease !important;
+  transition: opacity 0.3s ease, transform 0.3s ease !important;
+  transform: translateZ(20px) !important;
+  transform-style: preserve-3d !important;
 }
 
 /* Show overlay and text only on hover */
@@ -36,40 +49,61 @@
   opacity: 1 !important;
 }
 
-/* Show title only on hover */
+/* Show title only on hover with 3D effect */
 .project-title {
-  transform: translateY(0) !important;
+  transform: translateZ(25px) !important;
   opacity: 0 !important;
-  transition: opacity 0.3s ease !important;
+  transition: opacity 0.3s ease, transform 0.3s ease !important;
+  transform-style: preserve-3d !important;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3) !important;
 }
 
 .project-item:hover .project-title {
   opacity: 1 !important;
 }
 
-/* Show tagline only on hover */
+/* Show tagline only on hover with 3D effect */
 .project-tagline {
   opacity: 0 !important;
-  transform: translateY(0) !important;
-  transition: opacity 0.3s ease !important;
+  transform: translateZ(22px) translateY(5px) !important;
+  transition: opacity 0.3s ease, transform 0.3s ease !important;
+  transform-style: preserve-3d !important;
 }
 
 .project-item:hover .project-tagline {
   opacity: 0.9 !important;
+  transform: translateZ(22px) translateY(0) !important;
 }
 
-/* Dim class for other projects when one is hovered */
-.project-dimmed {
-  filter: brightness(0.5) blur(2px) !important;
-  transform: scale(0.98) !important;
-  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1) !important;
+/* Enhanced reflection effect */
+.light-reflection {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: linear-gradient(125deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.1) 10%,
+    rgba(255, 255, 255, 0) 40%) !important;
+  opacity: 0.2 !important;
+  border-radius: inherit !important;
+  transition: opacity 0.4s ease, transform 0.4s ease !important;
+  pointer-events: none !important;
+  transform: translateZ(5px) !important;
+  transform-style: preserve-3d !important;
 }
 
-/* Remove hover effects from original styles that might dim this project */
+.project-item:hover .light-reflection {
+  opacity: 0.5 !important;
+  transform: translateZ(15px) translateX(-20px) !important;
+}
+
+/* Project hover image effect */
 .project-item:hover img {
   filter: none !important;
   opacity: 1 !important;
-  transform: scale(1.05) !important;
+  transform: translateZ(10px) scale(1.05) !important;
 }
 
 /* Ensure hidden projects are also bright when they appear */
@@ -81,4 +115,11 @@
 /* Make sure the overlay is properly hidden in all cases */
 #content-overlay {
   opacity: 0 !important;
+}
+
+/* Project category with 3D effect */
+.project-category {
+  transform-style: preserve-3d !important;
+  transform: translateZ(30px) !important;
+  transition: all 0.3s ease !important;
 }

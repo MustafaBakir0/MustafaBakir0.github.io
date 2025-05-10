@@ -256,24 +256,22 @@ function setupProjectHoverEffects() {
     }
   });
 
-  // Add CSS class for dimmed projects
+  // Add transition styles for project items with higher priority
   const style = document.createElement('style');
   style.textContent = `
-    .project-dimmed {
-      filter: brightness(0.5) blur(2px) !important;
-      transform: scale(0.98) !important;
+    .project-item {
       transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1) !important;
+      transform-style: preserve-3d !important;
+      transform: perspective(1000px) !important;
+      will-change: transform, box-shadow !important;
+      backface-visibility: hidden !important;
     }
 
-    .project-item:not(.project-dimmed) {
+    .project-item img {
       opacity: 1 !important;
       filter: none !important;
       transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1) !important;
-    }
-
-    .project-item:not(.project-dimmed) img {
-      opacity: 1 !important;
-      filter: none !important;
+      transform-style: preserve-3d !important;
     }
   `;
   document.head.appendChild(style);
@@ -281,73 +279,108 @@ function setupProjectHoverEffects() {
   // Add event listeners for project containers
   const projectsFlow = document.querySelectorAll('.projects-flow');
 
+  // Function to handle 3D panning effect
+  function handle3DEffect(e, projectItem) {
+    if (!projectItem) return;
+
+    // Get dimensions of the project item
+    const rect = projectItem.getBoundingClientRect();
+
+    // Calculate mouse position relative to the center of the item
+    const mouseX = e.clientX - rect.left - rect.width / 2;
+    const mouseY = e.clientY - rect.top - rect.height / 2;
+
+    // Calculate rotation angles (limited to ±15 degrees)
+    const rotateY = 15 * mouseX / (rect.width / 2);
+    const rotateX = -15 * mouseY / (rect.height / 2);
+
+    // Apply the 3D transform
+    projectItem.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
+
+    // Add a subtle shadow effect that moves with the tilt
+    const shadowX = (mouseX / rect.width) * 20;
+    const shadowY = (mouseY / rect.height) * 20;
+    projectItem.style.boxShadow = `${shadowX}px ${shadowY}px 25px rgba(0, 0, 0, 0.3)`;
+  }
+
+  // Function to reset the 3D effects
+  function reset3DEffect(projectItem) {
+    if (!projectItem) return;
+
+    // Reset transform
+    projectItem.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+    projectItem.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.15)';
+  }
+
   projectsFlow.forEach(container => {
-    // Add dim effects when hovering over a project
+    // Track mouse movement for 3D effect inside each project
+    container.addEventListener('mousemove', function(e) {
+      const projectItem = e.target.closest('.project-item');
+      if (projectItem) {
+        handle3DEffect(e, projectItem);
+      }
+    });
+
+    // Show overlay on hover without dimming other projects
     container.addEventListener('mouseover', function(e) {
       // Find the hovered project if any
       const hoveredProject = e.target.closest('.project-item');
 
       if (hoveredProject) {
-        // Get all projects in this container
-        const allProjects = this.querySelectorAll('.project-item');
+        // Make sure overlay is visible for hovered project
+        const overlay = hoveredProject.querySelector('.project-overlay');
+        if (overlay) {
+          overlay.style.opacity = '1';
+        }
 
-        // Add dim class to all other projects
-        allProjects.forEach(project => {
-          if (project !== hoveredProject) {
-            project.classList.add('project-dimmed');
-          } else {
-            // Make sure hovered project is NOT dimmed
-            project.classList.remove('project-dimmed');
+        // Make title visible
+        const title = hoveredProject.querySelector('.project-title');
+        if (title) {
+          title.style.opacity = '1';
+        }
 
-            // Make sure overlay is visible for hovered project
-            const overlay = hoveredProject.querySelector('.project-overlay');
-            if (overlay) {
-              overlay.style.opacity = '1';
-            }
-
-            // Make title visible
-            const title = hoveredProject.querySelector('.project-title');
-            if (title) {
-              title.style.opacity = '1';
-            }
-
-            // Make tagline visible
-            const tagline = hoveredProject.querySelector('.project-tagline');
-            if (tagline) {
-              tagline.style.opacity = '0.9';
-              tagline.style.transform = 'translateY(0)';
-            }
-          }
-        });
+        // Make tagline visible
+        const tagline = hoveredProject.querySelector('.project-tagline');
+        if (tagline) {
+          tagline.style.opacity = '0.9';
+          tagline.style.transform = 'translateY(0)';
+        }
       }
     });
 
-    // Remove effects when leaving the container
-    container.addEventListener('mouseleave', function() {
-      // Remove dim class from all projects
-      const allProjects = this.querySelectorAll('.project-item');
-      allProjects.forEach(project => {
-        project.classList.remove('project-dimmed');
+    // Hide overlay and reset 3D effect when mouse leaves project
+    container.addEventListener('mouseout', function(e) {
+      const fromElement = e.target;
+      const toElement = e.relatedTarget;
+
+      // Only hide if we're leaving a project item and not entering a child of it
+      if (fromElement.closest('.project-item') &&
+          (!toElement || !fromElement.closest('.project-item').contains(toElement))) {
+
+        const projectItem = fromElement.closest('.project-item');
+
+        // Reset 3D effect
+        reset3DEffect(projectItem);
 
         // Reset overlay
-        const overlay = project.querySelector('.project-overlay');
+        const overlay = projectItem.querySelector('.project-overlay');
         if (overlay) {
           overlay.style.opacity = '0';
         }
 
         // Reset title
-        const title = project.querySelector('.project-title');
+        const title = projectItem.querySelector('.project-title');
         if (title) {
           title.style.opacity = '0';
         }
 
         // Reset tagline
-        const tagline = project.querySelector('.project-tagline');
+        const tagline = projectItem.querySelector('.project-tagline');
         if (tagline) {
           tagline.style.opacity = '0';
           tagline.style.transform = 'translateY(10px)';
         }
-      });
+      }
     });
   });
 }
