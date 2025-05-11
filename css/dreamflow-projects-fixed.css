@@ -181,11 +181,8 @@
   opacity: 1;
 }
 
-/* Dim other projects when one is hovered */
-.projects-flow:hover .project-item:not(:hover) {
-  filter: brightness(0.6) blur(2px);
-  transform: scale(0.98);
-}
+/* No dimming for other projects when one is hovered */
+/* Removed dimming effect so projects are only affected on direct hover */
 
 .project-item:hover .project-title {
   transform: translateY(-6px);

@@ -155,9 +155,9 @@ body.is-scrolled .hero {
   border-radius: 4px;
 }
 
-/* Project items visible on load */
+/* Project items fully visible on load */
 .projects-flow .project-item {
-  opacity: 0.2; /* Start slightly visible for better UX */
+  opacity: 1; /* Full visibility by default */
 }
 
 /* OPTIMIZE: Reduce complex transforms on smaller screens */

@@ -265,6 +265,7 @@ function setupProjectHoverEffects() {
       transform: perspective(1000px) !important;
       will-change: transform, box-shadow !important;
       backface-visibility: hidden !important;
+      filter: none !important;
     }
 
     .project-item img {
@@ -272,6 +273,13 @@ function setupProjectHoverEffects() {
       filter: none !important;
       transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1) !important;
       transform-style: preserve-3d !important;
+    }
+
+    /* Ensure no dimming on container hover */
+    .projects-flow:hover .project-item:not(:hover) {
+      filter: none !important;
+      transform: perspective(1000px) !important;
+      opacity: 1 !important;
     }
   `;
   document.head.appendChild(style);
