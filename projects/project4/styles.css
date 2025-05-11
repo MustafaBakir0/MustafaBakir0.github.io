@@ -99,6 +99,14 @@ body, html {
 }
 
 /* background - fixed position for scrolling */
+.bg-image {
+    z-index: -5; /* Lower z-index to be behind the dreamy background */
+}
+
+/* Make sure particles are behind our dreamy GIFs */
+.particles-container {
+    z-index: -4 !important;
+}
 
 /* layout */
 .content {
@@ -165,13 +173,14 @@ body, html {
     font-size: 1.2rem;
     opacity: 0.95;
     color: rgba(255, 255, 255, 0.95);
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.5); /* Increased opacity for better readability with dreamy bg */
     padding: 2rem;
     border-radius: 8px;
     position: relative;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px); /* Additional blur for better text readability */
 }
 
 .description::before {

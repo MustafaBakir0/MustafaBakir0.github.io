@@ -1,0 +1,93 @@
+.dreamy-background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none; /* Prevents interaction with background */
+}
+
+.dreamy-gif {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3; /* Low opacity for dimmed effect */
+    filter: blur(5px) brightness(0.8); /* Blur effect + slightly darkened for dreamy look */
+    transition: opacity 1.5s ease-in-out;
+    object-fit: cover; /* Ensures the gif covers the whole container */
+    object-position: center; /* Centers the gif content */
+    display: none; /* Hidden by default, shown with JS */
+    transform-origin: center;
+    will-change: transform, opacity; /* Performance optimization for animations */
+}
+
+.dreamy-gif.active {
+    display: block;
+    animation: dreamyFloat 20s infinite alternate ease-in-out;
+}
+
+@keyframes dreamyFloat {
+    0% {
+        transform: scale(1.05) translate(0, 0);
+    }
+    100% {
+        transform: scale(1.05) translate(10px, 10px);
+    }
+}
+
+/* Enhances the dreamy effect with a subtle color overlay */
+.dreamy-background-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg, 
+        rgba(128, 0, 255, 0.1), 
+        rgba(0, 128, 255, 0.1), 
+        rgba(0, 255, 255, 0.05)
+    );
+    mix-blend-mode: overlay;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Additional vignette effect */
+.dreamy-background-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+
+/* Project-specific adaptations */
+.project-hero {
+    position: relative;
+}
+
+.project-section,
+.project-navigation {
+    position: relative;
+    z-index: 1;
+}
+
+/* Increase contrast for better text readability */
+.project-description p,
+.project-content p,
+.project-content ul li {
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.project-hero-content h1 {
+    text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
