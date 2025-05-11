@@ -2,20 +2,24 @@
  * DreamFlow Projects - Fixed Version
  * Simplified JavaScript for more reliable text centering
  * With added image lazy loading for better performance
+ * Integrated with load-more functionality
  */
 
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize the project layouts
   initProjects();
-  
+
   // Add simple animations for project cards
   setupProjectAnimations();
-  
+
   // Set up lazy loading for project images
   setupLazyLoading();
-  
+
   // Add hover effects for project containers
   setupProjectHoverEffects();
+
+  // Initialize load more functionality
+  initLoadMore();
 });
 
 function initProjects() {
@@ -281,6 +285,34 @@ function setupProjectHoverEffects() {
       transform: perspective(1000px) !important;
       opacity: 1 !important;
     }
+
+    /* Apply the same hover rules to hidden projects when visible */
+    .hidden-projects.visible .project-item {
+      opacity: 1 !important;
+      filter: none !important;
+    }
+
+    .hidden-projects.visible .project-item img {
+      opacity: 1 !important;
+      filter: none !important;
+    }
+
+    /* Override the animation in load-more.css to ensure full opacity */
+    .hidden-projects.visible .project-item {
+      animation: fadeInUp 0.6s ease-out forwards !important;
+      animation-delay: calc(var(--item-index, 0) * 0.1s) !important;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1 !important;
+        transform: translateY(0);
+      }
+    }
   `;
   document.head.appendChild(style);
 
@@ -320,7 +352,8 @@ function setupProjectHoverEffects() {
     projectItem.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.15)';
   }
 
-  projectsFlow.forEach(container => {
+  // Helper function to add event handlers to a specific project container
+  function addEventHandlersToContainer(container) {
     // Track mouse movement for 3D effect inside each project
     container.addEventListener('mousemove', function(e) {
       const projectItem = e.target.closest('.project-item');
@@ -390,5 +423,132 @@ function setupProjectHoverEffects() {
         }
       }
     });
+  }
+
+  // Add event handlers to existing project containers
+  projectsFlow.forEach(container => {
+    addEventHandlersToContainer(container);
   });
+
+  // Also add event handlers to hidden-projects container for when it becomes visible
+  const hiddenProjectsContainer = document.querySelector('.hidden-projects');
+  if (hiddenProjectsContainer) {
+    addEventHandlersToContainer(hiddenProjectsContainer);
+  }
+}
+
+// Load More Functionality
+function initLoadMore() {
+  // Project load more button
+  const loadMoreBtn = document.getElementById('load-more-projects');
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener('click', toggleProjects);
+  }
+
+  // Set animation delay for each hidden project
+  const hiddenProjects = document.querySelectorAll('.hidden-projects .project-item');
+  hiddenProjects.forEach((item, index) => {
+    item.style.setProperty('--item-index', index);
+  });
+}
+
+function toggleProjects() {
+  const hiddenProjects = document.querySelector('.hidden-projects');
+  const loadMoreBtn = document.getElementById('load-more-projects');
+
+  if (hiddenProjects) {
+    hiddenProjects.classList.toggle('visible');
+
+    if (loadMoreBtn) {
+      if (hiddenProjects.classList.contains('visible')) {
+        loadMoreBtn.textContent = 'Show Fewer Projects';
+
+        // Process newly visible projects to apply the same styling and behavior
+        const newlyVisibleProjects = hiddenProjects.querySelectorAll('.project-item');
+
+        // Add necessary elements and behaviors to hidden projects
+        newlyVisibleProjects.forEach(project => {
+          // Apply all the same initialization that visible projects get
+
+          // Add project category if needed
+          if (!project.querySelector('.project-category')) {
+            const category = document.createElement('div');
+            category.className = 'project-category';
+
+            // Determine category based on image
+            const imageSrc = project.querySelector('img')?.getAttribute('src') || '';
+
+            let categoryText = 'Project';
+            if (imageSrc.includes('lcms')) {
+              categoryText = 'Software';
+            } else if (imageSrc.includes('DFT')) {
+              categoryText = 'Visualization';
+            } else if (imageSrc.includes('webster')) {
+              categoryText = 'Web Project';
+            } else if (imageSrc.includes('filmbg')) {
+              categoryText = 'Multimedia';
+            } else if (imageSrc.includes('p5')) {
+              categoryText = 'Audio';
+            }
+
+            category.textContent = categoryText;
+            project.appendChild(category);
+          }
+
+          // Add reflection element if needed
+          if (!project.querySelector('.light-reflection')) {
+            const reflection = document.createElement('div');
+            reflection.className = 'light-reflection';
+            project.appendChild(reflection);
+          }
+
+          // Ensure full visibility and no filters
+          project.style.opacity = '1';
+          project.style.filter = 'none';
+
+          // Ensure images are bright
+          const img = project.querySelector('img');
+          if (img) {
+            img.style.filter = 'none';
+            img.style.opacity = '1';
+          }
+
+          // Ensure overlay is initially hidden but ready for hover
+          const overlay = project.querySelector('.project-overlay');
+          if (overlay) {
+            overlay.style.opacity = '0';
+          }
+
+          // Add click navigation if needed
+          if (project.tagName !== 'A' && !project._hasClickListener) {
+            project.addEventListener('click', function() {
+              const link = this.getAttribute('data-link') || this.querySelector('a')?.getAttribute('href');
+              if (link) {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                  window.location.href = link;
+                }, 200);
+              }
+            });
+            project._hasClickListener = true;
+          }
+
+          // Add keyboard navigation support if needed
+          if (!project.hasAttribute('tabindex')) {
+            project.setAttribute('tabindex', '0');
+            project.addEventListener('keydown', function(e) {
+              if (e.key === 'Enter') {
+                const link = this.getAttribute('href') || this.querySelector('a')?.getAttribute('href');
+                if (link) {
+                  window.location.href = link;
+                }
+              }
+            });
+          }
+        });
+      } else {
+        loadMoreBtn.textContent = 'Load More Projects';
+      }
+    }
+  }
 }

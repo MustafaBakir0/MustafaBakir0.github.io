@@ -311,13 +311,7 @@ function initExpandableContent() {
     });
   }
   
-  // Load more projects button
-  const loadMoreProjectsBtn = document.getElementById('load-more-projects');
-  if (loadMoreProjectsBtn) {
-    loadMoreProjectsBtn.addEventListener('click', function() {
-      toggleHiddenContent('hidden-projects', this, 'Load More Projects', 'Show Fewer Projects');
-    });
-  }
+  // Load more projects button is now handled by the dreamflow-projects-fixed.js file
 }
 
 // Consolidated function to toggle hidden content
