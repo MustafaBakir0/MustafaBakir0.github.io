@@ -1,16 +1,13 @@
 /**
- * Skills Viewer - For showing/hiding additional skills
+ * Skills Viewer - For showing all skills with proficiency labels
  */
 
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize the skills section
   initSkills();
   
-  // Initialize the view all button if needed
-  const viewAllButton = document.getElementById('view-all-skills');
-  if (viewAllButton) {
-    viewAllButton.addEventListener('click', toggleHiddenSkills);
-  }
+  // Show all skills by default
+  showAllSkills();
 });
 
 function initSkills() {
@@ -18,6 +15,12 @@ function initSkills() {
   const skillItems = document.querySelectorAll('.skill-item');
   
   skillItems.forEach(item => {
+    // Check if the item already has a proficiency label
+    const existingLabel = item.querySelector('.skill-proficiency');
+    if (existingLabel) {
+      return; // Skip if it already has a proficiency label
+    }
+    
     const skillLevel = item.querySelector('.skill-level');
     const skillName = item.querySelector('.skill-name').textContent;
     
@@ -45,6 +48,12 @@ function initSkills() {
       proficiencyLabel.className = `skill-proficiency ${proficiency}`;
       proficiencyLabel.textContent = proficiencyText;
       
+      // Remove skill meter if it exists
+      const skillMeter = item.querySelector('.skill-meter');
+      if (skillMeter) {
+        skillMeter.remove();
+      }
+      
       // Add to skill info
       const skillInfo = item.querySelector('.skill-info');
       if (skillInfo) {
@@ -54,19 +63,16 @@ function initSkills() {
   });
 }
 
-function toggleHiddenSkills() {
+function showAllSkills() {
+  // Show all hidden skills by default
   const hiddenSkills = document.querySelector('.hidden-skills');
-  const viewAllButton = document.getElementById('view-all-skills');
-  
   if (hiddenSkills) {
-    hiddenSkills.classList.toggle('visible');
+    hiddenSkills.classList.add('visible');
     
+    // Hide the "View All Skills" button since all skills are now visible by default
+    const viewAllButton = document.getElementById('view-all-skills');
     if (viewAllButton) {
-      if (hiddenSkills.classList.contains('visible')) {
-        viewAllButton.textContent = 'Show Fewer Skills';
-      } else {
-        viewAllButton.textContent = 'View All Skills';
-      }
+      viewAllButton.style.display = 'none';
     }
   }
 }
