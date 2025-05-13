@@ -15,17 +15,17 @@
 .projects-flow {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 1.5rem;
   justify-content: center;
 }
 
 /* Project cards with simple, reliable positioning */
 .project-item {
   position: relative;
-  flex: 1 1 400px;
-  height: 320px;
-  min-width: 300px;
-  border-radius: 20px;
+  flex: 1 1 300px;
+  height: 250px;
+  min-width: 250px;
+  border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
@@ -158,7 +158,7 @@
 /* Featured project styling */
 .project-item.featured {
   flex: 1 1 100%;
-  height: 400px;
+  height: 320px;
   max-width: 100%;
   margin-top: 0;
   margin-left: 0;
@@ -229,9 +229,9 @@
 
 @media (max-width: 768px) {
   .projects-flow {
-    gap: 2rem;
+    gap: 1.5rem;
   }
-  
+
   .project-item,
   .project-item:nth-child(odd),
   .project-item:nth-child(3n+1),
@@ -239,10 +239,10 @@
   .project-item:nth-child(5n) {
     flex: 1 1 100%;
     margin: 0 0 1.5rem 0;
-    height: 280px;
+    height: 220px;
   }
-  
+
   .project-item.featured {
-    height: 330px;
+    height: 260px;
   }
 }
