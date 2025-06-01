@@ -3,859 +3,311 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Com Tech</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Space+Mono:wght@400;700&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Courier Prime', monospace;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
-            color: #2c3e50;
-            overflow-x: hidden;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .game-header {
-            text-align: center;
-            margin-bottom: 30px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 15px;
-            border: 3px dashed #7f8c8d;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .game-title {
-            font-family: 'Space Mono', monospace;
-            font-size: 2.5em;
-            color: #e74c3c;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 0px #fff;
-        }
-        
-        .game-subtitle {
-            font-size: 1.2em;
-            color: #7f8c8d;
-            font-style: italic;
-        }
-        
-        .stats-bar {
-            display: flex;
-            justify-content: space-around;
-            background: rgba(52, 73, 94, 0.9);
-            color: white;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-        
-        .stat {
-            text-align: center;
-            flex: 1;
-        }
-        
-        .stat-value {
-            font-size: 1.4em;
-            display: block;
-            margin-top: 5px;
-        }
-        
-        .scenario-card {
-            background: rgba(255, 255, 255, 0.95);
-            border: 2px solid #34495e;
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            transform: translateY(20px);
-            opacity: 0;
-            animation: slideIn 0.6s forwards;
-        }
-        
-        @keyframes slideIn {
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-        
-        .scenario-title {
-            font-family: 'Space Mono', monospace;
-            font-size: 1.6em;
-            color: #2c3e50;
-            margin-bottom: 15px;
-            border-bottom: 2px dotted #bdc3c7;
-            padding-bottom: 10px;
-        }
-        
-        .scenario-text {
-            font-size: 1.1em;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            color: #34495e;
-        }
-        
-        .choices {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        
-        .choice-btn {
-            background: linear-gradient(45deg, #3498db, #2ecc71);
-            color: white;
-            border: none;
-            padding: 15px 20px;
-            border-radius: 8px;
-            font-family: 'Courier Prime', monospace;
-            font-size: 1em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-        
-        .choice-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            border: 2px solid #2c3e50;
-        }
-        
-        .choice-btn.viral {
-            background: linear-gradient(45deg, #e74c3c, #f39c12);
-        }
-        
-        .choice-btn.authentic {
-            background: linear-gradient(45deg, #27ae60, #16a085);
-        }
-        
-        .choice-btn.corporate {
-            background: linear-gradient(45deg, #9b59b6, #8e44ad);
-        }
-        
-        .progress-bar {
-            background: #ecf0f1;
-            height: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            overflow: hidden;
-            border: 2px solid #bdc3c7;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #3498db, #2ecc71);
-            transition: width 0.5s ease;
-            border-radius: 8px;
-        }
-        
-        .feedback {
-            background: rgba(46, 204, 113, 0.1);
-            border: 2px solid #2ecc71;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 15px 0;
-            font-style: italic;
-            animation: pulse 2s;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-        }
-        
-        .negative-feedback {
-            background: rgba(231, 76, 60, 0.1);
-            border-color: #e74c3c;
-        }
-        
-        .completion-screen {
-            text-align: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        
-        .secret-word {
-            font-family: 'Space Mono', monospace;
-            font-size: 3em;
-            color: #f1c40f;
-            text-shadow: 3px 3px 0px rgba(0,0,0,0.5);
-            margin: 20px 0;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-        
-        @keyframes glow {
-            from { text-shadow: 3px 3px 0px rgba(0,0,0,0.5), 0 0 10px #f1c40f; }
-            to { text-shadow: 3px 3px 0px rgba(0,0,0,0.5), 0 0 20px #f1c40f, 0 0 30px #f1c40f; }
-        }
-        
-        .corporate-speak {
-            background: rgba(52, 73, 94, 0.1);
-            border-left: 4px solid #34495e;
-            padding: 10px 15px;
-            margin: 10px 0;
-            font-style: italic;
-            color: #7f8c8d;
-        }
-        
-        .hidden {
-            display: none;
-        }
-        
-        .restart-btn {
-            background: linear-gradient(45deg, #3498db, #2ecc71);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            font-family: 'Courier Prime', monospace;
-            font-size: 1em;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: all 0.3s ease;
-        }
-        
-        .restart-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-    </style>
+    <title>Mustafa Bakir | Portfolio</title>
+    <meta name="description" content="Portfolio of Mustafa Bakir, a multimedia designer and computer science enthusiast blending technology and creativity.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/optimized-styles.css">
+    <link rel="stylesheet" href="css/dreamflow-projects-fixed.css">
+    <link rel="stylesheet" href="css/bio-highlight.css">
+    <link rel="stylesheet" href="css/improved-skills.css">
+    <link rel="stylesheet" href="css/dreamy-hero.css">
+    <link rel="stylesheet" href="css/resonance-effects.css">
+    <link rel="stylesheet" href="css/adaptive-animations.css">
+    <link rel="stylesheet" href="css/project-fix.css">
+    <link rel="stylesheet" href="css/dreamy-background.css">
 </head>
 <body>
-    <div class="container">
-        <div class="game-header">
-            <h1 class="game-title">The Blogger</h1>
-            <p class="game-subtitle">Navigate the wild world of independent publishing</p>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="https://calendly.com/mb9457-nyu/30min" class="calendly-link" target="_blank">Schedule a Call</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="magic-stars">
+            <!-- Stars will be dynamically generated by JS -->
         </div>
-        
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressFill"></div>
-        </div>
-        
-        <div class="stats-bar">
-            <div class="stat">
-                <span>Community Trust</span>
-                <span class="stat-value" id="trustStat">50</span>
-            </div>
-            <div class="stat">
-                <span>Financial Health</span>
-                <span class="stat-value" id="moneyStat">50</span>
-            </div>
-            <div class="stat">
-                <span>Editorial Freedom</span>
-                <span class="stat-value" id="freedomStat">50</span>
-            </div>
-            <div class="stat">
-                <span>Burnout Level</span>
-                <span class="stat-value" id="burnoutStat">20</span>
+        <div class="hero-content">
+            <h1 class="main-title" data-text="Hi, I'm Mustafa Bakir">Hi, I'm Mustafa Bakir</h1>
+            <div class="typewriter">
+                <span class="dynamic-text"></span>
             </div>
         </div>
-        
-        <div id="gameContent">
-            <div class="scenario-card">
-                <h2 class="scenario-title">Phase 1: The Beginning</h2>
-                <p class="scenario-text">
-                    You just launched your newsletter "Real Talk Weekly" with 47 subscribers (mostly friends and family). 
-                    Your first article about local housing costs gets shared 500 times on social media. 
-                    A viral content agency slides into your DMs...
-                </p>
-                <div class="corporate-speak">
-                    "We leverage synergistic content optimization to maximize engagement KPIs across all verticals..."
-                </div>
-                <p class="scenario-text">They want to help you "scale your content strategy" for a 50/50 revenue split.</p>
-                <div class="choices">
-                    <button class="choice-btn viral" data-choice="viral1">
-                        📈 Sign with the agency - let's go viral!
-                    </button>
-                    <button class="choice-btn authentic" data-choice="authentic1">
-                        📝 Stay independent - focus on quality writing
-                    </button>
+        <div class="magic-scroll-indicator"></div>
+        <div class="hero-transition"></div>
+    </section>
+    <div id="content-overlay"></div>
+
+    <div class="content-container">
+        <section id="about" class="section" style="padding-top: 2rem; opacity: 1 !important; filter: none !important; transform: none !important;">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <img src="assets/IMG_0875.png" alt="Mustafa Bakir">
+                <div class="bio-content">
+                    <p>I'm a <span class="highlight">multimedia designer</span> and <span class="highlight">computer science enthusiast</span> merging creativity with cutting-edge technology. I thrive at the crossroads where <span class="highlight">design meets logic</span>—where aesthetics enhance function, and algorithms empower imagination.</p>
+                    
+                    <p>My experience spans from <span class="highlight">computer science</span> to <span class="highlight">immersive digital experiences</span> and <span class="highlight">interactive media</span>. This unique blend gives me a dual perspective: analytical rigor and expressive design vision.</p>
+                    
+                    <p>In <span class="highlight">project management</span>, I translate abstract ideas into actionable plans with interdisciplinary teams. I focus on strategic design that serves both usability standards and business objectives.</p>
+                    
+                    <p><span class="highlight">Let's build something remarkable together.</span></p>
                 </div>
             </div>
+        </section>
+
+     <section id="work" class="section">
+    <h2>Projects</h2>
+    <div class="projects-container">
+        <div class="projects-flow project-item-container">
+            <!-- Project 1 (Featured) -->
+            <a href="projects/project1/index.html" class="project-item featured">
+                <div class="featured-badge">Featured Project</div>
+                <div class="project-category">Software Development</div>
+                <img src="assets/lcms.png" alt="Library Catalog Management System">
+                <div class="project-overlay">
+                    <h3 class="project-title">Library Catalog Management System (LCMS)</h3>
+                    <div class="project-tagline">Efficient data organization</div>
+                </div>
+                <div class="light-reflection"></div>
+            </a>
+            
+            <!-- Project 2 -->
+            <a href="projects/project2/index.html" class="project-item">
+                <div class="project-category">Computational Visualization</div>
+                <img src="assets/DFT.jpg" alt="Drawing with Fourier Transform">
+                <div class="project-overlay">
+                    <h3 class="project-title">Drawing with Fourier Transform, Polygon Guesser</h3>
+                    <div class="project-tagline">Mathematical beauty visualized</div>
+                </div>
+                <div class="light-reflection"></div>
+            </a>
+            
+            <!-- Project 3 (Webster) -->
+            <a href="projects/project3/index.html" class="project-item">
+                <div class="project-category">Web Project</div>
+                <img src="assets/webster.png" alt="Webster Project">
+                <div class="project-overlay">
+                    <h3 class="project-title">Webster Project</h3>
+                    <div class="project-tagline">Digital craftsmanship</div>
+                </div>
+                <div class="light-reflection"></div>
+            </a>
         </div>
+        
+        <!-- Hidden projects that will be shown with Load More -->
+        <div class="projects-flow project-item-container hidden-projects">
+            <!-- Project 4 (Resonance, a Film) -->
+            <a href="projects/project4/index.html" class="project-item">
+                <div class="project-category">Multimedia</div>
+                <img src="assets/filmbg.png" alt="Resonance, a Film">
+                <div class="project-overlay">
+                    <h3 class="project-title">Resonance, a Film</h3>
+                    <div class="project-tagline">Visual storytelling</div>
+                </div>
+                <div class="light-reflection"></div>
+            </a>
+            
+            <!-- Project 5 (Audio Visualization) -->
+            <a href="projects/project5/index.html" class="project-item">
+                <div class="project-category">Audio Visualization</div>
+                <img src="assets/p5.png" alt="Audio Visualization System">
+                <div class="project-overlay">
+                    <h3 class="project-title">Real-time Audio Visualization System</h3>
+                    <div class="project-tagline">Sound made visible</div>
+                </div>
+                <div class="light-reflection"></div>
+            </a>
+
+            <!-- Project 6 (Newton Ate Gravity) -->
+            <a href="https://ao2395.github.io/What-If-Newton-Ate-Gravity/" class="project-item" target="_blank">
+                <div class="project-category">Interactive Physics</div>
+                <img src="assets/comic.png" alt="What If Newton Ate Gravity">
+                <div class="project-overlay">
+                    <h3 class="project-title">What If Newton Ate Gravity</h3>
+                    <div class="project-tagline">Physics reimagined</div>
+                </div>
+                <div class="light-reflection"></div>
+            </a>
+
+            <!-- Project 7 (Pirate Audio Project) -->
+            <a href="https://fatimafarooq03.github.io/AudioProject/index.html" class="project-item" target="_blank">
+                <div class="project-category">Audio Experience</div>
+                <img src="assets/pirate.png" alt="Pirate Audio Project">
+                <div class="project-overlay">
+                    <h3 class="project-title">Pirate Audio Experience</h3>
+                    <div class="project-tagline">Sound adventures on the high seas</div>
+                </div>
+                <div class="light-reflection"></div>
+            </a>
+
+            <!-- TEMPLATE: Copy this to add new projects
+            <a href="YOUR_PROJECT_URL" class="project-item" target="_blank">
+                <div class="project-category">YOUR_CATEGORY</div>
+                <img src="assets/YOUR_IMAGE.png" alt="YOUR_PROJECT_NAME">
+                <div class="project-overlay">
+                    <h3 class="project-title">YOUR_PROJECT_TITLE</h3>
+                    <div class="project-tagline">YOUR_PROJECT_TAGLINE</div>
+                </div>
+                <div class="light-reflection"></div>
+            </a>
+            -->
+        </div>
+        
+        <!-- Load More Button -->
+        <button id="load-more-projects" class="load-more-btn">Load More Projects</button>
+    </div>
+</section>
+
+      <section id="skills" class="section">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+        <!-- Main skills (always visible) -->
+        <div class="skills-row">
+            <div class="skill-item">
+                <img src="assets/c.png" alt="C++">
+                <div class="skill-info">
+                    <span class="skill-name">C++</span>
+                    <div class="skill-proficiency expert">Expert</div>
+                </div>
+            </div>
+            <div class="skill-item">
+                <img src="assets/after-effects.png" alt="After Effects">
+                <div class="skill-info">
+                    <span class="skill-name">After Effects</span>
+                    <div class="skill-proficiency advanced">Advanced</div>
+                </div>
+            </div>
+            <div class="skill-item">
+                <img src="assets/python.png" alt="Python">
+                <div class="skill-info">
+                    <span class="skill-name">Python</span>
+                    <div class="skill-proficiency advanced">Advanced</div>
+                </div>
+            </div>
+        </div>
+        <div class="skills-row">
+            <div class="skill-item">
+                <img src="assets/project.png" alt="Project Management">
+                <div class="skill-info">
+                    <span class="skill-name">Project Management</span>
+                    <div class="skill-proficiency expert">Expert</div>
+                </div>
+            </div>
+            <div class="skill-item">
+                <img src="assets/text.png" alt="CSS">
+                <div class="skill-info">
+                    <span class="skill-name">CSS</span>
+                    <div class="skill-meter">
+                        <div class="skill-level" style="width: 90%"></div>
+                        <span class="skill-percentage">65%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-item">
+                <img src="assets/illustrator.png" alt="Illustrator">
+                <div class="skill-info">
+                    <span class="skill-name">Illustrator</span>
+                    <div class="skill-proficiency expert">Advanced</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Hidden skills (revealed with button) -->
+        <div class="hidden-skills">
+            <div class="skills-row">
+                <div class="skill-item">
+                    <img src="assets/csharp.png" alt="C#">
+                    <div class="skill-info">
+                        <span class="skill-name">C#</span>
+                        <div class="skill-meter">
+                            <div class="skill-level" style="width: 80%"></div>
+                            <span class="skill-percentage">80%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <img src="assets/cinema4d.png" alt="Cinema 4D">
+                    <div class="skill-info">
+                        <span class="skill-name">Cinema 4D</span>
+                        <div class="skill-meter">
+                            <div class="skill-level" style="width: 75%"></div>
+                            <span class="skill-percentage">35%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <img src="assets/vegas.png" alt="Vegas Pro">
+                    <div class="skill-info">
+                        <span class="skill-name">Vegas Pro</span>
+                        <div class="skill-meter">
+                            <div class="skill-level" style="width: 85%"></div>
+                            <span class="skill-percentage">100%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="skills-row">
+                <div class="skill-item">
+                    <img src="assets/photoshop.png" alt="Photoshop">
+                    <div class="skill-info">
+                        <span class="skill-name">Photoshop</span>
+                        <div class="skill-meter">
+                            <div class="skill-level" style="width: 85%"></div>
+                            <span class="skill-percentage">85%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <img src="assets/p5.png" alt="P5.js">
+                    <div class="skill-info">
+                        <span class="skill-name">P5.js</span>
+                        <div class="skill-meter">
+                            <div class="skill-level" style="width: 70%"></div>
+                            <span class="skill-percentage">70%</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Room for more skills -->
+            </div>
+        </div>
+        
+        <!-- View All Skills Button -->
+        <button id="view-all-skills" class="view-all-skills">View All Skills</button>
+    </div>
+</section>
+
+
+        <section id="contact" class="section">
+            <h2>Get In Touch</h2>
+            <div class="contact-content">
+                <form id="contact-form">
+                    <input type="text" placeholder="Name" required>
+                    <input type="email" placeholder="Email" required>
+                    <textarea rows="5" placeholder="Message" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </section>
     </div>
 
-    <script>
-        // Game state
-        let gameState = {
-            phase: 1,
-            trust: 50,
-            money: 50,
-            freedom: 50,
-            burnout: 20,
-            choices: [],
-            totalPhases: 6
-        };
-
-        // Scenarios data
-        const scenarios = {
-            viral1: {
-                phase: 2,
-                title: "Phase 2: The Viral Trap",
-                text: "Six months later: Your subscriber count exploded to 15,000! But the agency pushes you to write '10 SHOCKING Local Secrets That Will BLOW YOUR MIND!' instead of your thoughtful housing analysis. Your original 47 subscribers are... confused.",
-                corporateSpeak: "Remember, we need to optimize for maximum engagement metrics and click-through optimization!",
-                additionalText: "Meanwhile, your friend Sarah's tiny 200-subscriber newsletter about urban planning just got quoted by the city council. Her readers actually show up to town halls.",
-                choices: [
-                    { text: "🎯 Double down on clickbait - growth matters most!", action: "viral2", class: "viral" },
-                    { text: "📚 Pivot back to serious content - quality over quantity", action: "authentic2", class: "authentic" }
-                ],
-                effects: { trust: -15, money: +20, freedom: -20, burnout: +15 }
-            },
-            
-            authentic1: {
-                phase: 2,
-                title: "Phase 2: Slow and Steady",
-                text: "Six months later: You have 312 subscribers who religiously read every word. Local politicians actually quote your newsletter. A reader emails: 'Your analysis changed how I think about housing policy.' But your bank account hasn't changed much.",
-                corporateSpeak: "Your engagement rates are phenomenal, but the monetization strategy needs optimization...",
-                additionalText: "A major media company offers you a staff position: $85,000/year, full benefits, but they want you to write about 'lifestyle content' instead of policy.",
-                choices: [
-                    { text: "💼 Take the stable job - bills need paying", action: "corporate1", class: "corporate" },
-                    { text: "🎯 Stay independent - launch a Patreon", action: "indie1", class: "authentic" }
-                ],
-                effects: { trust: +20, money: -5, freedom: +15, burnout: -5 }
-            },
-
-            viral2: {
-                phase: 3,
-                title: "Phase 3: The Reckoning",
-                text: "Your 'SHOCKING' content hits 50,000 subscribers, but the comments section is a wasteland. Original supporters are unsubscribing. The agency wants you to promote crypto scams for '4x revenue optimization.'",
-                corporateSpeak: "We've identified high-yield monetization opportunities in the emerging digital asset space...",
-                additionalText: "But wait - a tech startup just offered you $200,000/year to be their 'Chief Content Evangelist.' You'd write about productivity tools and work-life balance instead of local issues.",
-                choices: [
-                    { text: "💰 Take the $200K - financial security wins", action: "corporate2", class: "corporate" },
-                    { text: "🔄 Break from agency - rebuild with authenticity", action: "rebuild1", class: "authentic" }
-                ],
-                effects: { trust: -20, money: +15, freedom: -25, burnout: +20 }
-            },
-
-            authentic2: {
-                phase: 3,
-                title: "Phase 3: Finding Balance",
-                text: "You pivot back to thoughtful content. Subscriber growth slows, but engagement soars. A local nonprofit asks you to cover their housing advocacy work. Also, three readers have become real friends.",
-                additionalText: "Plot twist: A worker-owned media cooperative like Defector wants you to join them. Base salary: $72,000, but you'd own part of the company and have complete editorial freedom.",
-                choices: [
-                    { text: "🤝 Join the cooperative - sustainable indie media", action: "coop1", class: "authentic" },
-                    { text: "🚀 Go solo - launch premium subscriptions", action: "solo1", class: "authentic" }
-                ],
-                effects: { trust: +15, money: +5, freedom: +20, burnout: -10 }
-            },
-
-            corporate1: {
-                phase: 3,
-                title: "Phase 3: Corporate Life",
-                text: "Steady paycheck, dental insurance, and... writing '15 Bathroom Decor Trends That Scream Sophistication.' Your housing policy expertise gathers dust. Your editor loves your 'lifestyle pivot strategy.'",
-                corporateSpeak: "Your lifestyle content is driving significant user acquisition in our target demographic!",
-                additionalText: "But your old readers keep emailing: 'When are you going back to the important stuff?' Your boss hints at a promotion to $200K if you can increase page views by 300%.",
-                choices: [
-                    { text: "📈 Chase the promotion - climb that corporate ladder", action: "corporate2", class: "corporate" },
-                    { text: "🚪 Quit and go independent - life's too short", action: "quit1", class: "authentic" }
-                ],
-                effects: { trust: -10, money: +25, freedom: -30, burnout: +10 }
-            },
-
-            indie1: {
-                phase: 3,
-                title: "Phase 3: The Patreon Experiment", 
-                text: "Your Patreon launches with 47 supporters paying $5/month. It's $235/month - not exactly rent money. But your deep-dive on zoning laws gets shared by urban planning professors nationwide.",
-                additionalText: "A venture capital firm approaches you: '$2 million to scale your newsletter into a platform.' They want to help you 'capture the urban policy newsletter market.' The catch? They'd own 60% of your company.",
-                choices: [
-                    { text: "💸 Take VC money - scale fast and big", action: "vc1", class: "corporate" },
-                    { text: "🐌 Stay bootstrapped - organic growth only", action: "bootstrap1", class: "authentic" }
-                ],
-                effects: { trust: +10, money: -10, freedom: +25, burnout: +5 }
-            },
-
-            // Missing scenarios - now added!
-            solo1: {
-                phase: 4,
-                title: "Phase 4: The Solo Journey",
-                text: "You launch premium subscriptions at $15/month. After a year, you have 800 paying subscribers - $144,000 annually! You're profitable, independent, and sleeping well. But you're also pretty lonely working from your kitchen table.",
-                additionalText: "Other indie creators reach out constantly asking for advice. You could start a consulting business, write a book about your journey, or just keep your head down and focus on your newsletter.",
-                choices: [
-                    { text: "📚 Write the book - share your playbook", action: "endMentor", class: "authentic" },
-                    { text: "🔒 Stay focused - protect your advantage", action: "endCompetitive", class: "corporate" }
-                ],
-                effects: { trust: +20, money: +30, freedom: +35, burnout: -5 }
-            },
-
-            quit1: {
-                phase: 4,
-                title: "Phase 4: The Great Escape",
-                text: "You quit your corporate job with $3,000 in savings and restart your newsletter. It's terrifying and exhilarating. Your first post about 'Escaping Corporate Media' gets 2,000 shares organically.",
-                additionalText: "You're back to ramen noodles, but you're also back to writing what matters. Your old corporate colleagues are secretly jealous. One even asks if you're hiring.",
-                choices: [
-                    { text: "💪 Bootstrap solo - prove independence works", action: "endBootstrap", class: "authentic" },
-                    { text: "🤝 Start a collective - power in numbers", action: "endFounder", class: "authentic" }
-                ],
-                effects: { trust: +30, money: -20, freedom: +40, burnout: -15 }
-            },
-
-            // Continue with existing phase 4 scenarios...
-            corporate2: {
-                phase: 4,
-                title: "Phase 4: The Golden Handcuffs",
-                text: "You're making $200K writing about productivity apps and hustle culture. Your apartment is amazing. Your soul is... somewhere else. You haven't written about housing policy in 18 months.",
-                additionalText: "Your old newsletter friend Sarah just started a worker-owned publication. She makes $72K but seems genuinely happy. 'Blogging won,' she texts you. 'We just forgot for a while.'",
-                choices: [
-                    { text: "👑 Stay in corporate - money talks", action: "endCorporate", class: "corporate" },
-                    { text: "🔥 Burn it down - start over with purpose", action: "endRevolution", class: "authentic" }
-                ],
-                effects: { trust: -30, money: +30, freedom: -40, burnout: +25 }
-            },
-
-            rebuild1: {
-                phase: 4,
-                title: "Phase 4: The Comeback",
-                text: "You apologize to your original audience and restart. Many come back. Your 'How I Got Played by Viral Media' post goes... well, viral, but this time authentically. You're back to 800 real subscribers.",
-                additionalText: "A documentary filmmaker wants to follow your journey from viral sellout back to authentic creator. It could bring attention to indie media, but also make you the poster child for 'influencer redemption arcs.'",
-                choices: [
-                    { text: "🎬 Do the documentary - shine light on indie media", action: "endDocumentary", class: "authentic" },
-                    { text: "📝 Stay quiet - just focus on good work", action: "endQuiet", class: "authentic" }
-                ],
-                effects: { trust: +25, money: -5, freedom: +30, burnout: -10 }
-            },
-
-            coop1: {
-                phase: 4,
-                title: "Phase 4: The Cooperative Dream",
-                text: "Life at the worker-owned publication is... different. You make decisions by consensus. You publish your financial reports publicly. You make $72K but own part of something bigger.",
-                additionalText: "Your housing policy coverage helps pass a major zoning reform. Your publication is cited in academic papers. You're not rich, but you're changing things. The 'blogging won' moment feels real.",
-                choices: [
-                    { text: "🌱 This is sustainable success", action: "endCooperative", class: "authentic" },
-                    { text: "🚀 Leave to start your own cooperative", action: "endFounder", class: "authentic" }
-                ],
-                effects: { trust: +30, money: +10, freedom: +35, burnout: -15 }
-            },
-
-            vc1: {
-                phase: 4,
-                title: "Phase 4: The VC Treadmill",
-                text: "With VC money, you hire 12 people and launch 'Urban Policy Weekly,' 'Transit Tribune,' and 'Housing Heroes.' Your VCs want 10x growth in 18 months. You spend more time in spreadsheets than writing.",
-                additionalText: "Your original newsletter voice gets lost in committee edits and growth hacking. A new startup just raised $50 million to 'disrupt local journalism with AI.' Your VCs are nervous.",
-                choices: [
-                    { text: "📊 Double down - raise Series B funding", action: "endVCTrap", class: "corporate" },
-                    { text: "💔 Admit failure - return to simple newsletter", action: "endReturn", class: "authentic" }
-                ],
-                effects: { trust: -20, money: +20, freedom: -35, burnout: +30 }
-            },
-
-            bootstrap1: {
-                phase: 4,
-                title: "Phase 4: The Slow Build",
-                text: "Two years later: 1,200 paying subscribers at $8/month. You make $96,000 annually, work from your kitchen table, and your deep reporting shapes local policy. It's not glamorous, but it's real.",
-                additionalText: "New creators ask for your advice constantly. The question becomes: do you share your playbook freely, or protect your competitive advantage? The indie media movement needs more people, but more people means more competition.",
-                choices: [
-                    { text: "🤝 Share everything - lift up other creators", action: "endMentor", class: "authentic" },
-                    { text: "🔒 Keep secrets - protect your market position", action: "endCompetitive", class: "corporate" }
-                ],
-                effects: { trust: +25, money: +15, freedom: +40, burnout: -20 }
-            }
-        };
-
-        // Ending scenarios
-        const endings = {
-            endCorporate: {
-                title: "Ending: The Corporate Climber",
-                text: "You stay in corporate media, making great money but feeling empty. You're successful by traditional metrics, but you've lost your voice. Sometimes you wonder what would have happened if you'd chosen differently.",
-                outcome: "You chose financial security over authentic expression. The system won.",
-                type: "corporate"
-            },
-            
-            endRevolution: {
-                title: "Ending: The Revolutionary",
-                text: "You quit your $200K job and start an independent newsletter about media manipulation. You make $45K from subscribers, but your work exposes how corporate media operates. You sleep well at night.",
-                outcome: "You chose authenticity over money. Your voice matters more than your bank account.",
-                type: "authentic"
-            },
-            
-            endCooperative: {
-                title: "Ending: The Cooperative Builder",
-                text: "Five years later, your worker-owned publication has 12 employees all making $75K. You've proven sustainable indie media works. Other cities are copying your model. You're building the future.",
-                outcome: "You proved the 'blogging won' thesis. Direct creator-audience connection works.",
-                type: "ideal"
-            },
-            
-            endDocumentary: {
-                title: "Ending: The Cautionary Tale",
-                text: "The documentary makes you famous as the person who escaped viral media. You become a spokesperson for authentic journalism. It's ironic, but you use the platform to advocate for other indie creators.",
-                outcome: "Your failure became your success story. Meta-journalism at its finest.",
-                type: "ironic"
-            },
-
-            endQuiet: {
-                title: "Ending: The Quiet Professional",
-                text: "You rebuild slowly and steadily, focusing purely on quality work. No publicity, no drama, just consistent value for your 1,500 loyal readers. You're not famous, but you're financially stable and professionally fulfilled.",
-                outcome: "Sometimes the best success is the kind nobody talks about.",
-                type: "authentic"
-            },
-            
-            endMentor: {
-                title: "Ending: The Movement Builder", 
-                text: "You open-source everything: revenue numbers, subscriber tactics, editorial processes. Fifty new local newsletters launch using your playbook. You make less money but create an ecosystem.",
-                outcome: "You chose abundance over scarcity. The rising tide lifts all boats.",
-                type: "ideal"
-            },
-
-            endCompetitive: {
-                title: "Ending: The Protective Entrepreneur",
-                text: "You keep your methods secret and build a sustainable $200K/year newsletter business. You're successful but isolated. Other creators see you as successful but unapproachable.",
-                outcome: "You won the game but lost the community. Success can be lonely.",
-                type: "corporate"
-            },
-
-            endBootstrap: {
-                title: "Ending: The Bootstrap Hero",
-                text: "Three years later, you're making $120K from 2,000 subscribers who love your 'escaped corporate, living authentically' brand. You become a case study in sustainable indie media.",
-                outcome: "You proved that corporate escape is possible. Your journey inspires others.",
-                type: "ideal"
-            },
-
-            endFounder: {
-                title: "Ending: The Collective Founder",
-                text: "You start a worker-owned media cooperative with five other refugees from corporate media. Together, you're more powerful than any individual newsletter. The model spreads to other cities.",
-                outcome: "You chose collective power over individual success. The future is collaborative.",
-                type: "ideal"
-            },
-            
-            endVCTrap: {
-                title: "Ending: The Unicorn Chaser",
-                text: "You raise $25 million Series B, hire 50 people, and launch an app. Two years later, you shut down when funding dries up. Your original newsletter idea was correct, but you lost faith in simple solutions.",
-                outcome: "You learned the hard way: not everything needs to scale infinitely.",
-                type: "failure"
-            },
-            
-            endReturn: {
-                title: "Ending: The Prodigal Blogger",
-                text: "You return to a simple newsletter, older and wiser. Your 'What I Learned from VC Failure' series becomes legendary in indie media circles. Sometimes the best path is circular.",
-                outcome: "Failure taught you what success actually looks like.",
-                type: "wisdom"
-            }
-        };
-
-        function determineDynamicEnding() {
-            const { trust, money, freedom, burnout, choices } = gameState;
-            
-            // Analyze choice patterns
-            const viralChoices = choices.filter(c => c.includes('viral')).length;
-            const authenticChoices = choices.filter(c => c.includes('authentic')).length;
-            const corporateChoices = choices.filter(c => c.includes('corporate')).length;
-            
-            // Determine dominant path
-            let dominantPath = 'mixed';
-            if (viralChoices > authenticChoices && viralChoices > corporateChoices) dominantPath = 'viral';
-            else if (corporateChoices > authenticChoices && corporateChoices > viralChoices) dominantPath = 'corporate';
-            else if (authenticChoices > viralChoices && authenticChoices > corporateChoices) dominantPath = 'authentic';
-            
-            // Critical failure conditions (override everything else)
-            if (burnout >= 80) {
-                return {
-                    title: "Ending: Complete Burnout",
-                    text: `You burned out completely trying to balance everything. Despite ${trust > 60 ? 'having loyal readers' : 'chasing metrics'} and ${money > 60 ? 'making decent money' : 'struggling financially'}, the stress became overwhelming. You're taking a break from media entirely.`,
-                    outcome: "Sometimes the cost of success is too high. Mental health matters more than any metric.",
-                    type: "burnout"
-                };
-            }
-            
-            if (trust <= 20 && money <= 30) {
-                return {
-                    title: "Ending: The Failed Launch",
-                    text: "Your newsletter never found its audience or sustainable revenue. You're shutting down after burning through savings and losing reader confidence. It's a hard lesson in the realities of indie media.",
-                    outcome: "Not every story has a happy ending. Sometimes you learn what doesn't work.",
-                    type: "failure"
-                };
-            }
-            
-            // Success conditions based on stat combinations
-            if (trust >= 80 && freedom >= 80 && money >= 70) {
-                return {
-                    title: "Ending: The Perfect Balance",
-                    text: `You cracked the code! High community trust (${trust}), strong financial health (${money}), and complete editorial freedom (${freedom}). You're the poster child for sustainable indie media. Other creators study your model.`,
-                    outcome: "You proved it's possible to have your cake and eat it too. The indie media dream realized.",
-                    type: "ideal"
-                };
-            }
-            
-            if (money >= 80 && freedom <= 30) {
-                return {
-                    title: "Ending: The Golden Cage",
-                    text: `You're financially successful (${money}/100) but creatively constrained (${freedom}/100). ${trust > 60 ? 'Your audience still loves you, but' : 'You lost audience trust and'} you've essentially become what you set out to replace.`,
-                    outcome: dominantPath === 'corporate' ? "The corporate path paid well but cost your soul." : "Money became the master, not the tool.",
-                    type: "corporate"
-                };
-            }
-            
-            if (trust >= 70 && freedom >= 70 && money <= 40) {
-                return {
-                    title: "Ending: The Passionate Struggle",
-                    text: `You built something authentic - high trust (${trust}), creative freedom (${freedom}) - but money remains tight (${money}). Your 800 loyal readers love your work, but you're still eating ramen and wondering about sustainability.`,
-                    outcome: "You kept your integrity but the bills are still scary. The starving artist trope is real.",
-                    type: "struggle"
-                };
-            }
-            
-            // Path-specific endings
-            if (dominantPath === 'viral' && trust <= 40) {
-                return {
-                    title: "Ending: The Viral Burnout",
-                    text: `You chased viral content and subscriber counts, but lost your authentic voice. ${money > 50 ? 'The money was good while it lasted' : 'Even the money dried up'}, and your original community moved on. You're starting over.`,
-                    outcome: "The viral game is ultimately unsustainable. Authentic connection beats fake engagement.",
-                    type: "viral-failure"
-                };
-            }
-            
-            if (dominantPath === 'authentic' && trust >= 70) {
-                return {
-                    title: "Ending: The Community Builder",
-                    text: `You stayed true to authentic content and built a genuinely engaged community.  ${money > 60 ? "And you're financially sustainable too!" : "Money's tight, but your readers would fund you through anything."}`,
-                    outcome: "You proved that authentic community building works. Slow and steady wins the race.",
-                    type: "community"
-                };
-            }
-            
-            if (dominantPath === 'corporate' && money >= 60) {
-                return {
-                    title: "Ending: The Successful Sellout",
-                    text: `You played the corporate game and won financially (${money}/100). ${freedom < 40 ? 'Your creative freedom is limited' : 'You maintained some creative control'}, ${trust < 50 ? 'and your original audience feels betrayed' : 'but your audience adapted'}, but your bank account is healthy.`,
-                    outcome: "You chose security over purity. Not everyone can afford to be idealistic.",
-                    type: "corporate-success"
-                };
-            }
-            
-            // Balanced/Mixed path ending
-            if (trust >= 50 && money >= 50 && freedom >= 50) {
-                return {
-                    title: "Ending: The Balanced Path",
-                    text: `You found a middle ground - decent trust (${trust}), sustainable money (${money}), reasonable freedom (${freedom}). You're not the biggest or most famous, but you're building something solid and lasting.`,
-                    outcome: "Sometimes the best success is the kind that's sustainable long-term.",
-                    type: "balanced"
-                };
-            }
-            
-            // Default ending for edge cases
-            return {
-                title: "Ending: The Uncertain Journey",
-                text: `Your indie media journey has been... complicated. Trust: ${trust}, Money: ${money}, Freedom: ${freedom}, Burnout: ${burnout}. You're not sure where this leads, but you're still writing, still trying, still figuring it out.`,
-                outcome: "Not every story has a clear ending. Sometimes you're still in the middle of it.",
-                type: "uncertain"
-            };
-        }
-
-        function updateStats() {
-            document.getElementById('trustStat').textContent = Math.max(0, Math.min(100, gameState.trust));
-            document.getElementById('moneyStat').textContent = Math.max(0, Math.min(100, gameState.money));
-            document.getElementById('freedomStat').textContent = Math.max(0, Math.min(100, gameState.freedom));
-            document.getElementById('burnoutStat').textContent = Math.max(0, Math.min(100, gameState.burnout));
-            
-            const progressPercent = (gameState.phase / gameState.totalPhases) * 100;
-            document.getElementById('progressFill').style.width = progressPercent + '%';
-        }
-
-        function makeChoice(choiceKey) {
-            console.log('Making choice:', choiceKey); // Debug log
-            gameState.choices.push(choiceKey);
-            
-            if (scenarios[choiceKey]) {
-                const scenario = scenarios[choiceKey];
-                
-                // Apply effects
-                if (scenario.effects) {
-                    gameState.trust += scenario.effects.trust || 0;
-                    gameState.money += scenario.effects.money || 0;
-                    gameState.freedom += scenario.effects.freedom || 0;
-                    gameState.burnout += scenario.effects.burnout || 0;
-                }
-                
-                gameState.phase = scenario.phase;
-                updateStats();
-                
-                // Show feedback
-                showFeedback(scenario.effects);
-                
-                // Show next scenario after delay
-                setTimeout(() => {
-                    displayScenario(scenario);
-                }, 1500);
-                
-            } else if (endings[choiceKey]) {
-                // Game ending - set phase to max for 100% progress bar
-                gameState.phase = gameState.totalPhases;
-                updateStats();
-                
-                // Determine ending based on stats, not just final choice
-                const dynamicEnding = determineDynamicEnding();
-                showEnding(dynamicEnding);
-            } else {
-                console.error('Choice not found:', choiceKey); // Debug log
-            }
-        }
-
-        function showFeedback(effects) {
-            const feedback = document.createElement('div');
-            feedback.className = 'feedback';
-            
-            let feedbackText = '';
-            if (effects.trust > 0) feedbackText += `+${effects.trust} Community Trust `;
-            if (effects.trust < 0) feedbackText += `${effects.trust} Community Trust `;
-            if (effects.money > 0) feedbackText += `+${effects.money} Financial Health `;
-            if (effects.money < 0) feedbackText += `${effects.money} Financial Health `;
-            if (effects.freedom > 0) feedbackText += `+${effects.freedom} Editorial Freedom `;
-            if (effects.freedom < 0) feedbackText += `${effects.freedom} Editorial Freedom `;
-            if (effects.burnout > 0) feedbackText += `+${effects.burnout} Burnout `;
-            if (effects.burnout < 0) feedbackText += `${effects.burnout} Burnout `;
-            
-            feedback.textContent = feedbackText;
-            
-            if (effects.trust < 0 || effects.freedom < 0) {
-                feedback.classList.add('negative-feedback');
-            }
-            
-            document.getElementById('gameContent').appendChild(feedback);
-            
-            setTimeout(() => {
-                feedback.remove();
-            }, 1500);
-        }
-
-        function displayScenario(scenario) {
-            const gameContent = document.getElementById('gameContent');
-            gameContent.innerHTML = '';
-            
-            const card = document.createElement('div');
-            card.className = 'scenario-card';
-            
-            let html = `
-                <h2 class="scenario-title">${scenario.title}</h2>
-                <p class="scenario-text">${scenario.text}</p>
-            `;
-            
-            if (scenario.corporateSpeak) {
-                html += `<div class="corporate-speak">"${scenario.corporateSpeak}"</div>`;
-            }
-            
-            if (scenario.additionalText) {
-                html += `<p class="scenario-text">${scenario.additionalText}</p>`;
-            }
-            
-            html += '<div class="choices">';
-            scenario.choices.forEach(choice => {
-                html += `<button class="choice-btn ${choice.class}" data-choice="${choice.action}">${choice.text}</button>`;
-            });
-            html += '</div>';
-            
-            card.innerHTML = html;
-            gameContent.appendChild(card);
-            
-            // Add event listeners to the new buttons
-            attachButtonListeners();
-        }
-
-        function attachButtonListeners() {
-            const buttons = document.querySelectorAll('.choice-btn[data-choice]');
-            buttons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const choice = this.getAttribute('data-choice');
-                    makeChoice(choice);
-                });
-            });
-        }
-
-        function showEnding(ending) {
-            const gameContent = document.getElementById('gameContent');
-            gameContent.innerHTML = '';
-            
-            const endingScreen = document.createElement('div');
-            endingScreen.className = 'completion-screen';
-            
-            endingScreen.innerHTML = `
-                <h2 style="font-size: 2em; margin-bottom: 20px;">${ending.title}</h2>
-                <p style="font-size: 1.2em; margin-bottom: 20px;">${ending.text}</p>
-                <p style="font-style: italic; margin-bottom: 30px;">"${ending.outcome}"</p>
-                
-                <div style="border: 3px solid #f1c40f; padding: 20px; border-radius: 15px; margin: 30px 0;">
-                    <h3 style="font-size: 1.5em; margin-bottom: 15px;">🎉 Game Complete! 🎉</h3>
-                    <p style="font-size: 1.2em; margin-bottom: 10px;"></p>
-                    <div class="secret-word">THANK YOU</div>
-                    <p style="font-size: 1em; opacity: 0.9;">:)</p>
-                </div>
-                
-                <p style="margin-top: 30px; font-size: 1.1em;">
-                    With love, Pierre and Mustafa
-                </p>
-                
-                <button class="restart-btn" id="restartBtn">Play Again</button>
-            `;
-            
-            gameContent.appendChild(endingScreen);
-            
-            // Add event listener to restart button
-            document.getElementById('restartBtn').addEventListener('click', restartGame);
-        }
-
-        function restartGame() {
-            gameState = {
-                phase: 1,
-                trust: 50,
-                money: 50,
-                freedom: 50,
-                burnout: 20,
-                choices: [],
-                totalPhases: 6
-            };
-            
-            updateStats();
-            
-            const gameContent = document.getElementById('gameContent');
-            gameContent.innerHTML = `
-                <div class="scenario-card">
-                    <h2 class="scenario-title">Phase 1: The Beginning</h2>
-                    <p class="scenario-text">
-                        You just launched your newsletter "Real Talk Weekly" with 47 subscribers (mostly friends and family). 
-                        Your first article about local housing costs gets shared 500 times on social media. 
-                        A viral content agency slides into your DMs...
-                    </p>
-                    <div class="corporate-speak">
-                        "We leverage synergistic content optimization to maximize engagement KPIs across all verticals..."
-                    </div>
-                    <p class="scenario-text">They want to help you "scale your content strategy" for a 50/50 revenue split.</p>
-                    <div class="choices">
-                        <button class="choice-btn viral" data-choice="viral1">
-                            📈 Sign with the agency - let's go viral!
-                        </button>
-                        <button class="choice-btn authentic" data-choice="authentic1">
-                            📝 Stay independent - focus on quality writing
-                        </button>
-                    </div>
-                </div>
-            `;
-            
-            // Attach listeners to the initial buttons
-            attachButtonListeners();
-        }
-
-        // Initialize game
-        updateStats();
-        // Attach listeners to the initial buttons
-        attachButtonListeners();
-    </script>
+    <footer>
+        <p>&copy; 2025 Mustafa Bakir. All rights reserved.</p>
+    </footer>
+    
+    <script src="js/optimized-background.js"></script>
+    <script src="js/background-flash.js"></script>
+    <script src="js/typewriter.js"></script>
+    <script src="js/dreamy-effects.js"></script>
+    <script src="js/dreamflow-projects-fixed.js"></script>
+    <script src="js/optimized-core.js"></script>
+    <script src="js/dreamy-background.js"></script>
+    <script src="js/skills-viewer.js"></script>
 </body>
 </html>
