@@ -1,0 +1,179 @@
+/* From Uiverse.io by PhantomVail */ 
+.cyber-button {
+  position: relative;
+  padding: 10px 20px;
+  background: #000;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  font-family: "Arial", sans-serif;
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 3px;
+  color: #667eea;
+  text-transform: uppercase;
+  box-shadow:
+    0 0 15px #667eea,
+    inset 0 0 15px #667eea;
+  text-shadow: 0 0 5px #667eea;
+  transition: all 0.3s;
+  z-index: 100;
+  transform: scale(0.8);
+}
+
+.cyber-button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(102, 126, 234, 0.4),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.cyber-button:hover::before {
+  left: 100%;
+}
+
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.glitch::before {
+  animation: glitch-effect 3s infinite;
+  color: #f093fb;
+  left: 2px;
+}
+
+.glitch::after {
+  animation: glitch-effect 2s infinite;
+  color: #764ba2;
+  left: -2px;
+}
+
+@keyframes glitch-effect {
+  0% {
+    transform: none;
+    opacity: 0.8;
+  }
+  7% {
+    transform: translate(-2px, -3px);
+    opacity: 0.6;
+  }
+  10% {
+    transform: translate(2px, 3px);
+    opacity: 0.8;
+  }
+  20% {
+    transform: none;
+    opacity: 0.8;
+  }
+  27% {
+    transform: translate(2px, 3px);
+    opacity: 0.6;
+  }
+  30% {
+    transform: translate(-2px, -3px);
+    opacity: 0.8;
+  }
+  35% {
+    transform: none;
+    opacity: 0.8;
+  }
+  100% {
+    transform: none;
+    opacity: 0.8;
+  }
+}
+
+.cyberpunk-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #667eea;
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 85% 100%, 0 100%);
+}
+
+.gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(102, 126, 234, 0.1) 10px,
+    rgba(102, 126, 234, 0.1) 20px
+  );
+}
+
+.scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(102, 126, 234, 0.2) 50%
+  );
+  background-size: 100% 4px;
+  animation: scan 0.5s linear infinite;
+}
+
+@keyframes scan {
+  0% {
+    background-position: 0 -1000px;
+  }
+  100% {
+    background-position: 0 1000px;
+  }
+}
+
+.cyber-button:hover {
+  transform: scale(0.85);
+  box-shadow:
+    0 0 25px #667eea,
+    inset 0 0 25px #667eea;
+}
+
+.cyber-button:active {
+  transform: scale(0.75);
+}
+
+/* Button positioning within holographic loader */
+.cyber-button-container {
+  position: absolute;
+  top: 110%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 1s ease 2s;
+}
+
+.cyber-button-container.visible {
+  opacity: 1;
+} 
