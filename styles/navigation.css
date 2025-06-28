@@ -1,0 +1,298 @@
+/* Navigation Styles */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--color-surface);
+    border-bottom: var(--brutalist-border);
+    box-shadow: var(--brutalist-shadow);
+    z-index: var(--z-nav);
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.nav-container {
+    max-width: var(--container-xl);
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.nav-brand {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+}
+
+.nav-brand .nav-link {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--brutalist-transition);
+}
+
+.nav-brand .nav-link:hover {
+    color: var(--color-accent);
+    transform: translateY(-2px);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: var(--space-4);
+}
+
+.nav-link {
+    display: inline-block;
+    padding: var(--space-3) var(--space-4);
+    text-decoration: none;
+    color: var(--color-secondary);
+    font-weight: var(--font-weight-medium);
+    border: var(--brutalist-border);
+    border-radius: var(--brutalist-border-radius);
+    background: var(--color-surface);
+    transition: var(--brutalist-transition);
+    box-shadow: var(--brutalist-shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.nav-link:hover::before {
+    left: 100%;
+}
+
+.nav-link:hover {
+    color: var(--color-primary);
+    background: var(--color-accent);
+    transform: translateY(-4px);
+    box-shadow: var(--brutalist-shadow-hover);
+}
+
+.nav-link.active {
+    background: var(--color-accent);
+    color: white;
+    box-shadow: var(--brutalist-shadow-hover);
+}
+
+/* Mobile menu toggle - hidden by default on desktop */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: var(--z-modal);
+}
+
+.nav-toggle span {
+    width: 100%;
+    height: 3px;
+    background: var(--color-primary);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+.nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 0 var(--space-4);
+    }
+    
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--color-surface);
+        border-top: var(--brutalist-border);
+        box-shadow: var(--brutalist-shadow);
+        flex-direction: column;
+        padding: var(--space-4);
+        gap: var(--space-2);
+        z-index: var(--z-dropdown);
+    }
+    
+    .nav-menu.active {
+        display: flex;
+    }
+    
+    .nav-link {
+        padding: var(--space-3) var(--space-4);
+        border-bottom: 1px solid var(--color-border);
+        border-left: none;
+        border-right: none;
+        border-top: none;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .nav-link:last-child {
+        border-bottom: none;
+    }
+    
+    .nav-link:hover {
+        transform: translateX(8px);
+        box-shadow: none;
+        background: rgba(0, 255, 136, 0.1);
+    }
+    
+    /* Mobile menu toggle button */
+    .nav-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 30px;
+        height: 25px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: var(--z-modal);
+    }
+    
+    .nav-toggle span {
+        width: 100%;
+        height: 3px;
+        background: var(--color-primary);
+        border-radius: 2px;
+        transition: all 0.3s ease;
+        transform-origin: center;
+    }
+    
+    .nav-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
+    }
+    
+    .nav-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .nav-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+    .nav-container {
+        padding: 0 var(--space-3);
+        height: 55px;
+    }
+    
+    .nav-brand {
+        font-size: 1rem;
+    }
+    
+    .nav-link {
+        padding: var(--space-2) var(--space-3);
+        font-size: 0.875rem;
+    }
+    
+    .nav-menu {
+        padding: var(--space-3);
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .nav-link:hover {
+        transform: none;
+        background: rgba(0, 255, 136, 0.1);
+    }
+    
+    .nav-link:active {
+        background: rgba(0, 255, 136, 0.2);
+    }
+}
+
+/* Skip to main content link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--color-primary);
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  z-index: var(--z-modal);
+  transition: top var(--duration-fast) var(--ease-out);
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Navigation animations */
+@keyframes slideInFromTop {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.navbar {
+  animation: slideInFromTop var(--duration-normal) var(--ease-out);
+}
+
+/* Focus styles for keyboard navigation */
+.nav-link:focus,
+.nav-cta:focus,
+.nav-toggle:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .navbar {
+    background: var(--color-surface);
+    border-bottom: 2px solid var(--color-primary);
+  }
+  
+  .nav-link:hover,
+  .nav-link.active {
+    background: var(--color-primary);
+    color: var(--color-surface);
+  }
+} 

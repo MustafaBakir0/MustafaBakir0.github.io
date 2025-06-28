@@ -1,0 +1,113 @@
+/* Design System Variables */
+
+:root {
+  /* Color Palette */
+  --color-primary: #2C3E50;      /* Deep charcoal for headings */
+  --color-secondary: #7F8C8D;    /* Medium gray for body text */
+  --color-accent: #00FF88;       /* Neon green for brutalist mode */
+  --color-accent-alt: #FF0066;   /* Neon pink for brutalist mode */
+  --color-background: #FAFAFA;   /* Warm white background */
+  --color-surface: #FFFFFF;      /* Pure white for cards/surfaces */
+  --color-border: #000000;       /* Black borders for brutalist mode */
+  --color-text-muted: #9CA3AF;   /* Muted text color */
+  --color-success: #10B981;      /* Success green */
+  --color-error: #EF4444;        /* Error red */
+  --color-warning: #F59E0B;      /* Warning amber */
+
+  /* Brutalist Design Variables */
+  --brutalist-shadow: 4px 4px 0px rgba(0, 0, 0, 0.9); /* Chunky offset shadow */
+  --brutalist-shadow-hover: 6px 6px 0px rgba(0, 0, 0, 0.9); /* Enhanced shadow on hover */
+  --brutalist-border: 3px solid #000000; /* Thick black border */
+  --brutalist-border-radius: 0px; /* Sharp corners */
+  --brutalist-transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Bouncy animation */
+
+  /* Typography Scale */
+  --font-family-heading: 'Georgia', 'Times New Roman', serif;
+  --font-family-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-code: 'Fira Code', 'Monaco', 'Consolas', monospace;
+
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+  --font-size-4xl: 2.25rem;   /* 36px */
+  --font-size-5xl: 3rem;      /* 48px */
+  --font-size-6xl: 3.75rem;   /* 60px */
+
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.6;
+  --line-height-relaxed: 1.75;
+
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing Scale */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+  --space-32: 8rem;     /* 128px */
+
+  /* Border Radius */
+  --radius-sm: 0px;      /* Sharp corners */
+  --radius-md: 0px;      /* Sharp corners */
+  --radius-lg: 0px;      /* Sharp corners */
+  --radius-xl: 0px;      /* Sharp corners */
+  --radius-2xl: 0px;     /* Sharp corners */
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: var(--brutalist-shadow);
+  --shadow-md: var(--brutalist-shadow);
+  --shadow-lg: var(--brutalist-shadow-hover);
+  --shadow-xl: var(--brutalist-shadow-hover);
+
+  /* Animation Timings */
+  --duration-fast: 150ms;
+  --duration-normal: 200ms;
+  --duration-slow: 500ms;
+  --duration-slower: 700ms;
+
+  /* Easing Functions */
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: var(--brutalist-transition);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* Breakpoints */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  /* Container Max Widths */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-2xl: 1536px;
+
+  /* Z-Index Scale */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+} 

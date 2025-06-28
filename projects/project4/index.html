@@ -1,100 +1,318 @@
 <!DOCTYPE html>
- <html lang="en">
- <head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Resonance | A Short Film</title>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.3/cdn.min.js" defer></script>
-     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-     <link rel="stylesheet" href="styles.css">
-     <!-- preload fonts for better performance -->
-     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&family=Quicksand:wght@300;400;500&display=swap" as="style">
-         <link rel="preload" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&family=Quicksand:wght@300;400;500&display=swap" as="style">
- +    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-     <link rel="stylesheet" href="../../css/project-dreamy-background.css">
- </head>
- <body x-data="resonanceApp()" x-init="init">
-     <!-- background image with correct extension and direct img tag -->
-     <img src="rave.jpeg" alt="Rave Background" class="bg-image">
- 
-     <!-- visual effects -->
-     <div class="particles-container" x-ref="particlesContainer"></div>
-     <div class="color-flash" x-ref="colorFlash"></div>
-     <div class="audio-wave" x-ref="audioWave"></div>
-     
-     <!-- custom cursor (desktop only) -->
-     <div class="cursor" x-ref="cursor"></div>
-     <div class="cursor-glow" x-ref="cursorGlow"></div>
-     
-     <div class="content">
-         <!-- introduction text -->
-         <div class="intro-text" x-ref="introText">
-             Before you read, watch. Feel. Let the colors buzz. Then share what echoed within you.
-         </div>
-         
-         <!-- video embed -->
-         <div class="video-container" x-ref="videoContainer">
-             <!-- local video file -->
-             <video class="video-embed" controls poster="rave.jpeg">
-                 <source src="video.mp4" type="video/mp4">
-                 Your browser does not support the video tag.
-             </video>
-         </div>
-         
-         <!-- film description - above comments -->
-         <div class="description" x-ref="description">
-             <!-- words will be added here dynamically by JavaScript -->
-         </div>
-         
-         <!-- comment section -->
-         <div class="comment-section" x-ref="commentSection">
-             <h2 class="text-2xl mb-6 opacity-90 font-light">Share Your Resonance</h2>
-             
-             <form class="comment-form" @submit.prevent="submitComment()">
-                 <input 
-                     type="text" 
-                     x-model="newComment.name" 
-                     placeholder="Your name (or remain anonymous)"
-                     class="mb-4">
-                 
-                 <textarea 
-                     x-model="newComment.text" 
-                     placeholder="How did the film make you feel?"
-                     class="h-32 mb-4"></textarea>
-                 
-                 <button type="submit" class="submit-btn">
-                     Send Ripples
-                 </button>
-             </form>
-             
-             <div class="comment-list">
-                 <template x-for="comment in comments" :key="comment.id">
-                     <div class="comment" 
-                          x-transition:enter="transition ease-out duration-500"
-                          x-transition:enter-start="opacity-0 transform translate-y-4"
-                          x-transition:enter-end="opacity-100 transform translate-y-0">
-                         <div class="comment-name" x-text="comment.name || 'Anonymous'"></div>
-                         <div class="comment-text" x-text="comment.text"></div>
-                     </div>
-                 </template>
-             </div>
-         </div>
-     </div>
-     
-     <!-- add event listener to init the app when DOM is loaded -->
-     <script>
-         // add a small check to ensure Alpine.js and our app are initialized properly
-         document.addEventListener('DOMContentLoaded', function() {
-             console.log('DOM loaded, making sure app initializes');
-             // if somehow Alpine.js didn't initialize our app, do it manually
-             setTimeout(function() {
-                 if (typeof window.resonanceApp === 'function') {
-                     console.log('resonanceApp function is available');
-                 }
-             }, 500);
-         });
-     </script>
-     <script src="script.js"></script>
-     <script src="../../js/project-dreamy-background.js"></script>
- </body>
- </html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resonance - Short Sci-Fi Film | Mustafa Bakir Portfolio</title>
+    <meta name="description" content="Resonance - A short sci-fi film about music, addiction, and the relentless buzzing in our ears. Directed by Mustafa Bakir.">
+    
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #FAFAFA;
+            color: #2C3E50;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #2C3E50;
+            font-family: 'Georgia', serif;
+        }
+        
+        .header .subtitle {
+            font-size: 1.3rem;
+            color: #3498DB;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            color: #7F8C8D;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #3498DB;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .back-link:hover {
+            color: #2C3E50;
+        }
+        
+        .project-content {
+            background: white;
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .project-content h2 {
+            color: #2C3E50;
+            margin-bottom: 1.5rem;
+            font-family: 'Georgia', serif;
+        }
+        
+        .project-content p {
+            color: #7F8C8D;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .film-poster {
+            background: linear-gradient(135deg, #3498DB, #2C3E50);
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+            color: white;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .film-poster::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: float 20s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .film-poster h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .film-poster p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .tech-tag {
+            background: rgba(52, 152, 219, 0.1);
+            color: #3498DB;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .synopsis {
+            background: #f8f9fa;
+            border-left: 4px solid #3498DB;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .synopsis h3 {
+            color: #2C3E50;
+            margin-bottom: 1rem;
+            font-family: 'Georgia', serif;
+        }
+        
+        .synopsis p {
+            color: #7F8C8D;
+            font-style: italic;
+            margin: 0;
+        }
+        
+        .themes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .theme-card {
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-card:hover {
+            border-color: #3498DB;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.1);
+        }
+        
+        .theme-card h4 {
+            color: #2C3E50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .theme-card p {
+            color: #7F8C8D;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+        
+        .watch-button {
+            display: inline-block;
+            background: #3498DB;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .watch-button:hover {
+            background: #2C3E50;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .project-content {
+                padding: 2rem;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .film-poster {
+                padding: 2rem;
+            }
+            
+            .themes {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← Back to Portfolio</a>
+        
+        <div class="header">
+            <h1>Resonance</h1>
+            <div class="subtitle">Short Sci-Fi Film</div>
+            <p>A cinematic exploration of music, addiction, and the relentless buzzing in our ears</p>
+        </div>
+        
+        <div class="project-content">
+            <div class="film-poster">
+                <h3>Before you read, watch. Feel. Let the colors buzz.</h3>
+                <p>Then share what echoed within you.</p>
+                <a href="https://mustafabakir0.github.io/projects/project4/index.html" class="watch-button" target="_blank">
+                    Watch Resonance →
+                </a>
+            </div>
+            
+            <h2>Project Overview</h2>
+            <p>
+                <strong>Resonance</strong> is a short sci-fi film that explores a future where every person lives with a relentless buzzing in their ears—a quiet agony they cannot escape. In this world, music becomes both cure and craving, with each song radiating distinct colors and offering fleeting relief from the endless hum.
+            </p>
+            
+            <div class="tech-stack">
+                <span class="tech-tag">Film Production</span>
+                <span class="tech-tag">Sci-Fi</span>
+                <span class="tech-tag">Storytelling</span>
+                <span class="tech-tag">Visual Arts</span>
+                <span class="tech-tag">Cinematography</span>
+                <span class="tech-tag">Sound Design</span>
+            </div>
+            
+            <div class="synopsis">
+                <h3>Synopsis</h3>
+                <p>
+                    In a future where every person lives with a relentless buzzing in their ears—a quiet agony they cannot escape—music becomes both cure and craving. Each song radiates a distinct color, its vibrations offering fleeting relief from the endless hum. But as music turns into a form of self-medication, the boundaries begin to dissolve: rave songs spark psychedelic visions, party anthems hit like chemical highs, and listeners find themselves caught in invisible cycles of dependency.
+                </p>
+            </div>
+            
+            <h2>Key Themes</h2>
+            <div class="themes">
+                <div class="theme-card">
+                    <h4>Addiction & Dependency</h4>
+                    <p>Explores how comfort can become captivity, and how easily we reach outward to quiet the unrest within.</p>
+                </div>
+                <div class="theme-card">
+                    <h4>Music as Medicine</h4>
+                    <p>Examines the dual nature of music as both healing force and potential source of addiction.</p>
+                </div>
+                <div class="theme-card">
+                    <h4>Silence & Noise</h4>
+                    <p>Questions our relationship with constant stimulation and the fear of quiet moments.</p>
+                </div>
+                <div class="theme-card">
+                    <h4>Visual & Auditory Fusion</h4>
+                    <p>Creates a synesthetic experience where sound becomes color and vibration becomes relief.</p>
+                </div>
+            </div>
+            
+            <h2>Creative Vision</h2>
+            <p>
+                Through this story, <strong>Resonance</strong> sheds light on the dangers of drug abuse and the lesser-seen addiction to constant musical stimulation—the need to always fill silence with sound. It invites reflection on how easily comfort can become captivity, and how often we reach outward to quiet the unrest within.
+            </p>
+            
+            <p>
+                The film serves as both a warning and a meditation, using the medium of cinema to create an immersive experience that allows viewers to feel the weight of constant stimulation and the seductive pull of musical escape.
+            </p>
+            
+            <h2>Technical Approach</h2>
+            <p>
+                The project combines traditional filmmaking techniques with innovative approaches to visual storytelling, creating a unique cinematic experience that bridges the gap between narrative film and experimental art. The use of color, sound, and pacing work together to create the film's distinctive atmosphere and emotional impact.
+            </p>
+            
+            <div class="film-poster">
+                <h3>Share Your Resonance</h3>
+                <p>Send ripples through the silence</p>
+                <a href="https://mustafabakir0.github.io/projects/project4/index.html" class="watch-button" target="_blank">
+                    Experience the Film →
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
