@@ -7,7 +7,7 @@
     background: var(--color-surface);
     border-bottom: var(--brutalist-border);
     box-shadow: var(--brutalist-shadow);
-    z-index: var(--z-nav);
+    z-index: 9999;
     backdrop-filter: blur(10px);
     background: rgba(255, 255, 255, 0.95);
 }
