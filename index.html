@@ -440,7 +440,15 @@
                             <div class="placeholder-image">
                                 <svg viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <rect width="400" height="250" fill="#E5E7EB"/>
-                                    <text x="50%" y="50%" text-anchor="middle" fill="#2C3E50" font-size="32" dy=".3em">C++</text>
+                                    <!-- Document shape -->
+                                    <rect x="120" y="60" width="160" height="110" rx="12" fill="#fff" stroke="#2C3E50" stroke-width="3"/>
+                                    <!-- Text lines -->
+                                    <rect x="140" y="85" width="120" height="8" rx="4" fill="#B0BEC5"/>
+                                    <rect x="140" y="105" width="100" height="8" rx="4" fill="#B0BEC5"/>
+                                    <rect x="140" y="125" width="80" height="8" rx="4" fill="#B0BEC5"/>
+                                    <!-- Magic wand -->
+                                    <rect x="250" y="150" width="6" height="36" rx="3" fill="#FFD600" transform="rotate(-20 250 150)"/>
+                                    <polygon points="253,150 256,143 259,150 266,151 260,155 262,162 256,158 250,162 252,155 246,151" fill="#FFD600"/>
                                 </svg>
                             </div>
                         </div>
@@ -467,7 +475,14 @@
                             <div class="placeholder-image">
                                 <svg viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <rect width="400" height="250" fill="#E5E7EB"/>
-                                    <text x="50%" y="50%" text-anchor="middle" fill="#2C3E50" font-size="32" dy=".3em">C++</text>
+                                    <!-- Axes -->
+                                    <line x1="60" y1="200" x2="340" y2="200" stroke="#2C3E50" stroke-width="3"/>
+                                    <line x1="80" y1="220" x2="80" y2="60" stroke="#2C3E50" stroke-width="3"/>
+                                    <!-- Polynomial curve (cubic) -->
+                                    <path d="M80 200 Q140 100 200 200 Q260 300 320 120" stroke="#3498DB" stroke-width="4" fill="none"/>
+                                    <!-- Plus symbol -->
+                                    <rect x="320" y="60" width="18" height="4" rx="2" fill="#FFD600"/>
+                                    <rect x="327" y="53" width="4" height="18" rx="2" fill="#FFD600"/>
                                 </svg>
                             </div>
                         </div>
@@ -483,6 +498,42 @@
                                 <span class="project-tag">CLI</span>
                             </div>
                             <a href="https://github.com/MustafaBakir0/Polynomial-Calculator-CPP" class="project-link" target="_blank" rel="noopener noreferrer" tabindex="0" aria-label="View Polynomial Calculator on GitHub">
+                                View on GitHub &rarr;
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Project 8: ML Sketch Recognizing System -->
+                    <article class="project-card stagger-item project-hidden">
+                        <div class="project-image">
+                            <div class="placeholder-image">
+                                <svg viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="400" height="250" fill="#E5E7EB"/>
+                                    <!-- Hand-drawn star -->
+                                    <polygon points="200,60 215,110 270,110 225,140 240,190 200,160 160,190 175,140 130,110 185,110" stroke="#2C3E50" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <!-- ML nodes and connections -->
+                                    <circle cx="120" cy="200" r="8" fill="#3498DB"/>
+                                    <circle cx="200" cy="220" r="8" fill="#3498DB"/>
+                                    <circle cx="280" cy="200" r="8" fill="#3498DB"/>
+                                    <line x1="120" y1="200" x2="200" y2="220" stroke="#3498DB" stroke-width="3"/>
+                                    <line x1="200" y1="220" x2="280" y2="200" stroke="#3498DB" stroke-width="3"/>
+                                    <line x1="120" y1="200" x2="280" y2="200" stroke="#3498DB" stroke-width="3"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>ML Sketch Recognizing System</h3>
+                            <p>
+                                An interactive Python application that recognizes hand-drawn shapes using a hybrid approach of geometric analysis and machine learning. Features a PyQt5-based drawing interface, real-time feedback, and Arduino integration for alternative input, making it a robust tool for both educational and practical shape recognition tasks.
+                            </p>
+                            <div class="project-tags">
+                                <span class="project-tag">Python</span>
+                                <span class="project-tag">Machine Learning</span>
+                                <span class="project-tag">Computer Vision</span>
+                                <span class="project-tag">PyQt5</span>
+                                <span class="project-tag">Shape Recognition</span>
+                            </div>
+                            <a href="https://github.com/MustafaBakir0/ML-Sketch-Recongizing-System" class="project-link" target="_blank" rel="noopener noreferrer" tabindex="0" aria-label="View ML Sketch Recognizing System on GitHub">
                                 View on GitHub &rarr;
                             </a>
                         </div>
