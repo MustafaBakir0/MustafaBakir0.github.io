@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order's End - Political Strategy Game</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      min-height: 100vh;
+    }
+    
+    .glow {
+      text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    }
+    
+    .card-glow {
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 1s ease-out;
+    }
+    
+    .fade-in-delay-1 {
+      animation: fadeIn 1s ease-out 0.3s both;
+    }
+    
+    .fade-in-delay-2 {
+      animation: fadeIn 1s ease-out 0.6s both;
+    }
+    
+    .fade-in-delay-3 {
+      animation: fadeIn 1s ease-out 0.9s both;
+    }
+  </style>
+</head>
+<body class="text-gray-100">
+  <div class="min-h-screen flex flex-col items-center justify-center px-4 py-12">
+    
+    <!-- Logo -->
+    <div class="fade-in mb-8">
+      <div class="m2 text-6xl md:text-8xl" aria-label="Order's End Logo">
+        ORDER'S END
+      </div>
+    </div>
+    
+    <!-- Tagline -->
+    <p class="fade-in-delay-1 text-xl md:text-2xl text-blue-300 text-center mb-12 max-w-2xl">
+      The world order is shifting. Can you prevent the fall of a superpower?
+    </p>
+    
+    <!-- Main Content Card -->
+    <div class="fade-in-delay-2 card-glow bg-slate-800/80 backdrop-blur-sm rounded-lg p-8 md:p-12 max-w-4xl w-full mb-8">
+      
+      <h2 class="text-3xl font-bold text-blue-400 mb-6">About the Game</h2>
+      
+      <div class="space-y-4 text-gray-300 text-lg">
+        <p>
+          It's 2050. The US dollar is no longer the world's reserve currency. The European Euro and Chinese Yuan now hold equal market power. 
+          As the country's representative, every decision you make will shape America's future—and the future of the global order itself.
+        </p>
+        
+        <p>
+          <strong class="text-blue-300">Order's End</strong> is a text-based political strategy game inspired by Ray Dalio's 
+          <em>"Principles for Dealing with a Changing World Order."</em> Navigate complex diplomatic relationships, manage national resources, 
+          and determine whether the United States will rise, fall, or share power in a multipolar world.
+        </p>
+      </div>
+      
+      <!-- Features -->
+      <div class="grid md:grid-cols-3 gap-6 mt-8 mb-8">
+        <div class="bg-slate-700/50 rounded p-4">
+          <h3 class="text-blue-400 font-bold mb-2">🌍 Geopolitical Strategy</h3>
+          <p class="text-sm text-gray-400">Navigate relationships with China, Russia, the EU, and the Global South</p>
+        </div>
+        
+        <div class="bg-slate-700/50 rounded p-4">
+          <h3 class="text-blue-400 font-bold mb-2">📊 Manage Resources</h3>
+          <p class="text-sm text-gray-400">Balance Military, Education, and Economy to prevent national decline</p>
+        </div>
+        
+        <div class="bg-slate-700/50 rounded p-4">
+          <h3 class="text-blue-400 font-bold mb-2">🔀 32 Unique Endings</h3>
+          <p class="text-sm text-gray-400">Every path leads to a different world order—from US renewal to Chinese hegemony</p>
+        </div>
+      </div>
+      
+      <!-- Start Button -->
+      <div class="text-center">
+        <a href="index.html" 
+           class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold text-xl px-12 py-4 rounded-lg transition-all hover:scale-105 hover:shadow-lg hover:shadow-blue-500/50">
+          Begin Your Journey
+        </a>
+      </div>
+    </div>
+    
+    <!-- Warning -->
+    <div class="fade-in-delay-3 bg-yellow-900/30 border border-yellow-600/50 rounded p-4 max-w-2xl w-full text-center">
+      <p class="text-yellow-300 text-sm">
+        ⚠️ <strong>Warning:</strong> This game explores difficult political choices. 
+        Preventing the fall of a superpower is brutally challenging. Most runs end in decline.
+      </p>
+    </div>
+    
+  </div>
+</body>
+</html>
+
