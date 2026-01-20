@@ -1,113 +1,84 @@
-/* Design System Variables */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
 :root {
-  /* Color Palette */
-  --color-primary: #2C3E50;      /* Deep charcoal for headings */
-  --color-secondary: #7F8C8D;    /* Medium gray for body text */
-  --color-accent: #00FF88;       /* Neon green for brutalist mode */
-  --color-accent-alt: #FF0066;   /* Neon pink for brutalist mode */
-  --color-background: #FAFAFA;   /* Warm white background */
-  --color-surface: #FFFFFF;      /* Pure white for cards/surfaces */
-  --color-border: #000000;       /* Black borders for brutalist mode */
-  --color-text-muted: #9CA3AF;   /* Muted text color */
-  --color-success: #10B981;      /* Success green */
-  --color-error: #EF4444;        /* Error red */
-  --color-warning: #F59E0B;      /* Warning amber */
+    /* Color Palette - Refined Editorial */
+    --color-ink: #1a1a1a;
+    --color-ink-light: #2d2d2d;
+    --color-text: #1a1a1a;
+    --color-text-muted: #5a5a5a;
+    --color-text-subtle: #8a8a8a;
+    --color-bg: #faf9f7;
+    --color-bg-warm: #f5f3ef;
+    --color-bg-accent: #edeae4;
+    --color-border: #e0ddd6;
+    --color-border-strong: #c9c5bc;
 
-  /* Brutalist Design Variables */
-  --brutalist-shadow: 4px 4px 0px rgba(0, 0, 0, 0.9); /* Chunky offset shadow */
-  --brutalist-shadow-hover: 6px 6px 0px rgba(0, 0, 0, 0.9); /* Enhanced shadow on hover */
-  --brutalist-border: 3px solid #000000; /* Thick black border */
-  --brutalist-border-radius: 0px; /* Sharp corners */
-  --brutalist-transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Bouncy animation */
+    /* Accent - Warm Terracotta */
+    --color-accent: #c45d3a;
+    --color-accent-hover: #a84d2f;
+    --color-accent-light: rgba(196, 93, 58, 0.1);
 
-  /* Typography Scale */
-  --font-family-heading: 'Georgia', 'Times New Roman', serif;
-  --font-family-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-family-code: 'Fira Code', 'Monaco', 'Consolas', monospace;
+    /* Secondary Accent - Deep Teal */
+    --color-secondary: #2a6b6b;
+    --color-secondary-light: rgba(42, 107, 107, 0.1);
 
-  --font-size-xs: 0.75rem;    /* 12px */
-  --font-size-sm: 0.875rem;   /* 14px */
-  --font-size-base: 1rem;     /* 16px */
-  --font-size-lg: 1.125rem;   /* 18px */
-  --font-size-xl: 1.25rem;    /* 20px */
-  --font-size-2xl: 1.5rem;    /* 24px */
-  --font-size-3xl: 1.875rem;  /* 30px */
-  --font-size-4xl: 2.25rem;   /* 36px */
-  --font-size-5xl: 3rem;      /* 48px */
-  --font-size-6xl: 3.75rem;   /* 60px */
+    /* Typography */
+    --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', Monaco, monospace;
 
-  --line-height-tight: 1.25;
-  --line-height-normal: 1.6;
-  --line-height-relaxed: 1.75;
+    /* Font Sizes - Fluid Typography */
+    --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.8rem);
+    --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 0.9375rem);
+    --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.0625rem);
+    --text-lg: clamp(1.125rem, 1rem + 0.5vw, 1.25rem);
+    --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+    --text-2xl: clamp(1.5rem, 1.25rem + 1.25vw, 2rem);
+    --text-3xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+    --text-4xl: clamp(2.5rem, 1.75rem + 3.75vw, 4rem);
+    --text-5xl: clamp(3rem, 2rem + 5vw, 5.5rem);
 
-  --font-weight-light: 300;
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
+    /* Spacing Scale */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2.5rem;
+    --spacing-xl: 4rem;
+    --spacing-2xl: 6rem;
+    --spacing-3xl: 10rem;
 
-  /* Spacing Scale */
-  --space-1: 0.25rem;   /* 4px */
-  --space-2: 0.5rem;    /* 8px */
-  --space-3: 0.75rem;   /* 12px */
-  --space-4: 1rem;      /* 16px */
-  --space-5: 1.25rem;   /* 20px */
-  --space-6: 1.5rem;    /* 24px */
-  --space-8: 2rem;      /* 32px */
-  --space-10: 2.5rem;   /* 40px */
-  --space-12: 3rem;     /* 48px */
-  --space-16: 4rem;     /* 64px */
-  --space-20: 5rem;     /* 80px */
-  --space-24: 6rem;     /* 96px */
-  --space-32: 8rem;     /* 128px */
+    /* Layout */
+    --max-width: 1200px;
+    --content-width: 800px;
+    --narrow-width: 640px;
 
-  /* Border Radius */
-  --radius-sm: 0px;      /* Sharp corners */
-  --radius-md: 0px;      /* Sharp corners */
-  --radius-lg: 0px;      /* Sharp corners */
-  --radius-xl: 0px;      /* Sharp corners */
-  --radius-2xl: 0px;     /* Sharp corners */
-  --radius-full: 9999px;
+    /* Line Heights */
+    --leading-tight: 1.1;
+    --leading-snug: 1.3;
+    --leading-normal: 1.6;
+    --leading-relaxed: 1.8;
 
-  /* Shadows */
-  --shadow-sm: var(--brutalist-shadow);
-  --shadow-md: var(--brutalist-shadow);
-  --shadow-lg: var(--brutalist-shadow-hover);
-  --shadow-xl: var(--brutalist-shadow-hover);
+    /* Letter Spacing */
+    --tracking-tight: -0.02em;
+    --tracking-normal: 0;
+    --tracking-wide: 0.05em;
+    --tracking-wider: 0.1em;
 
-  /* Animation Timings */
-  --duration-fast: 150ms;
-  --duration-normal: 200ms;
-  --duration-slow: 500ms;
-  --duration-slower: 700ms;
+    /* Transitions */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slower: 800ms cubic-bezier(0.16, 1, 0.3, 1);
 
-  /* Easing Functions */
-  --ease-in: cubic-bezier(0.4, 0, 1, 1);
-  --ease-out: var(--brutalist-transition);
-  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(26, 26, 26, 0.04);
+    --shadow-md: 0 4px 12px rgba(26, 26, 26, 0.06);
+    --shadow-lg: 0 8px 30px rgba(26, 26, 26, 0.08);
+    --shadow-accent: 0 4px 20px rgba(196, 93, 58, 0.15);
 
-  /* Breakpoints */
-  --breakpoint-sm: 640px;
-  --breakpoint-md: 768px;
-  --breakpoint-lg: 1024px;
-  --breakpoint-xl: 1280px;
-  --breakpoint-2xl: 1536px;
-
-  /* Container Max Widths */
-  --container-sm: 640px;
-  --container-md: 768px;
-  --container-lg: 1024px;
-  --container-xl: 1280px;
-  --container-2xl: 1536px;
-
-  /* Z-Index Scale */
-  --z-dropdown: 1000;
-  --z-sticky: 1020;
-  --z-fixed: 1030;
-  --z-modal-backdrop: 1040;
-  --z-modal: 1050;
-  --z-popover: 1060;
-  --z-tooltip: 1070;
-} 
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+    --radius-full: 9999px;
+}
