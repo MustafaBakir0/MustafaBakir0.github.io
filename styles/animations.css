@@ -1,313 +1,92 @@
-/* Beautiful Smooth Animations */
+/* ============================================================
+   animations.css — scroll reveals, hero intro, reduced motion
+   ============================================================ */
 
-/* Keyframes */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--dur-slow) var(--ease-out),
+              transform var(--dur-slow) var(--ease-out);
+  will-change: opacity, transform;
 }
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
 }
+/* stagger children when parent gets .is-visible */
+.reveal[data-delay="1"] { transition-delay: 80ms; }
+.reveal[data-delay="2"] { transition-delay: 160ms; }
+.reveal[data-delay="3"] { transition-delay: 240ms; }
+.reveal[data-delay="4"] { transition-delay: 320ms; }
 
-@keyframes slideInFromLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+/* Load-in cascade: fixed UI (brand, nav links) fades up with the same
+   ease but staggered delays — a cascading reveal, not a simultaneous pop */
+@keyframes navRise {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
 }
-
-@keyframes slideInFromRight {
-    from {
-        opacity: 0;
-        transform: translateX(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes scaleIn {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-@keyframes lineGrow {
-    from {
-        width: 0;
-    }
-    to {
-        width: 40px;
-    }
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-@keyframes pulse {
-    0%, 100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-    50% {
-        opacity: 0.8;
-        transform: scale(1.05);
-    }
-}
-
-/* Hero Animations - On Load */
-.hero-content {
-    animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    animation-delay: 0.1s;
+@media (min-width: 769px) {
+  .nav-brand,
+  .nav-menu li {
     opacity: 0;
+    animation: navRise 0.6s var(--ease-out) forwards;
+  }
+  .nav-brand           { animation-delay: 0s; }
+  .nav-menu li:nth-child(1) { animation-delay: 0.15s; }
+  .nav-menu li:nth-child(2) { animation-delay: 0.30s; }
+  .nav-menu li:nth-child(3) { animation-delay: 0.45s; }
+  .nav-menu li:nth-child(n+4) { animation-delay: 0.6s; }
 }
 
-.hero-content h1 {
-    animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    animation-delay: 0.2s;
-    opacity: 0;
+/* Hero intro on load */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: none; }
+}
+.hero-eyebrow,
+.hero h1 .line,
+.hero-lead,
+.hero-actions,
+.hero-scroll {
+  opacity: 0;
+  animation: rise 0.9s var(--ease-out) forwards;
+}
+.hero-eyebrow      { animation-delay: 0.15s; }
+.hero h1 .line:nth-child(1) { animation-delay: 0.30s; }
+.hero h1 .line:nth-child(2) { animation-delay: 0.42s; }
+.hero-lead         { animation-delay: 0.60s; }
+.hero-actions      { animation-delay: 0.75s; }
+.hero-scroll       { animation-delay: 1.0s; }
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: translateX(-50%) translateY(0); }
+  50%      { opacity: 1;   transform: translateX(-50%) translateY(4px); }
+}
+.hero-scroll { animation: rise 0.9s var(--ease-out) forwards; }
+.hero-scroll .bar { animation: barPulse 2.2s ease-in-out infinite; }
+@keyframes barPulse {
+  0%, 100% { opacity: 0.3; }
+  50%      { opacity: 1; }
 }
 
-.hero-content .text-xl {
-    animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    animation-delay: 0.4s;
-    opacity: 0;
-}
-
-.hero-actions {
-    animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    animation-delay: 0.6s;
-    opacity: 0;
-}
-
-.hero-image {
-    animation: scaleIn 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    animation-delay: 0.3s;
-    opacity: 0;
-}
-
-/* Scroll Reveal Animation */
-.scroll-reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.scroll-reveal.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Staggered reveal for children */
-.scroll-reveal:nth-child(1) { transition-delay: 0ms; }
-.scroll-reveal:nth-child(2) { transition-delay: 100ms; }
-.scroll-reveal:nth-child(3) { transition-delay: 200ms; }
-.scroll-reveal:nth-child(4) { transition-delay: 300ms; }
-.scroll-reveal:nth-child(5) { transition-delay: 400ms; }
-.scroll-reveal:nth-child(6) { transition-delay: 500ms; }
-.scroll-reveal:nth-child(7) { transition-delay: 600ms; }
-.scroll-reveal:nth-child(8) { transition-delay: 700ms; }
-
-/* Section header line animation */
-.section-header h2::after {
-    animation: lineGrow 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    animation-delay: 0.3s;
-    width: 0;
-}
-
-.section-header.is-visible h2::after {
-    width: 40px;
-}
-
-/* Timeline animations */
-.timeline-item {
-    opacity: 0;
-    transform: translateX(-20px);
-    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.timeline-item.is-visible {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.timeline-item:nth-child(1) { transition-delay: 0ms; }
-.timeline-item:nth-child(2) { transition-delay: 100ms; }
-.timeline-item:nth-child(3) { transition-delay: 200ms; }
-.timeline-item:nth-child(4) { transition-delay: 300ms; }
-.timeline-item:nth-child(5) { transition-delay: 400ms; }
-.timeline-item:nth-child(6) { transition-delay: 500ms; }
-.timeline-item:nth-child(7) { transition-delay: 600ms; }
-
-/* Project item animations */
-.project-item {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-                padding 0.3s ease;
-}
-
-.project-item.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Skill card animations */
-.skill-category-card {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.skill-category-card.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.skill-category-card:nth-child(1) { transition-delay: 0ms; }
-.skill-category-card:nth-child(2) { transition-delay: 100ms; }
-.skill-category-card:nth-child(3) { transition-delay: 200ms; }
-.skill-category-card:nth-child(4) { transition-delay: 300ms; }
-
-/* Hover animations */
-.btn {
-    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.btn:hover {
-    transform: translateY(-2px);
-}
-
-.btn:active {
-    transform: translateY(0);
-}
-
-.skill-tag {
-    transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.skill-tag:hover {
-    transform: translateY(-2px);
-}
-
-/* Link hover underline */
-.social-link::after,
-.nav-link::after {
-    transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-/* Profile image subtle float */
-.profile-image {
-    animation: float 6s ease-in-out infinite;
-    animation-delay: 1s;
-}
-
-/* Form input focus animation */
-.form-input {
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Contact form elements */
-.contact-form .scroll-reveal,
-.contact-info .scroll-reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.contact-form .scroll-reveal.is-visible,
-.contact-info .scroll-reveal.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* About block animations */
-.about-block {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.about-block.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.about-block:nth-child(1) { transition-delay: 0ms; }
-.about-block:nth-child(2) { transition-delay: 150ms; }
-.about-block:nth-child(3) { transition-delay: 300ms; }
-
-/* Page load fade in */
-body {
-    animation: fadeIn 0.5s ease forwards;
-}
-
-/* Smooth scroll behavior */
-html {
-    scroll-behavior: smooth;
-}
-
-/* Respect reduced motion preferences */
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-
-    .hero-content,
-    .hero-content h1,
-    .hero-content .text-xl,
-    .hero-actions,
-    .hero-image,
-    .scroll-reveal,
-    .timeline-item,
-    .project-item,
-    .skill-category-card,
-    .about-block,
-    .profile-image {
-        opacity: 1;
-        transform: none;
-        animation: none;
-    }
-
-    html {
-        scroll-behavior: auto;
-    }
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+  .hero-eyebrow,
+  .hero h1 .line,
+  .hero-lead,
+  .hero-actions,
+  .hero-scroll,
+  .nav-brand,
+  .nav-menu li { opacity: 1; animation: none; }
 }

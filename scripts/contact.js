@@ -1,44 +1,51 @@
-/**
- * Contact Form handling
- */
+/* ============================================================
+   contact.js — async Formspree submit + inline status
+   ============================================================ */
 
-document.addEventListener('DOMContentLoaded', () => {
-    const contactForm = document.getElementById('contact-form');
+(function () {
+  "use strict";
 
-    if (contactForm) {
-        // Form validation and UX enhancements
-        const inputs = contactForm.querySelectorAll('.form-input');
+  var form = document.getElementById("contact-form");
+  if (!form) return;
 
-        inputs.forEach(input => {
-            // Add focus/blur classes for styling
-            input.addEventListener('focus', () => {
-                input.parentElement.classList.add('focused');
-            });
+  var status = form.querySelector(".form-status");
+  var submitBtn = form.querySelector('button[type="submit"]');
+  var defaultLabel = submitBtn ? submitBtn.textContent : "Send message";
 
-            input.addEventListener('blur', () => {
-                input.parentElement.classList.remove('focused');
-                if (input.value.trim()) {
-                    input.classList.add('has-value');
-                } else {
-                    input.classList.remove('has-value');
-                }
-            });
-        });
+  function setStatus(msg, kind) {
+    if (!status) return;
+    status.textContent = msg;
+    status.className = "form-status" + (kind ? " " + kind : "");
+  }
 
-        // Form submission handling (Formspree handles the actual submission)
-        contactForm.addEventListener('submit', function(e) {
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    setStatus("Sending…", "");
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = "Sending…"; }
 
-            // Show loading state
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-
-            // Re-enable after a timeout (Formspree will redirect or show response)
-            setTimeout(() => {
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }, 3000);
-        });
-    }
-});
+    fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: { Accept: "application/json" }
+    })
+      .then(function (res) {
+        if (res.ok) {
+          form.reset();
+          setStatus("Thanks — your message is on its way. I'll reply soon.", "ok");
+        } else {
+          return res.json().then(function (data) {
+            var msg = data && data.errors
+              ? data.errors.map(function (x) { return x.message; }).join(", ")
+              : "Something went wrong. Please email mb9457@nyu.edu instead.";
+            setStatus(msg, "err");
+          });
+        }
+      })
+      .catch(function () {
+        setStatus("Network error. Please email mb9457@nyu.edu instead.", "err");
+      })
+      .finally(function () {
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = defaultLabel; }
+      });
+  });
+})();

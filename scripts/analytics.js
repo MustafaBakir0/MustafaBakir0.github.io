@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Track resume downloads
-    const resumeLink = document.querySelector('a[href*="CV"]');
+    const resumeLink = document.querySelector('a[href*="cv"], a[href*="CV"]');
     if (resumeLink) {
         resumeLink.addEventListener('click', () => {
             if (typeof dataLayer !== 'undefined') {

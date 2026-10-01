@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erth — Mustafa Bakir</title>
+    <meta name="description" content="Erth: an interactive media installation by Mustafa Bakir on heritage and inheritance.">
+    <meta name="theme-color" content="#0B0E14">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WBC7HM9D');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Self-hosted fonts (no external CDN) -->
+    <link rel="preload" href="assets/fonts/bebas-neue-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/jetbrains-mono.woff2" as="font" type="font/woff2" crossorigin>
+
+    <link rel="stylesheet" href="styles/fonts.css">
+    <link rel="stylesheet" href="styles/tokens.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/layout.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/animations.css">
+</head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WBC7HM9D"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <a href="#gallery" class="skip-link">Skip to gallery</a>
+
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-brand"><a href="index.html">Mustafa Bakir<span class="dot">.</span></a></div>
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html#about" class="nav-link">about</a></li>
+                <li><a href="index.html#work" class="nav-link">work</a></li>
+                <li><a href="index.html#contact" class="nav-link">contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="case">
+        <!-- sticky spec column -->
+        <aside class="case-spec">
+            <a class="back-link" href="index.html#work">Back to work</a>
+            <span class="kicker">installation · interactive media</span>
+            <h1>Erth<span class="arabic" lang="ar">إرث</span></h1>
+            <p class="dek">An interactive installation on heritage — and what a place inherits.</p>
+            <div class="spec-rail">
+                <div class="spec-item"><span class="k">role</span><span class="v todo-v">TODO — add</span></div>
+                <div class="spec-item"><span class="k">context</span><span class="v">Interactive Media · NYUAD</span></div>
+                <div class="spec-item"><span class="k">year</span><span class="v">2025</span></div>
+                <div class="spec-item"><span class="k">collaborators</span><span class="v todo-v">TODO — add</span></div>
+            </div>
+            <div class="spec-tags">
+                <span class="tag">Installation</span><span class="tag">Heritage</span><span class="tag">Projection</span>
+            </div>
+        </aside>
+
+        <!-- scrolling media + process -->
+        <div class="case-body">
+            <div class="case-hero-img">
+                <img src="assets/projects/erth/hero.jpg" alt="Erth installation: a treasure chest in red desert sand before a projected dune landscape" width="1200" height="900">
+            </div>
+
+            <div class="writeup">
+                <span class="todo">TODO — placeholder copy, edit before sharing</span>
+                <h2>Concept</h2>
+                <p>Erth (إرث — "inheritance") is an interactive installation about heritage as
+                   something buried and rediscovered. A chest sits half-sunk in red desert sand;
+                   a projected dune landscape breathes behind it. The visitor is invited to open,
+                   look, and handle — turning an audience into an inheritor.</p>
+                <h2>The experience</h2>
+                <p>Through a viewer and the objects inside the chest, fragments of an Emirati
+                   landscape and its artifacts come into focus. The piece asks what carries across
+                   generations, and what the desert keeps.</p>
+                <p><em>TODO: replace with the real concept, your role, the interaction design, and
+                   the technology used (projection, sensors, fabrication).</em></p>
+            </div>
+
+            <div id="gallery">
+                <p class="gallery-head">gallery</p>
+                <div class="gallery" data-gallery>
+                    <figure><img src="assets/projects/erth/01.jpg" alt="Erth installation view 1" loading="lazy"></figure>
+                    <figure><img src="assets/projects/erth/02.jpg" alt="Erth installation view 2" loading="lazy"></figure>
+                    <figure><img src="assets/projects/erth/03.jpg" alt="Erth installation view 3" loading="lazy"></figure>
+                    <figure><img src="assets/projects/erth/04.jpg" alt="Erth installation view 4" loading="lazy"></figure>
+                    <figure><img src="assets/projects/erth/05.jpg" alt="Erth installation view 5" loading="lazy"></figure>
+                    <figure><img src="assets/projects/erth/06.jpg" alt="Erth installation view 6" loading="lazy"></figure>
+                    <figure><img src="assets/projects/erth/07.jpg" alt="Erth installation view 7" loading="lazy"></figure>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p>&copy; 2026 Mustafa Bakir</p>
+            <p class="mono"><a href="index.html#work">// back to work</a></p>
+        </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/scroll.js"></script>
+    <script src="scripts/gallery.js"></script>
+    <script src="scripts/analytics.js"></script>
+</body>
+</html>

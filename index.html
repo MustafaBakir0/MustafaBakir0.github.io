@@ -3,11 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mustafa Bakir - Multimedia Designer & Computer Science Professional</title>
-    <meta name="description" content="Portfolio of Mustafa Bakir, a multimedia designer and computer science enthusiast merging creativity with cutting-edge technology.">
-    <meta name="keywords" content="multimedia designer, computer science, portfolio, web development, creative technology">
+    <title>Mustafa Bakir — Creative Technologist</title>
+    <meta name="description" content="Mustafa Bakir is a creative technologist and computer scientist at NYU Abu Dhabi working across robotics, interactive media, and fabrication.">
+    <meta name="keywords" content="Mustafa Bakir, creative technologist, robotics, interactive media, computer science, NYU Abu Dhabi, portfolio">
     <meta name="author" content="Mustafa Bakir">
-    
+    <meta name="theme-color" content="#0B0E14">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Mustafa Bakir — Creative Technologist">
+    <meta property="og:description" content="Robotics, interactive media, and fabrication at the crossroads of design and logic.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/img/headshot.jpeg">
+
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -15,13 +23,17 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-WBC7HM9D');</script>
     <!-- End Google Tag Manager -->
-    
-    <!-- CSS Files -->
-    <link rel="stylesheet" href="styles/reset.css">
-    <link rel="stylesheet" href="styles/variables.css">
+
+    <!-- Self-hosted fonts (no external CDN) -->
+    <link rel="preload" href="assets/fonts/bebas-neue-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/jetbrains-mono.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles/fonts.css">
+    <link rel="stylesheet" href="styles/tokens.css">
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/layout.css">
-    <link rel="stylesheet" href="styles/navigation.css">
     <link rel="stylesheet" href="styles/components.css">
     <link rel="stylesheet" href="styles/animations.css">
 </head>
@@ -29,463 +41,220 @@
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WBC7HM9D"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
 
-    <!-- Skip to main content link for accessibility -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#about" class="skip-link">Skip to main content</a>
 
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-container">
             <div class="nav-brand">
-                <a href="#home" class="nav-link">Mustafa Bakir</a>
+                <a href="#home">Mustafa Bakir<span class="dot">.</span></a>
             </div>
-            <button class="nav-toggle" aria-label="Toggle navigation menu">
-                <span></span>
-                <span></span>
-                <span></span>
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span><span></span><span></span>
             </button>
             <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#about" class="nav-link">about</a></li>
+                <li><a href="#work" class="nav-link">work</a></li>
+                <li><a href="#contact" class="nav-link">contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main id="main-content" class="main-layout">
-        <!-- Hero Section -->
-        <section id="home" class="section hero-section">
-            <!-- Background Elements -->
-            <div class="brutalist-grid"></div>
-            <div class="brutalist-bg-shape bg-shape-large diamond bg-pos-top-right floating floating-delay-1"></div>
-            <div class="brutalist-bg-shape bg-shape-medium circle bg-pos-bottom-left floating floating-delay-2"></div>
-            <div class="brutalist-bg-shape bg-shape-small star bg-pos-center-left floating floating-delay-3"></div>
-            <div class="corner-accent top-left"></div>
-            <div class="corner-accent bottom-right"></div>
-            
-            <div class="container">
-                <div class="hero-layout">
-                    <div class="hero-content">
-                        <h1>Mustafa Bakir</h1>
-                        <p class="text-xl text-muted mb-6">
-                            I'm a multimedia designer and computer science enthusiast merging creativity with cutting-edge technology. 
-                            I thrive at the crossroads where <span class="text-accent font-semibold">design meets logic</span>—where 
-                            aesthetics enhance function, and algorithms empower imagination.
-                        </p>
-                        <div class="hero-actions">
-                            <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                            <a href="CV2026.pdf" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Download Resume</a>
-                        </div>
-                    </div>
-                    <div class="hero-image">
-                        <!-- Professional headshot -->
-                        <img src="Headshot.jpg" alt="Mustafa Bakir - Professional headshot" class="profile-image">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="section">
-            <div class="container">
-                <div class="section-header scroll-reveal">
-                    <h2>About Me</h2>
-                </div>
-
-                <div class="about-content">
-                    <div class="about-block scroll-reveal">
-                        <h3>Robotics & Interactive Systems</h3>
-                        <p>
-                            Currently researching autonomous robotic systems and interactive electronic devices at NYU Abu Dhabi.
-                            I design and program systems integrating actuators, sensors, and communication modules for
-                            performance and interactive applications.
-                        </p>
-                    </div>
-
-                    <div class="about-block scroll-reveal">
-                        <h3>Creative Technology</h3>
-                        <p>
-                            As a multimedia designer and creative technologist, I craft experiences that merge art with engineering.
-                            From custom MIDI controllers to interactive installations, I believe in the power of technology
-                            to create emotionally resonant experiences.
-                        </p>
-                    </div>
-
-                    <div class="about-block scroll-reveal">
-                        <h3>Fabrication & Hardware</h3>
-                        <p>
-                            Hands-on experience with 3D printing, laser cutting, electronics fabrication, and circuit board assembly.
-                            I translate digital designs into physical prototypes, bridging the gap between software and hardware.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="experience" class="section">
-            <div class="container">
-                <div class="section-header scroll-reveal">
-                    <h2>Experience</h2>
-                    <p class="text-muted">
-                        My journey through robotics, interactive media, and computer science.
-                    </p>
-                </div>
-
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h4>Research Assistant: Robotics</h4>
-                            <p class="text-muted mb-2">NYU Abu Dhabi | 2026 – Present</p>
-                            <p>
-                                Collaborating with Professor Michael Shiloh on designing and programming autonomous robotic systems
-                                integrating actuators, communication modules, and sensor arrays for performance and interactive applications.
-                                Fabricating custom robot chassis and electronic housings using laser cutting, 3D printing, and circuit board assembly.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h4>Research Assistant: Interactive Media</h4>
-                            <p class="text-muted mb-2">NYU Abu Dhabi | 2025 – Present</p>
-                            <p>
-                                Collaborating with Professor Michael Ang on prototyping interactive electronic devices, including robots
-                                and custom MIDI controllers. Programming Arduino and CircuitPython systems for interactive media applications
-                                and performance installations. Supporting exhibitions showcasing research outputs.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h4>Teaching Assistant: Creating with AI</h4>
-                            <p class="text-muted mb-2">NYU Abu Dhabi Summer Academy | Summer 2025</p>
-                            <p>
-                                Supported intensive AI creativity course for 15+ high-achieving Emirati students. Taught AI fundamentals,
-                                LLMs, computer vision, and machine learning concepts. Designed course content through extensive research
-                                and diverse teaching methods while assisting with assessments and grading.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item timeline-hidden">
-                        <div class="timeline-content">
-                            <h4>Project Coordinator | Violet Racing Formula SAE Team</h4>
-                            <p class="text-muted mb-2">NYU Abu Dhabi | 2024 – 2025</p>
-                            <p>
-                                Led cross-functional coordination securing $40,000 in sponsorships through strategic pitching
-                                to major companies (ClickUp, Perplexity, etc). Managed documentation, meeting agendas, vendor coordination,
-                                risk mitigation, budgeting, and performance tracking.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item timeline-hidden">
-                        <div class="timeline-content">
-                            <h4>Candidate Weekend Group Leader</h4>
-                            <p class="text-muted mb-2">NYU Abu Dhabi | 2025 – 2026</p>
-                            <p>
-                                Chaperoning up to 20 candidates (aged 17–19) per 4-day intensive college admissions program,
-                                maintaining 100% accountability through proactive coordination and personalized engagement.
-                                Providing real-time updates and support via WhatsApp Communities and Slack.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item timeline-hidden">
-                        <div class="timeline-content">
-                            <h4>Admissions Ambassador</h4>
-                            <p class="text-muted mb-2">NYU Abu Dhabi | 2024 – 2026</p>
-                            <p>
-                                Delivering 40+ tours and information sessions to thousands of international and local visitors
-                                on academics and campus life. Managing data entry and providing high-quality service in
-                                fast-paced, multicultural settings.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item timeline-hidden">
-                        <div class="timeline-content">
-                            <h4>Arabic Teaching Assistant</h4>
-                            <p class="text-muted mb-2">NYU Abu Dhabi | 2024 – 2025</p>
-                            <p>
-                                Assisted teaching Arabic at all levels and led cultural events bridging non-native learners
-                                with Arab language and heritage. Supported course delivery for 200+ students over 4 semesters,
-                                fostering linguistic and cultural understanding.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline-toggle">
-                    <button class="btn btn-ghost" id="show-more-experience">
-                        Show More Experience
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="section">
-            <div class="container">
-                <div class="section-header scroll-reveal">
-                    <h2>Projects</h2>
-                    <p class="text-muted">A selection of my technical and creative work.</p>
-                </div>
-
-                <ul class="projects-list">
-                    <li class="project-item scroll-reveal">
-                        <div class="project-info">
-                            <h3>Real-time Audio Visualization System</h3>
-                            <p>Arduino-based hardware controller with Python audio processing, utilizing FFT for frequency analysis.</p>
-                            <div class="project-tags">
-                                <span class="project-tag">Arduino</span>
-                                <span class="project-tag">Python</span>
-                                <span class="project-tag">FFT</span>
-                            </div>
-                        </div>
-                        <a href="https://docs.google.com/document/d/10behxS46xAbK_pQJR2NgWQz4QQv7JBq86Cuf0eEogOg/edit?usp=sharing" class="project-link" target="_blank" rel="noopener noreferrer">View Documentation</a>
-                    </li>
-
-                    <li class="project-item scroll-reveal">
-                        <div class="project-info">
-                            <h3>Library Catalog Management System</h3>
-                            <p>C++ application with hierarchical category structure, custom vector implementation, and CSV import/export.</p>
-                            <div class="project-tags">
-                                <span class="project-tag">C++</span>
-                                <span class="project-tag">Data Structures</span>
-                                <span class="project-tag">OOP</span>
-                            </div>
-                        </div>
-                        <a href="https://github.com/MustafaBakir0/Library-Catalog-Management-System-LCMS-" class="project-link" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-                    </li>
-
-                    <li class="project-item scroll-reveal">
-                        <div class="project-info">
-                            <h3>Webster - Physics-Based Game</h3>
-                            <p>Interactive game with realistic physics simulation, rope mechanics, and procedural generation using p5.js.</p>
-                            <div class="project-tags">
-                                <span class="project-tag">p5.js</span>
-                                <span class="project-tag">Game Design</span>
-                                <span class="project-tag">Physics</span>
-                            </div>
-                        </div>
-                        <a href="https://editor.p5js.org/mb9457/sketches/tAD9-naTT" class="project-link" target="_blank" rel="noopener noreferrer">Play Game</a>
-                    </li>
-
-                    <li class="project-item scroll-reveal project-hidden">
-                        <div class="project-info">
-                            <h3>Drawing with Fourier Transform</h3>
-                            <p>Interactive visualization where users draw shapes that are analyzed using DFT and reconstructed through rotating circles.</p>
-                            <div class="project-tags">
-                                <span class="project-tag">Mathematics</span>
-                                <span class="project-tag">Creative Coding</span>
-                                <span class="project-tag">Fourier</span>
-                            </div>
-                        </div>
-                        <a href="https://editor.p5js.org/mb9457/full/4DY5y8UJI" class="project-link" target="_blank" rel="noopener noreferrer">Try It</a>
-                    </li>
-
-                    <li class="project-item scroll-reveal project-hidden">
-                        <div class="project-info">
-                            <h3>Word Count Wizard</h3>
-                            <p>C++ command-line tool for text analysis with custom hash table implementation for word frequency tracking.</p>
-                            <div class="project-tags">
-                                <span class="project-tag">C++</span>
-                                <span class="project-tag">Hash Table</span>
-                                <span class="project-tag">CLI</span>
-                            </div>
-                        </div>
-                        <a href="https://github.com/MustafaBakir0/Word-Count-Wizard" class="project-link" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-                    </li>
-
-                    <li class="project-item scroll-reveal project-hidden">
-                        <div class="project-info">
-                            <h3>Polynomial Calculator</h3>
-                            <p>C++ application for polynomial operations using linked list structure for efficient term management.</p>
-                            <div class="project-tags">
-                                <span class="project-tag">C++</span>
-                                <span class="project-tag">Linked List</span>
-                                <span class="project-tag">Mathematics</span>
-                            </div>
-                        </div>
-                        <a href="https://github.com/MustafaBakir0/Polynomial-Calculator-CPP" class="project-link" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-                    </li>
-
-                    <li class="project-item scroll-reveal project-hidden">
-                        <div class="project-info">
-                            <h3>ML Sketch Recognizing System</h3>
-                            <p>Python application recognizing hand-drawn shapes using geometric analysis and machine learning with PyQt5 interface.</p>
-                            <div class="project-tags">
-                                <span class="project-tag">Python</span>
-                                <span class="project-tag">Machine Learning</span>
-                                <span class="project-tag">Computer Vision</span>
-                            </div>
-                        </div>
-                        <a href="https://github.com/MustafaBakir0/ML-Sketch-Recongizing-System" class="project-link" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-                    </li>
-                </ul>
-
-                <div class="projects-toggle">
-                    <button class="btn btn-ghost" id="show-more-projects">Show More Projects</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="section">
-            <div class="container">
-                <div class="section-header scroll-reveal">
-                    <h2>Skills & Expertise</h2>
-                    <p class="text-muted">Technical, creative, and fabrication competencies.</p>
-                </div>
-
-                <div class="skills-grid">
-                    <div class="skill-category-card">
-                        <h3>Programming & Development</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">C++</span>
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">JavaScript</span>
-                            <span class="skill-tag">C#</span>
-                            <span class="skill-tag">MATLAB</span>
-                            <span class="skill-tag">React</span>
-                            <span class="skill-tag">Arduino</span>
-                            <span class="skill-tag">CircuitPython</span>
-                            <span class="skill-tag">LaTeX</span>
-                            <span class="skill-tag">Web Development</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-category-card">
-                        <h3>Design & Creative Tools</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Illustrator</span>
-                            <span class="skill-tag">Photoshop</span>
-                            <span class="skill-tag">After Effects</span>
-                            <span class="skill-tag">Cinema 4D</span>
-                            <span class="skill-tag">Vegas Pro</span>
-                            <span class="skill-tag">Premiere Pro</span>
-                            <span class="skill-tag">Unity</span>
-                            <span class="skill-tag">TouchDesigner</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-category-card">
-                        <h3>Fabrication & Hardware</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">3D Printing</span>
-                            <span class="skill-tag">Laser Cutting</span>
-                            <span class="skill-tag">Electronics Fabrication</span>
-                            <span class="skill-tag">Soldering</span>
-                            <span class="skill-tag">MIDI Controllers</span>
-                            <span class="skill-tag">Circuit Board Assembly</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-category-card">
-                        <h3>Leadership & Certifications</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">President, Al-Diwan Arabic Poetry SIG</span>
-                            <span class="skill-tag">Syrian Youth Empowerment Mentor</span>
-                            <span class="skill-tag">Global Mentorship Initiative Mentee</span>
-                            <span class="skill-tag">Excellence In Customer Service Certified</span>
-                            <span class="skill-tag">NYUAD Protection of Minors Certified</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="section">
-            <div class="container">
-                <div class="section-header scroll-reveal">
-                    <h2>Contact</h2>
-                    <p class="text-muted">
-                        I'm always interested in new opportunities and collaborations. Let's connect.
-                    </p>
-                </div>
+    <!-- Hero (full-bleed, pinned: first stretch of scroll scrubs the intro,
+         then the page slides over it — two-phase hand-off) -->
+    <div class="hero-pin">
+    <header id="home" class="hero">
+        <canvas id="fourier-canvas" aria-hidden="true"></canvas>
+        <div class="hero-inner container">
+            <p class="hero-eyebrow">multimedia designer · nyu abu dhabi</p>
+            <h1>
                 
-                <div class="contact-layout">
-                    <div class="contact-form-wrapper scroll-reveal">
-                        <form id="contact-form" class="contact-form" action="https://formspree.io/f/mqapynop" method="POST">
-                            <div class="form-group">
-                                <label for="name" class="form-label">Name</label>
-                                <input type="text" id="name" name="name" class="form-input" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" id="email" name="email" class="form-input" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="message" class="form-label">Message</label>
-                                <textarea id="message" name="message" rows="5" class="form-input" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Send Message</button>
-                        </form>
+                <span class="line accent-text">Mustafa Bakir</span>
+            </h1>
+            <p class="hero-lead">
+                <strong>robotics, interactive
+                media, design, and fabrication.</strong>
+            </p>
+            <div class="hero-actions">
+                <a href="#work" class="btn btn-primary btn-arrow">See the work</a>
+                <a href="cv2026.pdf" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">Résumé (PDF)</a>
+            </div>
+        </div>
+        <div class="hero-scroll" aria-hidden="true">
+            <span>scroll</span>
+            <span class="bar"></span>
+        </div>
+    </header>
+    </div>
+
+    <!-- generative transition -->
+    <div class="divider" aria-hidden="true"><canvas class="divider-canvas"></canvas></div>
+
+    <main>
+        <!-- About — split screen: sticky portrait/generative | scrolling bio -->
+        <section id="about" class="section split">
+            <div class="split-fixed about-fixed">
+                <canvas id="about-canvas" aria-hidden="true"></canvas>
+                <div class="split-fixed-inner">
+                    <span class="eyebrow">about</span>
+                    <div class="portrait">
+                        <img src="assets/img/headshot.jpeg" alt="Mustafa Bakir" width="480" height="600" loading="lazy">
                     </div>
-                    
-                    <div class="contact-info scroll-reveal">
-                        <div class="contact-item">
-                            <h4>Get in Touch</h4>
-                            <p>
-                                I'm currently available for freelance work, collaborations, and full-time opportunities. 
-                                Let's discuss how we can work together to bring your ideas to life.
-                            </p>
+                    <p class="thesis">Where aesthetics<br>enhance function.</p>
+                    <p class="thesis-ar arabic" lang="ar" aria-hidden="true">حيث يخدم الجمالُ الوظيفة</p>
+                </div>
+            </div>
+
+            <div class="split-scroll about-scroll">
+                <p class="about-lede reveal">
+                    I'm a multimedia designer at NYU Abu Dhabi. <span class="accent-text">I design and
+                    program intricate systems that convey messages. </span> 
+                </p>
+    
+            </div>
+        </section>
+
+      
+        <!-- generative transition -->
+        <div class="divider" aria-hidden="true"><canvas class="divider-canvas"></canvas></div>
+
+        <!-- Work — split screen index: sticky living-schematic preview | scrolling rows -->
+        <section id="work" class="section split split--work">
+            <div class="split-fixed work-preview no-img">
+                <canvas id="work-schematic" aria-hidden="true"></canvas>
+                <div class="preview-dock">
+                    <img class="preview-img" src="assets/projects/erth/hero.jpg" alt="" loading="lazy">
+                    <div class="preview-empty">select a project</div>
+                </div>
+                <div class="preview-meta">
+                    <span class="preview-count mono">01 / 10</span>
+                    <span class="preview-name">Erth</span>
+                    <span class="preview-kind mono">installation · 2025</span>
+                </div>
+            </div>
+
+            <div class="split-scroll work-index">
+                <div class="section-head reveal">
+                    <span class="eyebrow">selected work</span>
+                    <h2>A living index</h2>
+                    <p class="lead">Hover a project to preview it.</p>
+                </div>
+
+                <ul class="index-list">
+                    <li><a class="index-row" href="erth.html"
+                           data-index="0" data-title="Erth" data-kind="installation" data-year="2025"
+                           data-img="assets/projects/erth/hero.jpg"
+                           data-imgs="assets/projects/erth/hero.jpg,assets/projects/erth/01.jpg,assets/projects/erth/03.jpg,assets/projects/erth/04.jpg,assets/projects/erth/06.jpg,assets/projects/erth/07.jpg">
+                        <span class="ix mono">01</span>
+                        <span class="ix-main">
+                            <span class="ix-title">Erth</span>
+                            <span class="ix-tags"><span class="tag">Installation</span><span class="tag">Heritage</span><span class="tag">ESP32</span></span>
+                        </span>
+                        <span class="ix-kind mono">installation</span>
+                        <span class="ix-go" aria-hidden="true">→</span>
+                    </a></li>
+
+                    <li><a class="index-row" href="saulbot.html"
+                           data-index="1" data-title="SaulBot" data-kind="robotics" data-year="2025"
+                           data-img="assets/projects/saulbot/hero.jpg"
+                           data-imgs="assets/projects/saulbot/hero.jpg,assets/projects/saulbot/01.jpg,assets/projects/saulbot/03.jpg,assets/projects/saulbot/05.jpg,assets/projects/saulbot/07.jpg,assets/projects/saulbot/10.jpg">
+                        <span class="ix mono">02</span>
+                        <span class="ix-main">
+                            <span class="ix-title">SaulBot</span>
+                            <span class="ix-tags"><span class="tag">Robotics</span><span class="tag">Performance</span><span class="tag">Arduino</span></span>
+                        </span>
+                        <span class="ix-kind mono">robotics</span>
+                        <span class="ix-go" aria-hidden="true">→</span>
+                    </a></li>
+
+                    <li><a class="index-row" href="worntobeseen.html"
+                           data-index="2" data-title="Worn To Be Seen" data-kind="speculative design" data-year="2025"
+                           data-img="assets/projects/worn-to-be-seen/hero.jpg"
+                           data-imgs="assets/projects/worn-to-be-seen/hero.jpg,assets/projects/worn-to-be-seen/01.jpg,assets/projects/worn-to-be-seen/02.jpg,assets/projects/worn-to-be-seen/03.jpg,assets/projects/worn-to-be-seen/04.jpg">
+                        <span class="ix mono">03</span>
+                        <span class="ix-main">
+                            <span class="ix-title">Worn To Be Seen</span>
+                            <span class="ix-tags"><span class="tag">Speculative</span><span class="tag">RFID</span><span class="tag">Arduino</span></span>
+                        </span>
+                        <span class="ix-kind mono">speculative</span>
+                        <span class="ix-go" aria-hidden="true">→</span>
+                    </a></li>
+
+
+                </ul>
+            </div>
+        </section>
+
+       
+        <!-- Contact — playful kinetic-type backdrop -->
+        <section id="contact" class="section contact-section">
+            <canvas id="contact-canvas" aria-hidden="true"></canvas>
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow">contact</span>
+                    <h2>Let's build something</h2>
+                    <p class="lead">Always interested in new opportunities and collaborations.</p>
+                </div>
+
+                <div class="contact-grid">
+                    <form id="contact-form" class="reveal" action="https://formspree.io/f/mqapynop" method="POST">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" id="name" name="name" class="form-input" autocomplete="name" required>
                         </div>
-                        
-                        <div class="contact-item">
-                            <h4>What I Offer</h4>
-                            <ul>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" name="email" class="form-input" autocomplete="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" name="message" rows="5" class="form-input" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send message</button>
+                        <p class="form-status" role="status" aria-live="polite"></p>
+                    </form>
+
+                    <aside class="contact-info reveal">
+                        <div class="contact-block">
+                            <h4>Get in touch</h4>
+                            <p>Available for research, freelance work, collaborations, and full-time
+                               opportunities. The fastest way to reach me is the form or email.</p>
+                        </div>
+                        <div class="contact-block">
+                            <h4>What I do</h4>
+                            <ul class="offer-list">
+                                <li>Interactive multimedia &amp; installations</li>
                                 <li>Custom software development</li>
-                                <li>Interactive multimedia experiences</li>
-                                <li>UI/UX design and prototyping</li>
-                                <li>Technical consulting and problem-solving</li>
-                                <li>Project management and strategic planning</li>
+                                <li>Hardware prototyping &amp; fabrication</li>
+                                <li>UI/UX design &amp; prototyping</li>
                             </ul>
                         </div>
-                        
-                        <div class="contact-item">
+                        <div class="contact-block">
                             <h4>Connect</h4>
                             <div class="social-links">
-                                <a href="https://github.com/MustafaBakir0" class="social-link" target="_blank" rel="noopener noreferrer">
-                                    GitHub
-                                </a>
-                                <a href="https://editor.p5js.org/mb9457/" class="social-link" target="_blank" rel="noopener noreferrer">
-                                    p5.js Portfolio
-                                </a>
+                                <a class="social-link" href="mailto:mb9457@nyu.edu">mb9457@nyu.edu</a>
+                                <a class="social-link" href="https://github.com/MustafaBakir0" target="_blank" rel="noopener noreferrer">GitHub</a>
+                                <a class="social-link" href="https://editor.p5js.org/mb9457/" target="_blank" rel="noopener noreferrer">p5.js portfolio</a>
                             </div>
                         </div>
-                    </div>
+                    </aside>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
-        <div class="section-container">
-            <div class="footer-content">
-                <p>&copy; 2026 Mustafa Bakir. All rights reserved.</p>
-                <p class="text-muted">Designed and built with passion for the intersection of design and technology.</p>
-                <p class="text-muted">
-                </p>
-            </div>
+        <div class="container footer-inner">
+            <p>&copy; 2026 Mustafa Bakir</p>
         </div>
     </footer>
 
-    <!-- JavaScript Files -->
+    <script src="scripts/fourier.js"></script>
+    <script src="scripts/genart.js"></script>
     <script src="scripts/main.js"></script>
     <script src="scripts/scroll.js"></script>
-    <script src="scripts/portfolio.js"></script>
     <script src="scripts/contact.js"></script>
     <script src="scripts/analytics.js"></script>
 </body>
-</html> 
+</html>
